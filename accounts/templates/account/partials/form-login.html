@@ -1,0 +1,56 @@
+<form  action=" {% url 'accounts:login' %}" method="POST" class="form form-login"
+name="form_type" value="sing_in">
+    {% csrf_token %}
+
+
+    <h1>enter your account </h1>
+ 
+
+    <div class="social-links">
+        <ul class="links">
+            <li><i class="fa-brands fa-google-plus-g"></i></li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-linkedin-in"></i></li>
+        </ul>
+    </div>
+
+    <p>or use your email  account</p>
+    <label class="input-label"  for="email">
+        <i class="fa-regular fa-envelope"></i>
+        {% comment %} <input type="email" id="email" name="email" id="" placeholder="E-mail"> {% endcomment %}
+        {{login.username}}
+        {% if login.username.errors %}
+            <div class="error-message">
+                {{login.username.errors.as_text}}
+            </div>
+        {% endif %}
+    </label>
+
+    <label class="input-label"  for="password">
+        <i class="fa-solid fa-lock"></i>
+        {% comment %} <input type="password" id="password" placeholder="Password" name="password"> {% endcomment %}
+        {{login.password}}
+        {% if login.password.errors %}
+            <div class="error-message">
+                {{login.password.errors.as_text}}
+            </div>
+        {% endif %}
+    </label>
+
+    <a class="space" href="">Forgot your passsword ?</a>
+
+    <input class="submit " type="submit" value="Sign in">
+    <p class="mobile-login">already have an account?
+        <a href="#" id="login-mobile">Sing In</a>
+    </p>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if 'login_form' in message.tags %}
+                <div class="message {{message.tags}}">
+                        <p>{{message}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</form>

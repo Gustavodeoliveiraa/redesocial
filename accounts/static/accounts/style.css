@@ -1,0 +1,276 @@
+:root{
+    --color-button: #21415F;
+    --color-overlay: #306684 ;
+    --color-overlay-white: rgba(117, 114, 114, 0.438) ;
+    --color-background-links: #dbdfe2;
+    --color-border-links: #bdc3c7;
+    --color-shadow-main: rgb(124, 121, 121);
+    --color-input: #D9D9D9;
+    --font-roboto: 'Roboto', sans-serif;
+    --color-success-dark: #4a9c5d;
+    --color-success-light: #d4edda;
+    --color-error-dark: #da525d;
+    --color-error-light: #f8d7da;
+}
+
+body {
+    height: 100vh;
+    background: #E2E2E2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-roboto);
+    margin: 0;
+}
+
+h1, h2, p, ul{
+    margin: 0;
+    list-style-type: none;
+
+}
+
+main {
+    width: 70%;
+    height: 80%;
+    border-radius: 15px;
+    box-shadow: 0 14px 20px var(--color-shadow-main);
+    position: relative;
+    overflow: hidden;
+    color: var(--color-overlay);
+    background-color: white;
+
+}
+
+.login-container{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.form-content-register{
+    margin: auto;
+    height: 90%;
+    width: 95%;
+    font-size: 20px;
+    display: flex;
+}
+
+.form-content-register h1,
+.overlay h1{
+    font-size: 3rem;
+}
+
+
+.links{
+    display: flex;
+    color: black;
+    width: 100%;
+    margin-top: 17%;
+    margin-bottom: 16%;
+    padding: 0;
+}
+
+.links > li {
+    border: 1px solid var(--color-border-links);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 10px;
+    background-color: var(--color-background-links);
+    box-shadow: 0 4px 4px #0008;
+    transition: .5s;
+}
+
+.links li:hover{
+    background-color: var(--color-overlay);
+    color: white;
+    transform: translateY(-15%);
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    transition: 1s;
+    background-color: white;
+    text-align: center;
+}
+
+.input-label {
+    background-color: var(--color-input);
+    display: flex;
+    width: 70%;
+    height: 10%;
+    align-items: center;
+    margin: 2%;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.input-label-input {
+    background-color: var(--color-input);
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: transparent;
+    font-size: 1.2rem;
+}
+
+.input-label i {
+    margin: 3%;
+}
+
+.input-label:hover{
+    border: 2px solid var(--color-button);
+
+}
+
+.form {
+    font-size: .9rem;
+    text-align: left;
+}
+
+.errorlist {
+    width: 80%;
+    text-align: left;
+    color: red;
+}
+
+.space {
+    margin-top: 3%;
+    margin-bottom: 6%;
+    text-decoration: none;
+    color: black
+}
+
+.submit {
+    background-color: var(--color-button);
+    width: 120px;
+    min-height: 40px;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    margin-top: 2%;
+    transition: .3s; 
+    margin-bottom: 15px;
+}
+
+.submit:hover{
+    cursor: pointer;
+    scale: 1.1;
+    background-color: var(--color-overlay);
+}
+
+.overlay-content {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    transition: 1s;
+    transform: translateX(100%);
+    z-index: 10;
+    font-family: var(--font-roboto);
+}
+
+.overlay {
+    height: 100%;
+    background-color: var(--color-overlay);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay p {
+    margin-top: 3%;
+    margin-bottom: 6%;
+    font-size: 1.3rem;
+}
+
+.button-overlay {
+    border: 1px solid white;
+    height: 45px;
+    width: 130px;
+    transition: .3s;
+    background-color: var(--color-button);
+    border-radius: 20px;
+    color: white;
+}
+
+.button-overlay:hover {
+    scale: 1.1;
+    cursor: pointer;
+    background-color: var(--color-overlay-white);
+    transition: .3s;
+}
+
+/* message success */
+
+.message {
+    height: 8%;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.message-success{
+    border: 1px solid var(--color-success-dark);
+    background: var(--color-success-light);
+    color: var(--color-success-dark);
+}
+
+.message-error {
+    border: 1px solid var(--color-error-dark);
+    background: var(--color-error-light);
+    color: var(--color-error-dark);
+}
+
+
+/* animation */
+.login-container.move .overlay-content{
+    transform: translateX(0%);
+}
+
+.login-container.move .overlay:nth-child(2){
+    z-index: -1;
+}
+
+.form-login {
+    transform: translateX(-100%);
+    z-index: -1;
+}
+
+.login-container.move .form-register {
+    transform: translateX(100%);
+}
+
+.login-container.move .form-login {
+    transform: translateX(0%);
+    z-index: 1;
+}
+ 
+.mobile-register,
+.mobile-login {
+    display: none;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+{% load static %} 
+
+
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    {% include 'account/partials/head.html' %}
+</head>
+<body>
+    <main >
+        <div class="login-container" id="login-content">
+
+            <div class="form-content-register ">
+                {% include 'account/partials/form-register.html' %}
+
+                {% include 'account/partials/form-login.html' %}
+
+            </div>
+            <div class="overlay-content" id="overlay-content">
+                {% include 'account/partials/overlay.html' %}
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>

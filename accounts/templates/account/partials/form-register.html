@@ -1,0 +1,78 @@
+<form action=" {% url 'accounts:create' %}" method="POST" class="form form-register"
+name="form_type"  value="sign_up" >
+    {% csrf_token %}
+    <h1>Create  Account</h1>
+    <div class="social-links">
+        <ul class="links">
+            <li><i class="fa-brands fa-google-plus-g"></i></li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-linkedin-in"></i></li>
+        </ul>
+    </div>
+    
+    <p>or use your email  for registration</p>
+
+
+    <label class="input-label">
+        <i class="fa-solid fa-user"></i>
+        {{form.username}}
+    </label>
+    {% if form.username.errors %}
+        <div class="error-message">
+            {{ form.username.errors.as_text }}
+        </div>
+    {% endif %}
+
+
+    <label class="input-label">
+        <i class="fa-regular fa-envelope"></i>
+        {{form.email}}
+    </label>
+
+    {% if form.email.errors %}
+        <div class="error-message">
+            {{ form.email.errors.as_text }}
+        </div>
+    {% endif %}
+
+
+    <label  class="input-label" >
+        <i class="fa-solid fa-lock"></i>
+        {{form.password}}
+    </label>
+
+    {% if form.password.errors %}
+        <div class="error-message">
+            {{ form.password.errors.as_text }}
+        </div>
+    {% endif %}
+
+
+    <label  class="input-label" >
+        <i class="fa-solid fa-lock"></i>
+        {{form.password2}}
+    </label>
+
+
+    {% if form.password2.errors %}
+        <div class="error-message">
+            {{ form.password2.errors.as_text }}
+        </div>
+    {% endif %}
+
+    <input class="submit" type="submit" value="Sign up">
+    <p class="mobile-register">don't have an account? 
+        <a href="#" id="register-mobile">Sing Up</a>
+    </p>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if 'register_form' in message.tags %}
+                <div class="message {{message.tags}}">
+                        <p>{{message}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+</form>
