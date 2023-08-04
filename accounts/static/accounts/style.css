@@ -35,7 +35,7 @@ main {
     border-radius: 15px;
     box-shadow: 0 14px 20px var(--color-shadow-main);
     position: relative;
-    /* overflow: hidden; */
+    overflow: hidden;
     color: var(--color-overlay);
     background-color: white;
 
@@ -269,10 +269,3 @@ main {
 .mobile-login {
     display: none;
 }
-
-
-
-
-
-
-

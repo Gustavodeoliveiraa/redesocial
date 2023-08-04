@@ -1,0 +1,15 @@
+{% extends 'account/login_base.html' %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+    <div class="form-content-register ">
+        {% include 'account/partials/form-register.html' %}
+        {% include 'account/partials/form-login.html' %}
+    </div>
+
+    <div class="overlay-content" id="overlay-content">
+        {% include 'account/partials/overlay.html' %}
+    </div>
+{% endblock content %}
+

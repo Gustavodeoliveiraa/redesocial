@@ -4,22 +4,22 @@
 <!DOCTYPE html>
 <html lang="pt-Br">
 <head>
+    <title> {% block title %}{% endblock title %} -App</title>
     {% include 'account/partials/head.html' %}
 </head>
 <body>
     <main >
         <div class="login-container" id="login-content">
+            {% block content %}{% endblock content %}
 
-            <div class="form-content-register ">
-                {% include 'account/partials/form-register.html' %}
-
-                {% include 'account/partials/form-login.html' %}
-
-            </div>
-            <div class="overlay-content" id="overlay-content">
-                {% include 'account/partials/overlay.html' %}
-            </div>
-
+            {% comment %} REMOVE {% endcomment %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class=" message {{message.tags}} center">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </main>
 </body>
