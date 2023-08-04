@@ -35,7 +35,7 @@ main {
     border-radius: 15px;
     box-shadow: 0 14px 20px var(--color-shadow-main);
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     color: var(--color-overlay);
     background-color: white;
 
@@ -181,6 +181,7 @@ main {
 
 .overlay {
     height: 100%;
+    width: 100%;
     background-color: var(--color-overlay);
     color: white;
     display: flex;
@@ -188,6 +189,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: absolute;
 }
 
 .overlay p {
