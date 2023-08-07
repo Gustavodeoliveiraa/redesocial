@@ -1,7 +1,12 @@
+{% load static %}
+
 <form  action=" {% url 'accounts:login' %}" method="POST" class="form form-login"
 name="form_type" value="sing_in">
     {% csrf_token %}
 
+    <div class="logo-form">
+        <img src=" {% static 'img/logo-blue.png' %}" alt="">
+    </div>
 
     <h1>enter your account </h1>
  
@@ -19,25 +24,25 @@ name="form_type" value="sing_in">
         <i class="fa-regular fa-envelope"></i>
         {% comment %} <input type="email" id="email" name="email" id="" placeholder="E-mail"> {% endcomment %}
         {{login.username}}
-        {% if login.username.errors %}
-            <div class="error-message">
-                {{login.username.errors.as_text}}
-            </div>
-        {% endif %}
     </label>
+    {% if login.username.errors %}
+        <div class="error-message">
+            {{login.username.errors.as_text}}
+        </div>
+    {% endif %}
 
     <label class="input-label"  for="password">
         <i class="fa-solid fa-lock"></i>
         {% comment %} <input type="password" id="password" placeholder="Password" name="password"> {% endcomment %}
         {{login.password}}
-        {% if login.password.errors %}
-            <div class="error-message">
-                {{login.password.errors.as_text}}
-            </div>
-        {% endif %}
     </label>
+    {% if login.password.errors %}
+        <div class="error-message">
+            {{login.password.errors.as_text}}
+        </div>
+    {% endif %}
 
-    <a class="space" href="">Forgot your passsword ?</a>
+    <a  target="_parent" class="space" href="{% url 'accounts:password' %}" >Forgot your passsword ?</a>
 
     <input class="submit " type="submit" value="Sign in">
     <p class="mobile-login">already have an account?

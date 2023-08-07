@@ -6,11 +6,9 @@ from django.contrib.auth import login, authenticate
 from django.core.mail import send_mail
 import utils
 import os
-from dotenv import load_dotenv
+
 
 # tela inicial para login ou criação de conta
-load_dotenv()
-
 def entry(request):
     request.session.set_expiry(0)
     register_form_data = request.session.get('register_form_data', None)
@@ -74,13 +72,17 @@ def login_user(request):
 
 
 def change_password(request):
-    messages.success(request, '')
+    form = LoginUser()
+
+    messages.success(request, 'Email enviado')
 
     code = utils.code_generator()
     send_mail(
         'code of authentication',
         f'Test envio de email ({code})', os.environ.get('EMAIL'),
-        ['weren23066@mliok.com'], fail_silently=True
+        [f'{os.environ.get("EMAIL_USER")}'], fail_silently=True
     )
-    messages.success(request, 'Email enviado')
-    return render(request, 'account/login_base.html')
+    return render(
+        request, 'account/partials/credentials_for_code_email.html',
+        context={'form': form}
+    )

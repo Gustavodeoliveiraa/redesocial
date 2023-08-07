@@ -1,6 +1,13 @@
+{% load static %}
+
 <form action=" {% url 'accounts:create' %}" method="POST" class="form form-register"
 name="form_type"  value="sign_up" >
     {% csrf_token %}
+
+    <div class="logo-form">
+        <img src=" {% static 'img/lateral.png' %}" alt="">
+    </div>
+
     <h1>Create  Account</h1>
     <div class="social-links">
         <ul class="links">

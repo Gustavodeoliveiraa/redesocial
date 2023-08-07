@@ -56,6 +56,7 @@ main {
     display: flex;
 }
 
+
 .form-content-register h1,
 .overlay h1{
     font-size: 3rem;
@@ -82,7 +83,10 @@ main {
     background-color: var(--color-background-links);
     box-shadow: 0 4px 4px #0008;
     transition: .5s;
+    font-size: 1.3rem;
 }
+
+
 
 .links li:hover{
     background-color: var(--color-overlay);
@@ -134,8 +138,10 @@ main {
 }
 
 .form {
-    font-size: .9rem;
+    font-size: 1.2rem;
     text-align: left;
+    transition: transform 1s ease;
+
 }
 
 .errorlist {
@@ -148,7 +154,8 @@ main {
     margin-top: 3%;
     margin-bottom: 6%;
     text-decoration: none;
-    color: black
+    color: black;
+    font-size: 1.3rem;
 }
 
 .submit {
@@ -186,7 +193,7 @@ main {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;  
     align-items: center;
     text-align: center;
     position: absolute;
@@ -267,5 +274,9 @@ main {
  
 .mobile-register,
 .mobile-login {
+    display: none;
+}
+
+.logo-form {
     display: none;
 }

@@ -58,6 +58,12 @@
         height: 100vh;
     }
 
+    .logo-form {
+        margin-top: 50px;
+        margin-bottom: 100px;
+        display: flex;
+    }
+
     .form-content-register h1 {
         font-size: 3rem;
     }
@@ -71,7 +77,9 @@
         width: 100vw;
         height: 100vh;
         position: absolute;
-        
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
     }
 
     .form-register {
@@ -80,7 +88,7 @@
     }
 
     .input-label {
-        height: 50px;
+        height: 70px;
     }
 
     .form-register .input-label {
@@ -116,6 +124,11 @@
     .overlay-content {
         visibility: hidden;
         display: none;
+    }
+
+    /*  */
+    .form-login {
+        z-index: 1;
     }
 
 }

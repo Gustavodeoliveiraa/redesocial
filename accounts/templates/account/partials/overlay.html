@@ -1,10 +1,22 @@
+{% load static %}
+
 <div class="overlay">
+    <div class="logo">
+        <img src=" {% static 'img/lateral.png' %}" alt="">
+    </div>
     <h1>Create account</h1>
-    <p>enter your personal detail <br> and start your journey with us</p>
-    <button class="button-overlay" id="open-login" data-overlay="register">Sign in</button>
+    <div class="space-overlay">
+        <p>enter your personal detail <br> and start your journey with us</p>
+        <button class="button-overlay" id="open-login" data-overlay="register">Sign in</button>
+    </div>
 </div>
 <div class="overlay">
+    <div class="logo">
+        <img src=" {% static 'img/lateral.png' %}" alt="">
+    </div>
     <h1>Welcome back!</h1>
-    <p>to connect with us <br> please login with your personal info</p>
-    <button class="button-overlay" id="open-register" data-overlay="login">Sign up</button>
+    <div class="space-overlay">
+        <p>to connect with us <br> please login with your personal info</p>
+        <button class="button-overlay" id="open-register" data-overlay="login">Sign up</button>
+    </div>
 </div>

@@ -11,15 +11,6 @@
     <main >
         <div class="login-container" id="login-content">
             {% block content %}{% endblock content %}
-
-            {% comment %} REMOVE {% endcomment %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class=" message {{message.tags}} center">
-                        {{message}}
-                    </div>
-                {% endfor %}
-            {% endif %}
         </div>
     </main>
 </body>
