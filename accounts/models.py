@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from utils.django_forms import strong_password
 
 
 class RegisterUser(forms.ModelForm):
@@ -28,6 +29,7 @@ class RegisterUser(forms.ModelForm):
             attrs={'placeholder': 'Password', 'class': 'input-label-input'}
         ),
         error_messages={'required': 'This field not must by empty'},
+        validators=[strong_password]
     )
 
     password2 = forms.CharField(
@@ -39,6 +41,7 @@ class RegisterUser(forms.ModelForm):
             }
         ),
         error_messages={'invalid': 'passwords must be the same'},
+
 
     )
 
