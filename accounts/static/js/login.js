@@ -19,3 +19,17 @@ document.getElementById('open-register').addEventListener('click', moveOverlay);
 document.getElementById('open-login').addEventListener('click', moveOverlay);
 document.getElementById('register-mobile').addEventListener('click', moveOverlay);
 document.getElementById('login-mobile').addEventListener('click', moveOverlay);
+
+// script modal
+
+const button_model = document.getElementById('updateDetails');
+const modal_id = document.getElementById('modal');
+const close_model = document.getElementById('closeModel')
+
+button_model.onclick = function () {
+  modal_id.showModal()
+};
+
+close_model.onclick = function () {
+  modal_id.close()
+};

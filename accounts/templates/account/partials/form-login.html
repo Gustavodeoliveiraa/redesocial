@@ -1,5 +1,27 @@
 {% load static %}
 
+
+<dialog id="modal" class="modal_form">
+    <form method="get" class="form_modal">
+        <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
+
+        <label class="input-label modal-label"  for="email">
+            <i class="fa-regular fa-envelope"></i>
+            {{login.username}}
+        </label>
+
+        <label class="input-label modal-label">
+            <i class="fa-regular fa-envelope"></i>
+            {{login.email}}
+        </label>
+
+        <button class="button_modal">send password reset email</button>
+        <button type="button" class="submit" id="closeModel">Close</button>
+    </form>
+</dialog>
+
+
+
 <form  action=" {% url 'accounts:login' %}" method="POST" class="form form-login"
 name="form_type" value="sing_in">
     {% csrf_token %}
@@ -42,7 +64,8 @@ name="form_type" value="sing_in">
         </div>
     {% endif %}
 
-    <a  target="_parent" class="space" href="{% url 'accounts:password' %}" >Forgot your passsword ?</a>
+    {% comment %} <a  target="_parent" class="space" href="{% url 'accounts:password' %}" >Forgot your passsword ?</a> {% endcomment %}
+    <button type="button" class="space" id="updateDetails" >Forgot your passsword ?</button>
 
     <input class="submit " type="submit" value="Sign in">
     <p class="mobile-login">already have an account?
@@ -59,3 +82,6 @@ name="form_type" value="sing_in">
         {% endfor %}
     {% endif %}
 </form>
+
+
+

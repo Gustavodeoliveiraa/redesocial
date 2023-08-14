@@ -137,6 +137,10 @@ main {
 
 }
 
+.input-label:focus-within {
+    border: 2px solid var(--color-button);
+}
+
 .form {
     font-size: 1.2rem;
     text-align: left;

@@ -79,8 +79,8 @@ def change_password(request):
     code = utils.code_generator()
     send_mail(
         'code of authentication',
-        f'Test envio de email ({code})', os.environ.get('EMAIL'),
-        [f'{os.environ.get("EMAIL_USER")}'], fail_silently=True
+        f'Test envio de email ({code})', os.environ.get('EMAIL_HOST_USER'),
+        [f'{os.environ.get("EMAIL")}'], fail_silently=False
     )
     return render(
         request, 'account/partials/credentials_for_code_email.html',

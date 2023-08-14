@@ -1,0 +1,45 @@
+:root {
+    --font-roboto: 'Roboto', sans-serif
+}
+
+dialog::backdrop{
+    background-color: rgb(0 0 0 / .65);
+}
+
+dialog {
+    width: 400px;
+    height: 400px;
+    border: 3px solid #21415F;
+    border-radius: 17px;
+    font-family: var(--font-roboto);
+}
+
+.img_modal {
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
+
+.modal-label {
+    width: 95%;
+    height: 99%;
+    color: #306684; 
+    /* cor acima e do overlay, por em variaveis */
+}
+
+.form_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_modal {
+    height: 30px;
+    width: 200px;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    margin: 10px 0 10px 0;
+}
+
