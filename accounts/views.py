@@ -86,3 +86,8 @@ def change_password(request):
         request, 'account/partials/credentials_for_code_email.html',
         context={'form': form}
     )
+
+
+def change_password_post(request):
+    print('testando')
+    return redirect('accounts:password')

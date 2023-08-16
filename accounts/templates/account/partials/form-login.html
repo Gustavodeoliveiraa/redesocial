@@ -2,7 +2,8 @@
 
 
 <dialog id="modal" class="modal_form">
-    <form method="get" class="form_modal">
+    <form method="post" class="form_modal" action=" {% url 'accounts:password_post' %} ">
+        {% csrf_token %}
         <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
 
         <label class="input-label modal-label"  for="email">
@@ -15,7 +16,7 @@
             {{login.email}}
         </label>
 
-        <button class="button_modal">send password reset email</button>
+        <button class="button_modal submit">send password reset email</button>
         <button type="button" class="submit" id="closeModel">Close</button>
     </form>
 </dialog>

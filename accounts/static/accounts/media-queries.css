@@ -88,7 +88,7 @@
     }
 
     .input-label {
-        height: 70px;
+        min-height: 70px;
     }
 
     .form-register .input-label {
@@ -129,6 +129,28 @@
     /*  */
     .form-login {
         z-index: 1;
+    }
+
+}
+
+@media (max-width:390px) {
+
+    .form {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .logo-form {
+        margin-bottom: 50px;
+    }
+
+    .input-label {
+        min-height: 55px;
+        margin: 0;
+    }
+
+    .form-content-register h1 {
+        font-size: 2rem;
     }
 
 }

@@ -20,8 +20,8 @@ document.getElementById('open-login').addEventListener('click', moveOverlay);
 document.getElementById('register-mobile').addEventListener('click', moveOverlay);
 document.getElementById('login-mobile').addEventListener('click', moveOverlay);
 
-// script modal
 
+// script modal
 const button_model = document.getElementById('updateDetails');
 const modal_id = document.getElementById('modal');
 const close_model = document.getElementById('closeModel')

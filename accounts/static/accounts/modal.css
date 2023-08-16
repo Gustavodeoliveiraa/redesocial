@@ -1,5 +1,5 @@
 :root {
-    --font-roboto: 'Roboto', sans-serif
+    --font-roboto: 'Roboto', sans-serif 
 }
 
 dialog::backdrop{
@@ -12,6 +12,8 @@ dialog {
     border: 3px solid #21415F;
     border-radius: 17px;
     font-family: var(--font-roboto);
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .img_modal {
@@ -36,10 +38,28 @@ dialog {
 
 .button_modal {
     height: 30px;
-    width: 200px;
-    color: white;
-    background-color: black;
+    width: 300px;
     border-radius: 20px;
-    margin: 10px 0 10px 0;
+    color: white;
+    margin: 0;
+    margin-top: 20px;
 }
 
+#closeModel {
+    height: 30px;
+    width: 300px;
+    background-color: #D9D9D9;
+    color: black;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+@media (max-width: 550px) {
+    .img_modal {
+        margin-bottom: 45px;
+    }
+
+    .form_modal > .modal-label {
+        min-height: 40px;
+    }
+}

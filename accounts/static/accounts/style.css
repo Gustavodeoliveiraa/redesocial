@@ -111,7 +111,7 @@ main {
     background-color: var(--color-input);
     display: flex;
     width: 70%;
-    height: 10%;
+    min-height: 10%;
     align-items: center;
     margin: 2%;
     border: 2px solid transparent;
@@ -148,11 +148,26 @@ main {
 
 }
 
+#updateDetails {
+    font-family: var(--font-roboto);
+    font-weight: lighter;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: all .3s;
+}
+
+#updateDetails:hover {
+    cursor: pointer;
+    scale: 1.04;
+}
+
 .errorlist {
     width: 80%;
     text-align: left;
     color: red;
 }
+
 
 .space {
     margin-top: 3%;
