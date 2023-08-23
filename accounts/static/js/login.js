@@ -33,3 +33,35 @@ button_model.onclick = function () {
 close_model.onclick = function () {
   modal_id.close()
 };
+
+// ajax 
+$(document).ready(function() {
+  $(".form_modal").submit(function(event){
+    event.preventDefault();
+  
+    var form_data = $(this).serialize();
+    const message = $('.message');
+
+
+    $.ajax({
+      type: 'POST',
+      url: $(this).attr('action'),
+      data: form_data,
+      success: function messageDialog(response){
+        
+        $('.message').empty()
+        if (response.email == "Email send") {
+          message.removeClass('message-error')
+          message.append(response.email)
+          message.addClass('message-success')
+        }
+        else{
+          message.removeClass('message-success')
+          message.append(response.email)
+          message.addClass('message-error')
+        }
+      },
+    })
+  })
+})
+

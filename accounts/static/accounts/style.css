@@ -31,7 +31,7 @@ h1, h2, p, ul{
 
 main {
     width: 70%;
-    height: 80%;
+    height: 90%;
     border-radius: 15px;
     box-shadow: 0 14px 20px var(--color-shadow-main);
     position: relative;
@@ -40,6 +40,7 @@ main {
     background-color: white;
 
 }
+
 
 .login-container{
     background-color: white;
@@ -50,16 +51,23 @@ main {
 
 .form-content-register{
     margin: auto;
-    height: 90%;
+    height: 95%;
     width: 95%;
     font-size: 20px;
     display: flex;
 }
 
-
 .form-content-register h1,
 .overlay h1{
     font-size: 3rem;
+}
+
+.form-login h1 {
+    margin-bottom: 30px;
+}
+
+.space-form-login{
+    margin-top: 40px;
 }
 
 
@@ -67,8 +75,8 @@ main {
     display: flex;
     color: black;
     width: 100%;
-    margin-top: 17%;
-    margin-bottom: 16%;
+    margin-top: 10%;
+    margin-bottom: 11%;
     padding: 0;
 }
 
@@ -95,6 +103,8 @@ main {
     cursor: pointer;
 }
 
+
+
 .form {
     display: flex;
     align-items: center;
@@ -105,13 +115,14 @@ main {
     transition: 1s;
     background-color: white;
     text-align: center;
+    overflow: hidden;
 }
 
 .input-label {
     background-color: var(--color-input);
     display: flex;
     width: 70%;
-    min-height: 10%;
+    min-height: 8%;
     align-items: center;
     margin: 2%;
     border: 2px solid transparent;

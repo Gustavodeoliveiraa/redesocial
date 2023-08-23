@@ -2,9 +2,13 @@
 
 
 <dialog id="modal" class="modal_form">
-    <form method="post" class="form_modal" action=" {% url 'accounts:password_post' %} ">
+    <form method="post" class="form_modal" action="{% url 'accounts:form' %}">
         {% csrf_token %}
         <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
+
+        <div class="message">
+           {{email}}
+        </div>
 
         <label class="input-label modal-label"  for="email">
             <i class="fa-regular fa-envelope"></i>
@@ -42,7 +46,17 @@ name="form_type" value="sing_in">
         </ul>
     </div>
 
-    <p>or use your email  account</p>
+    {% if messages %}
+        {% for message in messages %}
+            {% if 'login_form' in message.tags %}
+                <div class="message {{message.tags}}">
+                        <p>{{message}}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <p class="space-form-login" >or use your email  account</p>
     <label class="input-label"  for="email">
         <i class="fa-regular fa-envelope"></i>
         {% comment %} <input type="email" id="email" name="email" id="" placeholder="E-mail"> {% endcomment %}
@@ -73,15 +87,7 @@ name="form_type" value="sing_in">
         <a href="#" id="login-mobile">Sing In</a>
     </p>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if 'login_form' in message.tags %}
-                <div class="message {{message.tags}}">
-                        <p>{{message}}</p>
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+
 </form>
 
 

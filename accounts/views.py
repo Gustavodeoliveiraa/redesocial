@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import RegisterUser, LoginUser
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.contrib.auth import login, authenticate
-from django.core.mail import send_mail
-import utils
-import os
+from django.contrib.auth.models import User
 
 
 # tela inicial para login ou criação de conta
@@ -71,23 +69,11 @@ def login_user(request):
     return redirect('accounts:account')
 
 
-def change_password(request):
-    form = LoginUser()
+def process_modal_form(request):
+    username, email = [
+        request.POST.get('username'), request.POST.get('email')
+    ]
 
-    messages.success(request, 'Email enviado')
-
-    code = utils.code_generator()
-    send_mail(
-        'code of authentication',
-        f'Test envio de email ({code})', os.environ.get('EMAIL_HOST_USER'),
-        [f'{os.environ.get("EMAIL")}'], fail_silently=False
-    )
-    return render(
-        request, 'account/partials/credentials_for_code_email.html',
-        context={'form': form}
-    )
-
-
-def change_password_post(request):
-    print('testando')
-    return redirect('accounts:password')
+    if User.objects.filter(username=username, email=email).exists():
+        return JsonResponse({'email': 'Email send'})
+    return JsonResponse({'email': 'Something is wrong'})

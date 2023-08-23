@@ -59,19 +59,14 @@
     }
 
     .logo-form {
-        margin-top: 50px;
-        margin-bottom: 100px;
+        margin-top: 15px;
+        margin-bottom: 25px;
         display: flex;
     }
 
     .form-content-register h1 {
         font-size: 3rem;
     }
-
-    .links {
-        margin-top: 8%;
-    }
-    
 
     .form {
         width: 100vw;
@@ -88,11 +83,12 @@
     }
 
     .input-label {
-        min-height: 70px;
+        min-height: 50px;
     }
 
     .form-register .input-label {
         color: var(--color-overlay);
+        min-height: 50px;
     }
 
 
@@ -107,6 +103,10 @@
         padding-top: 25px;
         margin-bottom: 25px;
         display: block;
+    }
+
+    .mobile-register {
+        margin-bottom: 10px;
     }
 
     .mobile-register a {
@@ -124,6 +124,10 @@
     .overlay-content {
         visibility: hidden;
         display: none;
+    }
+
+    .error-message {
+        font-size: 1rem;
     }
 
     /*  */
