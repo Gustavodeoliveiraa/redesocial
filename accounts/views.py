@@ -1,9 +1,15 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import RegisterUser, LoginUser
 from django.contrib import messages
 from django.http import Http404, JsonResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+import os
 
 
 # tela inicial para login ou criação de conta
@@ -75,5 +81,21 @@ def process_modal_form(request):
     ]
 
     if User.objects.filter(username=username, email=email).exists():
+        user = User.objects.get(username=username)
+        uidb64 = urlsafe_base64_encode(force_bytes(user.id))
+        token = default_token_generator.make_token(user)
+
+        root_path = request.build_absolute_uri(
+            reverse('password_reset_confirm', args=(uidb64, token))
+        )
+
+        send_mail(
+            'redefinição de senha',
+            f'{root_path}',
+            f"{os.environ.get('EMAIL_HOST_USER')}",
+            [f"{os.environ.get('EMAIL')}"],
+            fail_silently=False,
+        )
         return JsonResponse({'email': 'Email send'})
     return JsonResponse({'email': 'Something is wrong'})
+

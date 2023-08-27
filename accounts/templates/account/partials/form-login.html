@@ -2,7 +2,7 @@
 
 
 <dialog id="modal" class="modal_form">
-    <form method="post" class="form_modal" action="{% url 'accounts:form' %}">
+    <form id="reset" method="post" class="form_modal" action="{% url 'accounts:form' %}">
         {% csrf_token %}
         <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
 
