@@ -31,7 +31,6 @@ SECRET_KEY = 'django-insecure-w$vsgyb^(fg6q_1c=$86@fq0#yp2kt2*r!p$sp$#j-dtr2_%z5
 DEBUG = True
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 5
 
 ALLOWED_HOSTS = []
 

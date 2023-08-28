@@ -39,8 +39,9 @@ $(document).ready(function() {
   $(".form_modal").submit(function(event){
     event.preventDefault();
   
+    var form_ = $('#reset')
     var form_data = $(this).serialize();
-    const message = $('.message');
+    const message = $('#message');
 
 
     $.ajax({
@@ -49,7 +50,6 @@ $(document).ready(function() {
       data: form_data,
       success: function messageDialog(response){
         
-        $('.message').empty()
         if (response.email == "Email send") {
           message.removeClass('message-error')
           message.append(response.email)
@@ -60,6 +60,13 @@ $(document).ready(function() {
           message.append(response.email)
           message.addClass('message-error')
         }
+        setTimeout(function() {
+          $('#message').empty()
+          message.removeClass('message-success message-error');
+          location.reload();
+          window.close();
+        }, 2000);
+        
       },
     })
   })

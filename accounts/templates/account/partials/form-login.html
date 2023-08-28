@@ -2,11 +2,11 @@
 
 
 <dialog id="modal" class="modal_form">
-    <form method="post" class="form_modal" action="{% url 'accounts:form' %}">
+    <form id="reset" method="post" class="form_modal" action="{% url 'accounts:form' %}">
         {% csrf_token %}
         <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
 
-        <div class="message">
+        <div id="message" class="message">
            {{email}}
         </div>
 
@@ -46,11 +46,21 @@ name="form_type" value="sing_in">
         </ul>
     </div>
 
-    {% if messages %}
-        {% for message in messages %}
+    {% if success_message %}
+        {% for message in success_message %}
             {% if 'login_form' in message.tags %}
                 <div class="message {{message.tags}}">
-                        <p>{{message}}</p>
+                    <p>{{message}}</p>
+                </div>
+            
+            {% elif 'register_form' in message.tags %}
+                <div class="message {{ message.tags }}">
+                    <p>{{ message }}</p>
+                </div>
+
+            {% elif 'password_change' in message.tags %}
+                <div class="message {{ message.tags }}">
+                    <p>{{ message }}</p>
                 </div>
             {% endif %}
         {% endfor %}
@@ -89,6 +99,3 @@ name="form_type" value="sing_in">
 
 
 </form>
-
-
-
