@@ -24,13 +24,13 @@ document.getElementById('login-mobile').addEventListener('click', moveOverlay);
 // script modal
 const button_model = document.getElementById('updateDetails');
 const modal_id = document.getElementById('modal');
-const close_model = document.getElementById('closeModel')
+const close_modal = document.getElementById('closeModel')
 
 button_model.onclick = function () {
   modal_id.showModal()
 };
 
-close_model.onclick = function () {
+close_modal.onclick = function () {
   modal_id.close()
 };
 
@@ -43,6 +43,11 @@ $(document).ready(function() {
     var form_data = $(this).serialize();
     const message = $('#message');
 
+    function clearMessageAndReload() {
+      $('#message').empty()
+      message.removeClass('message-success message-error');
+      modal_id.close()
+    }
 
     $.ajax({
       type: 'POST',
@@ -54,21 +59,19 @@ $(document).ready(function() {
           message.removeClass('message-error')
           message.append(response.email)
           message.addClass('message-success')
+          setTimeout(clearMessageAndReload, 3000 )
         }
+
         else{
           message.removeClass('message-success')
           message.append(response.email)
           message.addClass('message-error')
+          setTimeout(function() {
+            $('#message').empty()
+            message.removeClass('message-success message-error');
+          }, 2000);
         }
-        setTimeout(function() {
-          $('#message').empty()
-          message.removeClass('message-success message-error');
-          location.reload();
-          window.close();
-        }, 2000);
-        
       },
     })
   })
 })
-
