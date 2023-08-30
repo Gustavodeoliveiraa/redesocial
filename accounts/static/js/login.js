@@ -71,6 +71,11 @@ $(document).ready(function() {
             message.removeClass('message-success message-error');
           }, 2000);
         }
+        setTimeout(function() {
+          $('.message').empty()
+          message.removeClass('message-success message-error');
+        }, 2000);
+        
       },
     })
   })
