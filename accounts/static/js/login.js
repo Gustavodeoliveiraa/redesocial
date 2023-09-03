@@ -34,6 +34,7 @@ close_modal.onclick = function () {
   modal_id.close()
 };
 
+
 // ajax 
 $(document).ready(function() {
   $(".form_modal").submit(function(event){
@@ -72,7 +73,7 @@ $(document).ready(function() {
           }, 2000);
         }
         setTimeout(function() {
-          $('.message').empty()
+          $('#message').empty()
           message.removeClass('message-success message-error');
         }, 2000);
         

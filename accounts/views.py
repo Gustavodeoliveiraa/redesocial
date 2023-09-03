@@ -10,22 +10,24 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from utils.create_and_update_form import create_and_update_form
+from django.views.decorators.http import require_GET, require_POST
 import os
 import threading
 
 
-# tela inicial para login ou criação de conta
-def entry(request):
+@require_GET
+def home(request):
     request.session.set_expiry(0)
-    register_form_data = request.session.get('register_form_data', None)
-    login_form_data = request.session.get('login_form_data', None)
+
     # separando os dados da session de cada formulário
-    form = RegisterUser()
-    login = RegisterUser()
-    if register_form_data:
-        form = RegisterUser(register_form_data)
-    if login_form_data:
-        login = RegisterUser(login_form_data)
+    form = create_and_update_form(
+        request, RegisterUser, 'register_form_data'
+    )
+
+    login = create_and_update_form(
+        request, RegisterUser, 'login_form_data'
+    )
 
     # Recupera a mensagem de sucesso da sessão
     success_message = messages.get_messages(request)
@@ -37,13 +39,11 @@ def entry(request):
     })
 
 
+@require_POST
 def create_user(request):
-    if not request.POST:
-        Http404()
+    POST = request.session['register_form_data'] = request.POST
 
-    POST = request.POST
-    request.session['register_form_data'] = POST
-    form = RegisterUser(POST)
+    form = create_and_update_form(request, RegisterUser, 'register_form_data')
 
     if form.is_valid():
         user = form.save(commit=False)
@@ -54,11 +54,10 @@ def create_user(request):
             request, 'account created with success', extra_tags='register_form'
         )
         return redirect('accounts:account')
-    else:
-        messages.error(
+    messages.error(
             request, 'something is wrong', extra_tags='register_form'
         )
-        return redirect('accounts:account')
+    return redirect('accounts:account')
 
 
 def login_user(request):
@@ -87,7 +86,7 @@ def login_user(request):
 
 def send_email_async(request, username, email):
     user = User.objects.get(username=username)
-    uidb64 = urlsafe_base64_encode(force_bytes(user.id))
+    uidb64 = urlsafe_base64_encode(force_bytes(user.id))  # type: ignore
     token = default_token_generator.make_token(user)
 
     root_path = request.build_absolute_uri(
@@ -98,12 +97,14 @@ def send_email_async(request, username, email):
             'redefinição de senha',
             f'{root_path}',
             f"{os.environ.get('EMAIL_HOST_USER')}",
-            [f"{os.environ.get('EMAIL')}"],
+            [f"{email}"],
             fail_silently=False,
     )
 
 
 def process_modal_form(request):
+    POST = request.POST
+    request.session['login_form_data'] = POST
     username, email = [
         request.POST.get('username'), request.POST.get('email')
     ]
@@ -127,7 +128,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
         # Adiciona a mensagem de sucesso
         messages.success(
-            self.request, "Sua senha foi alterada com sucesso!",
+            self.request, "Password change with success!",
             extra_tags='password_change'
         )
 

@@ -26,7 +26,8 @@ class RegisterUser(forms.ModelForm):
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
-            attrs={'placeholder': 'Password', 'class': 'input-label-input'}
+            attrs={
+                'placeholder': 'Password', 'class': 'input-label-input'}
         ),
         error_messages={'required': 'This field not must by empty'},
         validators=[strong_password]

@@ -52,11 +52,7 @@ name="form_type" value="sing_in">
                 <div class="message {{message.tags}}">
                     <p>{{message}}</p>
                 </div>
-            
-            {% elif 'register_form' in message.tags %}
-                <div class="message {{ message.tags }}">
-                    <p>{{ message }}</p>
-                </div>
+
 
             {% elif 'password_change' in message.tags %}
                 <div class="message {{ message.tags }}">
@@ -69,7 +65,7 @@ name="form_type" value="sing_in">
     <p class="space-form-login" >or use your email  account</p>
     <label class="input-label"  for="email">
         <i class="fa-regular fa-envelope"></i>
-        {% comment %} <input type="email" id="email" name="email" id="" placeholder="E-mail"> {% endcomment %}
+
         {{login.username}}
     </label>
     {% if login.username.errors %}
@@ -80,7 +76,7 @@ name="form_type" value="sing_in">
 
     <label class="input-label"  for="password">
         <i class="fa-solid fa-lock"></i>
-        {% comment %} <input type="password" id="password" placeholder="Password" name="password"> {% endcomment %}
+
         {{login.password}}
     </label>
     {% if login.password.errors %}
@@ -89,7 +85,6 @@ name="form_type" value="sing_in">
         </div>
     {% endif %}
 
-    {% comment %} <a  target="_parent" class="space" href="{% url 'accounts:password' %}" >Forgot your passsword ?</a> {% endcomment %}
     <button type="button" class="space" id="updateDetails" >Forgot your passsword ?</button>
 
     <input class="submit " type="submit" value="Sign in">
