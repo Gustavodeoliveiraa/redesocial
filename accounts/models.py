@@ -65,7 +65,7 @@ class RegisterUser(forms.ModelForm):
             )
 
         return data
-    
+
     def clean(self):
         password1 = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')

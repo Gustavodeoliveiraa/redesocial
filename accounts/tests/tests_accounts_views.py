@@ -6,7 +6,7 @@ from accounts import views
 class AccountsViewsTest(TestCase):
     def test_home_function_view_is_correct(self):
         view_entry = resolve(reverse('accounts:account'))
-        self.assertIs(views.entry, view_entry.func)
+        self.assertIs(views.home, view_entry.func)
 
     def test_validade_function_view_is_correct(self):
         view_validate = resolve(reverse('accounts:create'))

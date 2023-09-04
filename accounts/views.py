@@ -18,7 +18,7 @@ import threading
 
 @require_GET
 def home(request):
-    request.session.set_expiry(0)
+    request.session.set_expiry(1)  # alterar
 
     # separando os dados da session de cada formulário
     form = create_and_update_form(
