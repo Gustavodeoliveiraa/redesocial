@@ -1,9 +1,10 @@
+from typing import Any
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.urls import reverse, reverse_lazy
 from .models import RegisterUser, LoginUser
 from django.contrib import messages
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -60,10 +61,8 @@ def create_user(request):
     return redirect('accounts:account')
 
 
+@require_POST
 def login_user(request):
-    if not request.POST:
-        Http404()
-
     POST = request.POST
     request.session['login_form_data'] = POST
     form = LoginUser(POST)
@@ -101,7 +100,10 @@ def send_email_async(request, username, email):
             fail_silently=False,
     )
 
+    return [root_path, str(uidb64), str(token)]
 
+
+@require_POST
 def process_modal_form(request):
     POST = request.POST
     request.session['login_form_data'] = POST
@@ -122,14 +124,33 @@ def process_modal_form(request):
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('accounts:account')
+    template_name = 'account/partials/confirm-reset-password.html'
+
+    def get_context_data(self, **kwargs: Any) -> Any:
+        form = self.get_form()
+        form.fields['new_password1'].widget.attrs.update(
+            {
+                'class': 'input-label-input input',
+                'placeholder': 'Password'
+            }
+        )
+
+        form.fields['new_password2'].widget.attrs.update(
+                {
+                    'class': 'input-label-input input',
+                    'placeholder': 'Confirm Password'
+                }
+            )
+
+        context = super().get_context_data(**kwargs)
+        context['form'] = form
+        return context
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-
-        # Adiciona a mensagem de sucesso
+        # add a success message
         messages.success(
             self.request, "Password change with success!",
             extra_tags='password_change'
         )
 
-        return response
+        return super().form_valid(form)

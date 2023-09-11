@@ -1,0 +1,90 @@
+{% load static %}
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href=" {% static 'img/favicon_transparent_32x32.png' %}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
+    <link rel="stylesheet" href=" {% static 'social_network/style.css' %} ">
+    <title>{% block title %} Feed {% endblock title %}</title>
+</head>
+
+<body>
+    <div class="contente">
+        <div class="left_menu">
+            <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
+                <div class="user_picture"></div>    
+                <div class="social_infos">
+                    <a href="" class="user_link">
+                        <p>User Name</p>
+                    </a>  {% comment %} foto do usuario na base de dados {% endcomment %}
+                    <p class="Email" >Emai Do User</p>
+                </div>
+
+            </div> 
+            <div class="private_icons">
+                <div class="general">General</div>
+                    <button> <i class="fa-solid fa-user-group"> </i>Friends </button>
+
+                    <button> <i class="fa-solid fa-bell"> </i>Notifications </button>
+
+                    <button><i class="fa-solid fa-message"> </i>Messages </button>
+
+                <div class="private">Private</div>
+                    <button> <i class="fa-solid fa-gear"> </i>Configurations </button>
+                    <button> <i class="fa-solid fa-circle-question"> </i>Support </button>
+                    <button> <i class="fa-solid fa-right-from-bracket"> </i>Log out </button>
+            </div>
+        </div>
+
+        <div class="feed">
+            <p>ola</p>
+
+        </div>
+        <div class="right_feed">
+            <div class="peoples">
+                <p>People You May Know</p>
+            </div>
+
+            <div class="friends">
+                <p>Friends</p>
+                
+                <form action="">
+                    <label class="search_friends">  {% comment %}  por um placeholder{% endcomment %}
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input class="input" type="text" name="" placeholder="search friends">
+                    </label>
+                </form>
+
+                <div class="content_all_friends">
+                    <a href="" class="content_friends"> {% comment %}  por link do perfil do User{% endcomment %}
+                        <div class="user_picture friend_picture"></div>
+                        Username
+                    </a>
+                    <a href="" class="content_friends">
+                        <div class="user_picture friend_picture"></div>
+                        Username
+                    </a>
+                    <a href="" class="content_friends">
+                        <div class="user_picture friend_picture"></div>
+                        Username
+                    </a>
+                    <a href="" class="content_friends">
+                        <div class="user_picture friend_picture"></div>
+                        Username
+                    </a>
+
+                    <a href="" class="content_friends"> 
+                        <div class="user_picture friend_picture"></div>
+                        Username
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

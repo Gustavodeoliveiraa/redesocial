@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'social_network',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +142,7 @@ MESSAGE_TAGS = {
     constants.SUCCESS: 'message-success',
     constants.WARNING: 'message-warning',
 }
-    
+
 # Emails
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
