@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
     <link rel="stylesheet" href=" {% static 'social_network/style.css' %} ">
+    <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
     <title>{% block title %} Feed {% endblock title %}</title>
 </head>
 
@@ -15,12 +16,14 @@
     <div class="contente">
         <div class="left_menu">
             <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
-                <div class="user_picture"></div>    
+                <div class="user_picture">
+                    <a href=""><img src=" {{ p.profile_image.url }}" alt=""></a>
+                </div>    
                 <div class="social_infos">
                     <a href="" class="user_link">
-                        <p>User Name</p>
+                        {{user_data.username|capfirst}}
                     </a>  {% comment %} foto do usuario na base de dados {% endcomment %}
-                    <p class="Email" >Emai Do User</p>
+                    <p class="Email" >{{ user_data.email }}</p>
                 </div>
 
             </div> 
@@ -40,21 +43,97 @@
         </div>
 
         <div class="feed">
-            <p>ola</p>
+                <form action="" class="submit">
+                    <label for="all_users" class="search_all">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input class="input" type="text" name="all_users" id="all_users" placeholder="Search in Friend Sync">
+                    </label>
+                </form>
+
+            <div class="status">
+                <button class="arrow-left control">◀</button>
+                <button class="arrow-right control">▶</button>
+                
+                <div class="carousel">
+                    <div class="story item current-item">
+                        <div class="user_picture user_picture_story">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                    </div>
+                    
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                    <div class="story item">
+                        <div class="user_picture user_picture_story ">
+                            <img src=" {{p.profile_image.url}} " alt="">
+                        </div>
+                        <p>Create Story</p>
+                        <img src="{{p.user_image.url}}" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="thinking">
+                {% comment %} implementar o Oq vc esta pensando {% endcomment %}
+            </div>
 
         </div>
+
         <div class="right_feed">
             <div class="peoples">
                 <p>People You May Know</p>
+
             </div>
 
             <div class="friends">
                 <p>Friends</p>
                 
-                <form action="">
+                <form action="" class="form_friends" method="GET">
                     <label class="search_friends">  {% comment %}  por um placeholder{% endcomment %}
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input class="input" type="text" name="" placeholder="search friends">
+                        <input class="input" type="text" name="friends_add" placeholder="search friends">
                     </label>
                 </form>
 
@@ -63,25 +142,8 @@
                         <div class="user_picture friend_picture"></div>
                         Username
                     </a>
-                    <a href="" class="content_friends">
-                        <div class="user_picture friend_picture"></div>
-                        Username
-                    </a>
-                    <a href="" class="content_friends">
-                        <div class="user_picture friend_picture"></div>
-                        Username
-                    </a>
-                    <a href="" class="content_friends">
-                        <div class="user_picture friend_picture"></div>
-                        Username
-                    </a>
-
-                    <a href="" class="content_friends"> 
-                        <div class="user_picture friend_picture"></div>
-                        Username
-                    </a>
-
                 </div>
+                
             </div>
 
         </div>
