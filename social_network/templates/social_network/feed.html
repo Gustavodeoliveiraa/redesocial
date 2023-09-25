@@ -8,16 +8,20 @@
 
     <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
     <link rel="stylesheet" href=" {% static 'social_network/style.css' %} ">
+    <link rel="stylesheet" href=" {% static 'social_network/change_profile_image.css' %}">
     <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
+    <script src="{% static "social_network_js/js/social_network.js" %} "></script>
     <title>{% block title %} Feed {% endblock title %}</title>
 </head>
 
 <body>
+    {% block modalImg %}{% endblock modalImg %}
+
     <div class="contente">
         <div class="left_menu">
             <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
-                <div class="user_picture">
-                    <a href=""><img src=" {{ p.profile_image.url }}" alt=""></a>
+                <div class="user_picture" id='select'>
+                    <img src=" {{ p.user_image.url }}" alt="">
                 </div>    
                 <div class="social_infos">
                     <a href="" class="user_link">
@@ -27,6 +31,8 @@
                 </div>
 
             </div> 
+
+
             <div class="private_icons">
                 <div class="general">General</div>
                     <button> <i class="fa-solid fa-user-group"> </i>Friends </button>
@@ -57,61 +63,48 @@
                 <div class="carousel">
                     <div class="story item current-item">
                         <div class="user_picture user_picture_story">
-                            <img src=" {{p.profile_image.url}} " alt="">
+                            <img src=" {{p.user_image.url}} " alt="">
                         </div>
                         <p>Create Story</p>
+                        <img src="{{p.profile_image.url}}" alt="">
                     </div>
                     
                     <div class="story item">
                         <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
+                            <img src=" {{p.user_image.url}} " alt="">
                         </div>
                         <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
+                        <img src="{{p.profile_image.url}}" alt="">
                     </div>
 
                     <div class="story item">
                         <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
+                            <img src=" {{p.user_image.url}} " alt="">
                         </div>
                         <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
+                        <img src="{{p.profile_image.url}}" alt="">
                     </div>
 
                     <div class="story item">
                         <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
+                            <img src=" {{p.user_image.url}} " alt="">
                         </div>
                         <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
+                        <img src="{{p.profile_image.url}}" alt="">
                     </div>
 
                     <div class="story item">
                         <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
+                            <img src=" {{p.user_image.url}} " alt="">
                         </div>
                         <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
+                        <img src="{{p.profile_image.url}}" alt="">
                     </div>
 
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
-                    </div>
-
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.profile_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.user_image.url}}" alt="">
-                    </div>
+                    
 
                 </div>
-
+ 
             </div>
 
 
