@@ -21,7 +21,11 @@
         <div class="left_menu">
             <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
                 <div class="user_picture" id='select'>
-                    <img src=" {{ p.user_image.url }}" alt="">
+                    {% if profile_data.user_image %}
+                        <img src=" {{ profile_data.user_image.url }}" alt="">
+                    {% else %}
+                        <img src="{% static "img/without_user.png" %}" alt="">
+                    {% endif %}
                 </div>    
                 <div class="social_infos">
                     <a href="" class="user_link">
@@ -61,47 +65,24 @@
                 <button class="arrow-right control">▶</button>
                 
                 <div class="carousel">
+
                     <div class="story item current-item">
                         <div class="user_picture user_picture_story">
-                            <img src=" {{p.user_image.url}} " alt="">
+                            {% if profile_data.user_image %}
+                                <img src=" {{ profile_data.user_image.url }}" alt="">
+                            {% else %}
+                                <img src="{% static "img/without_user.png" %}" alt="">
+                            {% endif %}
                         </div>
-                        <p>Create Story</p>
-                        <img src="{{p.profile_image.url}}" alt="">
-                    </div>
-                    
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.user_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.profile_image.url}}" alt="">
-                    </div>
-
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.user_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.profile_image.url}}" alt="">
+                        <p>{{user_data.username}}</p>
+                        {% if profile_data.profile_image %}
+                            <img src="{{profile_data.profile_image.url}}" alt="">
+                        {% else %}
+                            <img src="{% static "img/gradient.png" %}" alt="">
+                        {% endif %}]
                     </div>
 
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.user_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.profile_image.url}}" alt="">
-                    </div>
 
-                    <div class="story item">
-                        <div class="user_picture user_picture_story ">
-                            <img src=" {{p.user_image.url}} " alt="">
-                        </div>
-                        <p>Create Story</p>
-                        <img src="{{p.profile_image.url}}" alt="">
-                    </div>
-
-                    
 
                 </div>
  

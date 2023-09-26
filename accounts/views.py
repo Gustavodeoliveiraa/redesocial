@@ -15,11 +15,12 @@ from utils.create_and_update_form import create_and_update_form
 from django.views.decorators.http import require_GET, require_POST
 import os
 import threading
+from social_network.models import ProfilePersonal
 
 
 @require_GET
 def home(request):
-    request.session.set_expiry(1)  # alterar
+    request.session.set_expiry(1)
 
     # separando os dados da session de cada formulário
     form = create_and_update_form(
@@ -50,6 +51,11 @@ def create_user(request):
         user = form.save(commit=False)
         user.set_password(POST['password'])
         user.save()
+        #
+        user_model_relation = User.objects.get(username=POST['username'])
+        profile = ProfilePersonal(user=user_model_relation)
+        profile.save()
+
         del (request.session['register_form_data'])
         messages.success(
             request, 'account created with success', extra_tags='register_form'
@@ -77,7 +83,7 @@ def login_user(request):
                 request, 'Logged with success', extra_tags='login_form'
             )
             del (request.session['login_form_data'])
-            return redirect('accounts:account')
+            return redirect('feed')
 
     messages.error(request, 'Credentials invalid', extra_tags='login_form')
     return redirect('accounts:account')

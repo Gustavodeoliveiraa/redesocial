@@ -5,14 +5,14 @@
         <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             Change profile image
-            {{fieldt.user_image}}
+            {{fields.user_image}}
             <input type="submit" value="Submit">
         </form>
 
         <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             Change staus (temporario)
-            {{fieldt.profile_image}}
+            {{fields.profile_image}}
             <input type="submit" value="Submit">
         </form>
     </div>
