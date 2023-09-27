@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
@@ -79,9 +80,6 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            messages.success(
-                request, 'Logged with success', extra_tags='login_form'
-            )
             del (request.session['login_form_data'])
             return redirect('feed')
 
@@ -89,6 +87,7 @@ def login_user(request):
     return redirect('accounts:account')
 
 
+@login_required  # type: ignore
 def send_email_async(request, username, email):
     user = User.objects.get(username=username)
     uidb64 = urlsafe_base64_encode(force_bytes(user.id))  # type: ignore
@@ -109,6 +108,7 @@ def send_email_async(request, username, email):
     return [root_path, str(uidb64), str(token)]
 
 
+@login_required  # type: ignore
 @require_POST
 def process_modal_form(request):
     POST = request.POST
