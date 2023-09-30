@@ -1,4 +1,3 @@
-from typing import Any
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.urls import reverse, reverse_lazy
@@ -8,7 +7,6 @@ from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
@@ -87,7 +85,6 @@ def login_user(request):
     return redirect('accounts:account')
 
 
-@login_required  # type: ignore
 def send_email_async(request, username, email):
     user = User.objects.get(username=username)
     uidb64 = urlsafe_base64_encode(force_bytes(user.id))  # type: ignore
@@ -108,7 +105,6 @@ def send_email_async(request, username, email):
     return [root_path, str(uidb64), str(token)]
 
 
-@login_required  # type: ignore
 @require_POST
 def process_modal_form(request):
     POST = request.POST
@@ -132,7 +128,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('accounts:account')
     template_name = 'account/partials/confirm-reset-password.html'
 
-    def get_context_data(self, **kwargs: Any) -> Any:
+    def get_context_data(self, **kwargs):
         form = self.get_form()
         form.fields['new_password1'].widget.attrs.update(
             {

@@ -21,8 +21,8 @@
         <div class="left_menu">
             <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
                 <div class="user_picture" id='select'>
-                    {% if profile_data.user_image %}
-                        <img src=" {{ profile_data.user_image.url }}" alt="">
+                    {% if profile_data.profile_image %}
+                        <img src=" {{ profile_data.profile_image.url }}" alt="">
                     {% else %}
                         <img src="{% static "img/without_user.png" %}" alt="">
                     {% endif %}
@@ -65,24 +65,12 @@
                 <button class="arrow-right control">▶</button>
                 
                 <div class="carousel">
-
-                    <div class="story item current-item">
-                        <div class="user_picture user_picture_story">
-                            {% if profile_data.user_image %}
-                                <img src=" {{ profile_data.user_image.url }}" alt="">
-                            {% else %}
-                                <img src="{% static "img/without_user.png" %}" alt="">
-                            {% endif %}
-                        </div>
-                        <p>{{user_data.username}}</p>
-                        {% if profile_data.profile_image %}
-                            <img src="{{profile_data.profile_image.url}}" alt="">
-                        {% else %}
-                            <img src="{% static "img/gradient.png" %}" alt="">
-                        {% endif %}]
-                    </div>
-
-
+                    
+                    {% if profile_data.status %}
+                            {% for status in profile_data.status.all %}
+                                {{status}}
+                            {% endfor %}
+                    {% endif %}
 
                 </div>
  

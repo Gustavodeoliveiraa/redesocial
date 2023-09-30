@@ -63,7 +63,6 @@ class RegisterUser(forms.ModelForm):
                 'This email is already in use',
                 code='unique'
             )
-
         return data
 
     def clean(self):

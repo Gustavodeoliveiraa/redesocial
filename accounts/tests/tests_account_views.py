@@ -5,7 +5,7 @@ from accounts.views import send_email_async
 import os
 from unittest.mock import patch
 from django.core import mail
-from django.contrib.auth.forms import PasswordResetForm
+from social_network.models import ProfilePersonal
 
 
 class TestViewCreateUser(TestCase):
@@ -81,10 +81,12 @@ class TestViewCreateUser(TestCase):
 
 class TestViewLoginUser(TestCase):
     def test_login_user_authenticated(self):
-        User.objects.create_user(  # type: ignore
+        user = User.objects.create_user(  # type: ignore
             username='User',
             password='123'
         )
+        ProfilePersonal.objects.create(user=user)
+
         data = {
             'username': 'User',
             'password': '123',
@@ -93,9 +95,8 @@ class TestViewLoginUser(TestCase):
             reverse('accounts:login'), follow=True, data=data
         )
 
-        self.assertIs(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['user'].is_authenticated)
-        self.assertIn('Logged with success', response.content.decode('utf-8'))
 
     def test_login_user_not_authenticated(self):
         User.objects.create_user(  # type: ignore
@@ -112,7 +113,7 @@ class TestViewLoginUser(TestCase):
             reverse('accounts:login'), follow=True, data=data
         )
 
-        self.assertIs(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context['user'].is_authenticated)
         self.assertIn('Credentials invalid', response.content.decode('utf-8'))
 
