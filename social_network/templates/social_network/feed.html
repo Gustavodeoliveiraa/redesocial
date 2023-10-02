@@ -65,15 +65,21 @@
                 <button class="arrow-right control">▶</button>
                 
                 <div class="carousel">
-                    
-                    {% if profile_data.status %}
-                            {% for status in profile_data.status.all %}
-                                {{status}}
-                            {% endfor %}
-                    {% endif %}
+                    {% for status in teste %}
+                        <div class="story item current-item">
+                            <div class="user_picture user_picture_story">
+                                {% if profile_data.user_image %}
+                                    <img src=" {{ profile_data.user_image.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static "img/without_user.png" %}" alt="">
+                                {% endif %}
+                            </div>
+                            <p>{{user_data.username}}</p>
+                            <img src="{{status.status_image.url}}" alt="">
 
+                        </div>
+                    {% endfor %}
                 </div>
- 
             </div>
 
 

@@ -11,13 +11,16 @@ def feed(request):
     profile = ProfilePersonal.objects.get(user=user_model_data.pk)
     fields_of_model = ProfilePersonalModel()
     status_fields = StatusModel()
+    pp = profile.status_set.all()
+
     return render(
         request, 'social_network/partials/modal_input_image.html',
         context={
             'user_data': user_model_data,
             'profile_data': profile,
             'fields': fields_of_model,
-            'status_fields': status_fields
+            'status_fields': status_fields,
+            'teste': pp
         }
     )
 
@@ -31,9 +34,14 @@ def process_image(request):
             instance_of_profile = ProfilePersonal.objects.get(
                 user__username=username
             )
+            # delete the old profile image before save the new one
+            if instance_of_profile.profile_image:
+                instance_of_profile.profile_image.delete(save=True)
+
             instance_of_profile.profile_image = request.FILES.get(
                 'profile_image', instance_of_profile.profile_image
             )
+
             instance_of_profile.save()
             return redirect('feed')
     return redirect('feed')
@@ -42,15 +50,11 @@ def process_image(request):
 def create_status(request):
     if request.method == 'POST':
         form = ProfilePersonalModel(request.POST, request.FILES)
-        if form.is_valid():
-            username = request.user.username
-            status = Status.objects.create(status_video=request.FILES.get('status_video'))
-            status.save()
-
-            user = ProfilePersonal.objects.get(user__username=username)
-            user.status = status
-            user.save()
-        return redirect('feed')
+        form_image = form.files.get('status_image')
+        user = ProfilePersonal.objects.get(
+            user__username=request.user.username
+        )
+        Status.objects.create(usuario=user, status_image=form_image)
     return redirect('feed')
 
 

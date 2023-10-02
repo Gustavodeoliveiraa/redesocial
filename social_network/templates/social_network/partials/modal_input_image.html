@@ -12,7 +12,7 @@
         <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data">
             {% csrf_token %}
             add status (temporario)
-            {{status_fields.status_video}}
+            {{status_fields.status_image}}
             <input type="submit" value="Submit">
         </form>
     </div>
