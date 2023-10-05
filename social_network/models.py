@@ -27,6 +27,12 @@ class Status(models.Model):
         return str(self.status_image)
 
 
+class Friends(models.Model):
+    friend_user = models.ForeignKey(
+        ProfilePersonal, on_delete=models.CASCADE, blank=True
+    )
+
+
 class ProfilePersonalModel(forms.ModelForm):
     class Meta:
         model = ProfilePersonal

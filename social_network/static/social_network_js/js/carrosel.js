@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const items = document.querySelectorAll(".item");
     const maxItems = items.length;
   
-
+    if (maxItems == 1) {
+      items[currentItem].classList.remove("current-item");
+    }
     controls.forEach((control) => {
       control.addEventListener("click", (e) => {
         isLeft = e.target.classList.contains("arrow-left");
@@ -30,7 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
           inline: "center"
         });
   
-        items[currentItem].classList.remove("current-item");
+        if (maxItems > 1) {
+          items[currentItem].classList.remove("current-item");
+        }
       });
     });
   });
