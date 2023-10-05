@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel
+from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel, Friends
 
 
 @login_required
@@ -12,6 +12,8 @@ def feed(request):
     fields_of_model = ProfilePersonalModel()
     status_fields = StatusModel()
     pp = profile.status_set.all()
+    ff = Friends.objects.filter(user_reference=profile)
+
 
     return render(
         request, 'social_network/partials/modal_input_image.html',
@@ -20,7 +22,8 @@ def feed(request):
             'profile_data': profile,
             'fields': fields_of_model,
             'status_fields': status_fields,
-            'teste': pp
+            'teste': pp,
+            'ff': ff
         }
     )
 

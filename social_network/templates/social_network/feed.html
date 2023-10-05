@@ -65,20 +65,24 @@
                 <button class="arrow-right control">▶</button>
                 
                 <div class="carousel">
-                    {% for status in teste %}
-                        <div class="story item current-item">
-                            <div class="user_picture user_picture_story">
-                                {% if profile_data.user_image %}
-                                    <img src=" {{ profile_data.user_image.url }}" alt="">
-                                {% else %}
-                                    <img src="{% static "img/without_user.png" %}" alt="">
+                    {% for friends in ff%}
+                        {% for status in friends.friend.status_set.all %}
+                            {% if status.status_image %}
+                                    <div class="story item current-item">
+                                        <div class="user_picture user_picture_story">
+                                            {% if status.usuario.profile_image%}
+                                                <img src=" {{ status.usuario.profile_image.url }}" alt="">
+                                            {% else %}
+                                                <img src="{% static "img/without_user.png" %}" alt="">
+                                            {% endif %}
+                                        </div>
+                                        <p>{{status.usuario.user.username}}</p>
+                                        <img src=" {{status.status_image.url}} " alt="">
+                                    </div>
                                 {% endif %}
-                            </div>
-                            <p>{{user_data.username}}</p>
-                            <img src="{{status.status_image.url}}" alt="">
-
-                        </div>
+                            {% endfor %}
                     {% endfor %}
+
                 </div>
             </div>
 

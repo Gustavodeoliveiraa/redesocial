@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProfilePersonal, Status
+from .models import ProfilePersonal, Status, Friends
 # Register your models here.
 
 
@@ -7,6 +7,13 @@ from .models import ProfilePersonal, Status
 class adm(admin.ModelAdmin):
     pass
 
+
 @admin.register(Status)
 class status(admin.ModelAdmin):
     pass
+
+
+@admin.register(Friends)
+class friends(admin.ModelAdmin):
+    pass
+

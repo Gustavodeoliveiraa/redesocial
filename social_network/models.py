@@ -12,6 +12,10 @@ class ProfilePersonal(models.Model):
         upload_to='social_network/covers/profile/', blank=True, default=None
     )
 
+    friend_user = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True
+    )
+
     def __str__(self) -> str:
         return str(self.user)
 
@@ -28,9 +32,17 @@ class Status(models.Model):
 
 
 class Friends(models.Model):
-    friend_user = models.ForeignKey(
+    friend = models.ForeignKey(
+        ProfilePersonal, on_delete=models.CASCADE, blank=True,
+        related_name='reverse_friend'
+    )
+
+    user_reference = models.ForeignKey(
         ProfilePersonal, on_delete=models.CASCADE, blank=True
     )
+
+    def __str__(self) -> str:
+        return str(self.friend)
 
 
 class ProfilePersonalModel(forms.ModelForm):
