@@ -12,10 +12,6 @@ class ProfilePersonal(models.Model):
         upload_to='social_network/covers/profile/', blank=True, default=None
     )
 
-    friend_user = models.ForeignKey(
-        User, on_delete=models.CASCADE, blank=True, null=True
-    )
-
     def __str__(self) -> str:
         return str(self.user)
 
@@ -25,7 +21,8 @@ class Status(models.Model):
         upload_to='social_network/covers/status', blank=True
     )
 
-    usuario = models.ForeignKey(ProfilePersonal, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(
+        ProfilePersonal, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return str(self.status_image)
@@ -42,7 +39,7 @@ class Friends(models.Model):
     )
 
     def __str__(self) -> str:
-        return str(self.friend)
+        return f"{str(self.friend)} is a friend of {self.user_reference}"
 
 
 class ProfilePersonalModel(forms.ModelForm):

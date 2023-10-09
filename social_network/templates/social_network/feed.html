@@ -29,9 +29,9 @@
                 </div>    
                 <div class="social_infos">
                     <a href="" class="user_link">
-                        {{user_data.username|capfirst}}
+                        {{profile_data.user.username|capfirst}}
                     </a>  {% comment %} foto do usuario na base de dados {% endcomment %}
-                    <p class="Email" >{{ user_data.email }}</p>
+                    <p class="Email" >{{ profile_data.email }}</p>
                 </div>
 
             </div> 
@@ -53,34 +53,38 @@
         </div>
 
         <div class="feed">
-                <form action="" class="submit">
+                <form action="" class="submit" onsubmit="return false;">
                     <label for="all_users" class="search_all">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input class="input" type="text" name="all_users" id="all_users" placeholder="Search in Friend Sync">
+                        <input class="input" type="text" id="all_users" placeholder="Search in Friend Sync">
                     </label>
+                    <div id="suggestions" class="suggestions" data-url="{% url 'accounts:account' %}">
+
+                    </div>
                 </form>
+
 
             <div class="status">
                 <button class="arrow-left control">◀</button>
                 <button class="arrow-right control">▶</button>
                 
                 <div class="carousel">
-                    {% for friends in ff%}
-                        {% for status in friends.friend.status_set.all %}
-                            {% if status.status_image %}
+                    {% for friends in friend_all %}
+                            {% if friends.friend.status_set.all %}
+                                <a href="{{friends.friend}} ">
                                     <div class="story item current-item">
                                         <div class="user_picture user_picture_story">
-                                            {% if status.usuario.profile_image%}
-                                                <img src=" {{ status.usuario.profile_image.url }}" alt="">
+                                            {% if friends.friend.profile_image %}
+                                                <img src="{{ friends.friend.profile_image.url }}" alt="">
                                             {% else %}
                                                 <img src="{% static "img/without_user.png" %}" alt="">
                                             {% endif %}
                                         </div>
-                                        <p>{{status.usuario.user.username}}</p>
-                                        <img src=" {{status.status_image.url}} " alt="">
+                                        <p>{{ friends.friend.user.username }}</p>
+                                        <img src="{{ friends.friend.status_set.last.status_image.url }}" alt="">
                                     </div>
-                                {% endif %}
-                            {% endfor %}
+                                </a>
+                            {% endif %}
                     {% endfor %}
 
                 </div>

@@ -1,34 +1,32 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel, Friends
+from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel
+from .models import Friends
+from django.http import JsonResponse
+from django.templatetags.static import static
 
 
-@login_required
 def feed(request):
-    user_model_data = User.objects.get(username=request.user.username)
-    profile = ProfilePersonal.objects.get(user=user_model_data.pk)
+    profile = ProfilePersonal.objects.select_related('user')\
+        .get(user__username=request.user.username)
     fields_of_model = ProfilePersonalModel()
     status_fields = StatusModel()
-    pp = profile.status_set.all()
-    ff = Friends.objects.filter(user_reference=profile)
-
+    friend_all = Friends.objects.filter(user_reference=profile)\
+        .select_related('friend', 'user_reference')
 
     return render(
         request, 'social_network/partials/modal_input_image.html',
         context={
-            'user_data': user_model_data,
             'profile_data': profile,
             'fields': fields_of_model,
             'status_fields': status_fields,
-            'teste': pp,
-            'ff': ff
+            'friend_all': friend_all,
         }
     )
 
+
 #change profile image
-@login_required
 def process_image(request):
     if request.method == 'POST':
         form = ProfilePersonalModel(request.POST, request.FILES)
@@ -59,6 +57,31 @@ def create_status(request):
         )
         Status.objects.create(usuario=user, status_image=form_image)
     return redirect('feed')
+
+
+def show_status_of_a_user(request, user):
+    return redirect('feed')
+
+
+def search_users(request, user):
+    new_user = ProfilePersonal.objects.filter(user__username__icontains=user)
+    user_list = []
+
+    for people in new_user:
+        user_data = {
+            'username': people.user.username,
+            'email': people.user.email,
+            'image': request.build_absolute_uri(people.profile_image.url)
+            if people.profile_image else (
+                static("img/without_user.png")
+            )
+
+            
+        }
+        user_list.append(user_data)
+    response_data = {'user': user_list}
+
+    return JsonResponse(response_data)
 
 
 def logout_view(request):
