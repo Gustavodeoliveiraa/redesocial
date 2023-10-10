@@ -12,10 +12,15 @@
     <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
     <script src="{% static "social_network_js/js/social_network.js" %} "></script>
     <title>{% block title %} Feed {% endblock title %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
 
 <body>
     {% block modalImg %}{% endblock modalImg %}
+    {% include "social_network/partials/modal_add.html" %}
 
     <div class="contente">
         <div class="left_menu">
@@ -62,7 +67,6 @@
 
                     </div>
                 </form>
-
 
             <div class="status">
                 <button class="arrow-left control">◀</button>

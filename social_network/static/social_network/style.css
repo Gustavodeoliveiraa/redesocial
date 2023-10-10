@@ -3,6 +3,10 @@
     --light-blue: #21415f6c;
     --light-grey: rgba(211, 211, 211, 60%);
     --menu-color: #fafafa;
+    --color-background-blue: #306684 ;
+    --color-success-dark: #4a9c5d;
+    --color-success-light: #d4edda;
+    --font-roboto: 'Roboto', sans-serif;
 }
 
 body {
@@ -11,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--font-blue);
+    font-family: var(--font-roboto);
 }
 
 i {
@@ -442,4 +447,24 @@ textarea:focus {
     width: 50px;
     height: 50px;
     
+}
+
+/* add_friend_modal */
+
+.content_add{
+    width: 300px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 9%;
+    background-color: var(--color-success-light);
+    position: absolute;
+    z-index: 3;
+    border-radius: 13px;
+    font-size: 1.2em;
+    border: 1px solid var(--color-success-dark);
+    color: var(--color-success-dark);
+    display: none;
 }

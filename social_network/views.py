@@ -64,7 +64,8 @@ def show_status_of_a_user(request, user):
 
 
 def search_users(request, user):
-    new_user = ProfilePersonal.objects.filter(user__username__icontains=user)
+    new_user = ProfilePersonal.objects.filter(user__username__icontains=user)\
+        .exclude(user__username=request.user.username)
     user_list = []
 
     for people in new_user:
@@ -76,12 +77,24 @@ def search_users(request, user):
                 static("img/without_user.png")
             )
 
-            
+
         }
         user_list.append(user_data)
     response_data = {'user': user_list}
 
     return JsonResponse(response_data)
+
+
+def add_friends(request, user):
+    friend = ProfilePersonal.objects.get(user__username=user)
+    reference_user = ProfilePersonal.objects.get(
+        user__username=request.user.username
+    )
+    Friends.objects.create(
+        friend=friend,
+        user_reference=reference_user
+    )
+    return redirect('feed')
 
 
 def logout_view(request):
