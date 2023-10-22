@@ -5,6 +5,7 @@ from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel
 from .models import Friends
 from django.http import JsonResponse
 from django.templatetags.static import static
+from django.db.models import F
 
 
 def feed(request):
@@ -13,7 +14,9 @@ def feed(request):
     fields_of_model = ProfilePersonalModel()
     status_fields = StatusModel()
     friend_all = Friends.objects.filter(user_reference=profile)\
-        .select_related('friend', 'user_reference')
+        .select_related('friend',)\
+        .prefetch_related('friend__status_set',)\
+        .annotate(friend_name=F('friend__user__username'))
 
     return render(
         request, 'social_network/partials/modal_input_image.html',
