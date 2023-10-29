@@ -1,0 +1,81 @@
+button {
+    border: none;
+    text-align: left;
+    padding: 5px;
+    border-radius: 10px;
+    height: 30px;
+    width: 130px;
+    margin: 5px;
+    color: var(--font-color-blue);
+    background-color: white;
+    transition: all .3s;
+}
+
+button a {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--background-color-icons);
+}
+
+i {
+    padding-right: 10px;
+    font-size: 1rem;
+}
+
+.left_menu_fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.left_menu_content {
+    border: 10px;
+}
+
+.image_profile {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.image_profile img{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.left_menu_icons {
+    margin-top: 100px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.left_menu_icons p {
+    opacity: .6;
+}
+
+.general_icons, .private_icons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    padding-left: 10px;
+}
+
+/* modal for sending picture or status */
+.modal_change_picture {
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: 600px;
+    background-color: var(--background-color-icons);
+}

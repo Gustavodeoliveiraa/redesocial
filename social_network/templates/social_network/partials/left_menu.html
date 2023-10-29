@@ -1,0 +1,52 @@
+{% extends "social_network/feed.html" %}
+{% load static %}
+
+
+
+
+{% block left_menu %}
+    <div class="left_menu_fixed">
+        <div class="left_menu_content">
+            <div class="image_profile">
+
+            {% if profile_data.profile_image %}
+                <img src=" {{profile_data.profile_image.url}} " alt="">
+                {{profile_data.user.username|capfirst}}
+            {% else %}
+                <img src="{% static "img/without_user.png" %}" alt="">
+            {% endif %}
+
+
+            </div>
+            <div class="modal_change_picture">
+                <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    Change profile image
+                    {{fields.profile_image}}
+                    <input type="submit" value="Submit">
+                </form>
+        
+                <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+                    add status (temporario)
+                    {{status_fields.status_image}}
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+        <div class="left_menu_icons">
+            <p>General</p>
+            <div class="general_icons">
+                <button><i class="fa-solid fa-user-group"></i>Friends</button>
+                <button><i class="fa-solid fa-bell"></i>Notifications</button>
+                <button><i class="fa-solid fa-message"></i>Messages</button>
+            </div>
+            <p>Private</p>
+            <div class="private_icons">
+                <button><i class="fa-solid fa-gear"></i>Configurations</button>
+                <button><i class="fa-solid fa-circle-question"></i>Support</button>
+                <a href="/logout/ "><button><i class="fa-solid fa-right-from-bracket"></i>Logout</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock left_menu %}

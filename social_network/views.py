@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel
+from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel, Post
 from .models import Friends
 from django.http import JsonResponse
 from django.templatetags.static import static
@@ -18,18 +18,23 @@ def feed(request):
         .prefetch_related('friend__status_set',)\
         .annotate(friend_name=F('friend__user__username'))
 
+    post = Post.objects.filter(public='public').select_related('user')\
+        .annotate(username=F('user__user__username'))\
+        .order_by('-id')
+
     return render(
-        request, 'social_network/partials/modal_input_image.html',
+        request, 'social_network/partials/feed.html',
         context={
             'profile_data': profile,
             'fields': fields_of_model,
             'status_fields': status_fields,
             'friend_all': friend_all,
+            'posts': post
         }
     )
 
 
-#change profile image
+#  change profile image
 def process_image(request):
     if request.method == 'POST':
         form = ProfilePersonalModel(request.POST, request.FILES)
@@ -79,8 +84,6 @@ def search_users(request, user):
             if people.profile_image else (
                 static("img/without_user.png")
             )
-
-
         }
         user_list.append(user_data)
     response_data = {'user': user_list}
@@ -96,6 +99,21 @@ def add_friends(request, user):
     Friends.objects.create(
         friend=friend,
         user_reference=reference_user
+    )
+    return redirect('feed')
+
+
+def add_post(request):
+    user = ProfilePersonal.objects.get(
+        user__username=request.user.username
+    )
+
+    new_post = request.POST.get('thinking')
+    public_or_private = request.POST.get('post_form_text')
+    Post.objects.create(
+        user=user,
+        text_post=new_post,
+        public=public_or_private
     )
     return redirect('feed')
 

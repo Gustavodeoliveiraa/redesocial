@@ -83,5 +83,58 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 200);
    })
 
+   // public or private option
+
+   const divPublicOrPrivate = document.querySelector('.public_post')
+   const checkbox = document.querySelector('#post_form_text')
+   const iconPrivateOrPublic = divPublicOrPrivate.querySelector('i')
+   const paragraphPrivateOrPublic = divPublicOrPrivate.querySelector('p')
+
+   divPublicOrPrivate.addEventListener('click', (event) => {
+      event.preventDefault()
+
+      if (checkbox.checked) {
+         iconPrivateOrPublic.classList.remove('fa-lock-open')
+         iconPrivateOrPublic.classList.add('fa-lock')
+         paragraphPrivateOrPublic.textContent = 'This post will be private'
+         checkbox.checked = false
+         checkbox.value = "private";
+         console.log(checkbox.value)
+      }
+      else {
+         iconPrivateOrPublic.classList.remove('fa-lock')
+         iconPrivateOrPublic.classList.add('fa-lock-open')
+         paragraphPrivateOrPublic.textContent = 'This post will be public'
+         checkbox.checked = true
+         checkbox.value = "public";
+         console.log(checkbox.value)
+      }
+   })
+
+   // button for sending new post 
+
+   const buttonSend = document.querySelector('.fa-share');
+   const postForm = document.querySelector('#post_form');
+   const spanTextarea = document.querySelector('.text_span')
+
+   const textarea = document.querySelector('.textarea')
+
+   textarea.addEventListener('input', function () {
+      if (textarea.value.length > 0) {
+          spanTextarea.style.display = 'none';
+      } else {
+          spanTextarea.style.display = 'block'; 
+      }
+  });
+
+   buttonSend.addEventListener('click', (event) => {
+      event.preventDefault();
+      spanTextarea.style.display = 'none'
+      console.log('enviado', event);
+      console.log(checkbox.value)
+      postForm.submit()
+   });
+
+
 });
 

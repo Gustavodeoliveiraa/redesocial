@@ -42,6 +42,17 @@ class Friends(models.Model):
         return f"{str(self.friend)} is a friend of {self.user_reference}"
 
 
+class Post(models.Model):
+    user = models.ForeignKey(
+        ProfilePersonal, on_delete=models.CASCADE, blank=False
+    )
+    text_post = models.TextField(max_length=300)
+    public = models.CharField(max_length=10, null=True)
+
+    def __str__(self) -> str:
+        return f"Post of {str(self.user)}"
+
+
 class ProfilePersonalModel(forms.ModelForm):
     class Meta:
         model = ProfilePersonal

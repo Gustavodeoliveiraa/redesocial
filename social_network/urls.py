@@ -9,4 +9,5 @@ urlpatterns = [
     path("status/<str:user>", views.show_status_of_a_user, name='all_status'),
     path("feed/search_user/<str:user>", views.search_users, name='search_users'),
     path("feed/add/<str:user>", views.add_friends, name='add_friends'),
+    path("feed/add/new/post", views.add_post, name='add_post'),
 ]

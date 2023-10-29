@@ -1,0 +1,63 @@
+{% extends "social_network/partials/left_menu.html" %}
+{% load static %}
+
+
+{% block feed %}
+    <div class="feed_search_user">
+        <form action="" class="submit" onsubmit="return false;">
+            <label for="all_users" class="search_all">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="input" type="text" id="all_users" placeholder="Search in Friend Sync">
+            </label>
+            <div id="suggestions" class="suggestions" data-url="{% url 'accounts:account' %}">
+    
+            </div>
+        </form> 
+    </div>
+
+    <div class="status">
+        <button class="arrow-left control">◀</button>
+        <button class="arrow-right control">▶</button>
+        <div class="carousel">
+            {% for friends in friend_all %}
+                {% if friends.friend.status_set.all %}
+                    <a href="{{friends.friend_name}} ">
+                        <div class="story item current-item">
+                            <div class="user_picture_story">
+                                {% if friends.friend.profile_image %}
+                                    <img src="{{ friends.friend.profile_image.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static "img/without_user.png" %}" alt="">
+                                {% endif %}
+                            </div>
+                            <p>{{ friends.friend_name }}</p>
+                            {% for status in friends.friend.status_set.all %}
+                                {% if forloop.last %}
+                                    <img src="{{ status.status_image.url }}" alt="">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="create_post_content">
+        <div class="user_and_textarea">
+            <div class="user_picture_story">
+                {% if friends.friend.profile_image %}
+                    <img src="{{ friends.friend.profile_image.url }}" alt="">
+                {% else %}
+                    <img src="{% static "img/without_user.png" %}" alt="">
+                {% endif %}
+            </div>
+            <textarea name="" id="" cols="30" rows="1"></textarea>
+        </div>
+
+        <div class="public">
+            <p>This post will be public</p>
+        </div>
+
+    </div>
+{% endblock feed %}

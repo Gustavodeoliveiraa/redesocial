@@ -1,136 +1,42 @@
-{% load static %}
+<!DOCTYPE html>
 
+{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href=" {% static 'img/favicon_transparent_32x32.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "social_network/feed.css" %}">
 
-    <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
-    <link rel="stylesheet" href=" {% static 'social_network/style.css' %} ">
-    <link rel="stylesheet" href=" {% static 'social_network/change_profile_image.css' %}">
-    <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
-    <script src="{% static "social_network_js/js/social_network.js" %} "></script>
-    <title>{% block title %} Feed {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "social_network/partials/left_menu.css" %} ">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    
+    <script src="{% static "social_network_js/js/social_newtwork1.js" %} "></script>
+
+    <link rel="stylesheet" href="{% static "social_network/partials/feed.css" %} ">
+    <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
+
+    <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
+
+    <title>{% block title %} Feed {% endblock title %} Feed </title>
+
 </head>
-
 <body>
-    {% block modalImg %}{% endblock modalImg %}
-    {% include "social_network/partials/modal_add.html" %}
 
-    <div class="contente">
+    <div class="content">
         <div class="left_menu">
-            <div class="content_user_picture">  {% comment %} foto do usuario na base de dados {% endcomment %}
-                <div class="user_picture" id='select'>
-                    {% if profile_data.profile_image %}
-                        <img src=" {{ profile_data.profile_image.url }}" alt="">
-                    {% else %}
-                        <img src="{% static "img/without_user.png" %}" alt="">
-                    {% endif %}
-                </div>    
-                <div class="social_infos">
-                    <a href="" class="user_link">
-                        {{profile_data.user.username|capfirst}}
-                    </a>  {% comment %} foto do usuario na base de dados {% endcomment %}
-                    <p class="Email" >{{ profile_data.email }}</p>
-                </div>
-
-            </div> 
-
-
-            <div class="private_icons">
-                <div class="general">General</div>
-                    <button> <i class="fa-solid fa-user-group"> </i>Friends </button>
-
-                    <button> <i class="fa-solid fa-bell"> </i>Notifications </button>
-
-                    <button><i class="fa-solid fa-message"> </i>Messages </button>
-
-                <div class="private">Private</div>
-                    <button> <i class="fa-solid fa-gear"> </i>Configurations </button>
-                    <button> <i class="fa-solid fa-circle-question"> </i>Support </button>
-                    <button> <i class="fa-solid fa-right-from-bracket"> <a href="{% url "logout" %} "></i>Log out</a> </button>
-            </div>
+            {% block left_menu %}{% endblock left_menu %}
+            
         </div>
 
         <div class="feed">
-                <form action="" class="submit" onsubmit="return false;">
-                    <label for="all_users" class="search_all">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input class="input" type="text" id="all_users" placeholder="Search in Friend Sync">
-                    </label>
-                    <div id="suggestions" class="suggestions" data-url="{% url 'accounts:account' %}">
 
-                    </div>
-                </form>
-
-            <div class="status">
-                <button class="arrow-left control">◀</button>
-                <button class="arrow-right control">▶</button>
-                
-                <div class="carousel">
-                    {% for friends in friend_all %}
-                            {% if friends.friend.status_set.all %}
-                                <a href="{{friends.friend_name}} ">
-                                    <div class="story item current-item">
-                                        <div class="user_picture user_picture_story">
-                                            {% if friends.friend.profile_image %}
-                                                <img src="{{ friends.friend.profile_image.url }}" alt="">
-                                            {% else %}
-                                                <img src="{% static "img/without_user.png" %}" alt="">
-                                            {% endif %}
-                                        </div>
-                                        <p>{{ friends.friend_name }}</p>
-                                        {% for status in friends.friend.status_set.all %}
-                                            {% if forloop.last %}
-                                                <img src="{{ status.status_image.url }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </a>
-                            {% endif %}
-                    {% endfor %}
-
-                </div>
-            </div>
-
-
-            <div class="thinking">
-                {% comment %} implementar o Oq vc esta pensando {% endcomment %}
-            </div>
-
+            {% block feed %}{% endblock feed %}
         </div>
-
-        <div class="right_feed">
-            <div class="peoples">
-                <p>People You May Know</p>
-
-            </div>
-
-            <div class="friends">
-                <p>Friends</p>
-                
-                <form action="" class="form_friends" method="GET">
-                    <label class="search_friends">  {% comment %}  por um placeholder{% endcomment %}
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input class="input" type="text" name="friends_add" placeholder="search friends">
-                    </label>
-                </form>
-
-                <div class="content_all_friends">
-                    <a href="" class="content_friends"> {% comment %}  por link do perfil do User{% endcomment %}
-                        <div class="user_picture friend_picture"></div>
-                        Username
-                    </a>
-                </div>
-                
-            </div>
-
-        </div>
+            
+        <div class="friends"></div>
     </div>
 </body>
 </html>
