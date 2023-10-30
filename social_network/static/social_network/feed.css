@@ -5,6 +5,10 @@
     --background-body-color: #F0F2F5;
     --font-family-roboto: 'Roboto', sans-serif;
     --background-color-icons: #d3d3d39d;
+    --background-suggestions-color: #33333328;
+    --background-suggestions-hover-color: #33333359;
+    --color-success-dark: #4a9c5d;
+    --color-success-light: #d4edda;
 }
 
 body, html {
@@ -30,7 +34,7 @@ body, html {
 .left_menu {
     top: 0;
     left: 0;
-    width: 270px;
+    width: 215px;
     padding: 25px;
     box-sizing: border-box;
 }

@@ -8,31 +8,15 @@
     <div class="left_menu_fixed">
         <div class="left_menu_content">
             <div class="image_profile">
-
-            {% if profile_data.profile_image %}
-                <img src=" {{profile_data.profile_image.url}} " alt="">
-                {{profile_data.user.username|capfirst}}
-            {% else %}
-                <img src="{% static "img/without_user.png" %}" alt="">
-            {% endif %}
-
-
+                {% if profile_data.profile_image %}
+                    <img src=" {{profile_data.profile_image.url}} " alt="">
+                {% else %}
+                    <img src="{% static "img/without_user.png" %}" alt="">
+                {% endif %}
             </div>
-            <div class="modal_change_picture">
-                <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
-                    {% csrf_token %}
-                    Change profile image
-                    {{fields.profile_image}}
-                    <input type="submit" value="Submit">
-                </form>
-        
-                <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data">
-                    {% csrf_token %}
-                    add status (temporario)
-                    {{status_fields.status_image}}
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
+            <p>{{profile_data.user.username|capfirst}}</p>
+
+           
         </div>
         <div class="left_menu_icons">
             <p>General</p>

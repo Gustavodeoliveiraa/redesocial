@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
   
         items.forEach((item) => item.classList.remove("current-item"));
-  
+
         items[currentItem].scrollIntoView({
           behavior: "smooth",
-          inline: "center"
+          block: "start",
         });
   
         if (maxItems > 1) {

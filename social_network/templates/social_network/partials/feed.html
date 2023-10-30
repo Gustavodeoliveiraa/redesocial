@@ -2,7 +2,10 @@
 {% load static %}
 
 
+
 {% block feed %}
+    <div class="content_add"> asdasd</div>
+
     <div class="feed_search_user">
         <form action="" class="submit" onsubmit="return false;">
             <label for="all_users" class="search_all">
@@ -10,12 +13,27 @@
                 <input class="input" type="text" id="all_users" placeholder="Search in Friend Sync">
             </label>
             <div id="suggestions" class="suggestions" data-url="{% url 'accounts:account' %}">
-    
             </div>
         </form> 
     </div>
 
     <div class="status">
+        <div class="modal_change_picture">
+            <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                Change profile image
+                {{fields.profile_image}}
+                <input type="submit" value="Submit">
+            </form>
+    
+            <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                add status (temporario)
+                {{status_fields.status_image}}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
         <button class="arrow-left control">◀</button>
         <button class="arrow-right control">▶</button>
         <div class="carousel">
@@ -45,19 +63,54 @@
 
     <div class="create_post_content">
         <div class="user_and_textarea">
-            <div class="user_picture_story">
-                {% if friends.friend.profile_image %}
-                    <img src="{{ friends.friend.profile_image.url }}" alt="">
+            <div class="user_picture_story user_create_post">
+                {% if profile_data.profile_image %}
+                    <img src=" {{profile_data.profile_image.url}} " alt="">
                 {% else %}
                     <img src="{% static "img/without_user.png" %}" alt="">
                 {% endif %}
             </div>
-            <textarea name="" id="" cols="30" rows="1"></textarea>
+
+            <form action=" {% url "add_post" %} " method="POST" class="text">
+                {% csrf_token %}
+                <textarea name="thinking" id="" cols="30" rows="1"></textarea>
+            </form>
+
+            <span class="span_send_post" ><i class="fa-solid fa-share"></i></span>
+            <span class="text_for_new_post"><P>What is on your mind, {{profile_data.user.username|capfirst}}</P></span>
         </div>
 
         <div class="public">
-            <p>This post will be public</p>
+            <form action="{% url "add_post" %}" class="post_form"  method="POST">
+                {% csrf_token %}
+                <i class="fa-solid fa-lock-open"></i>
+                <p>This post will be public</p>
+                <input type="checkbox" id="post_form_checkbox" name="post_form_text" value="public" checked>
+            </form>
         </div>
 
     </div>
+
+    {% for user_post in post %}
+        <div class="show_posts_of_users">
+            <div class="user_post_content">
+                <div class="user_and_username">
+                    <div class="image_profile">
+                        {% if user_post.profile_image %}
+                            <img src=" {{user_post.profile_image.url}} " alt="">
+                        {% else %}
+                            <img src="{% static "img/without_user.png" %}" alt="">
+                        {% endif %}
+                    </div>
+                    <p>{{user_post.user.username}}</p>
+                </div>
+                <div class="text_post">
+                    <div class="text_content">
+                        <p>{{user_post.text_post}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock feed %}

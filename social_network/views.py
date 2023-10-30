@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .models import ProfilePersonal, ProfilePersonalModel, Status, StatusModel, Post
+from .models import ProfilePersonal, ProfilePersonalModel 
+from .models import Status, StatusModel, Post
 from .models import Friends
 from django.http import JsonResponse
 from django.templatetags.static import static
@@ -110,6 +111,9 @@ def add_post(request):
 
     new_post = request.POST.get('thinking')
     public_or_private = request.POST.get('post_form_text')
+
+    print(new_post)
+    print(public_or_private)
     Post.objects.create(
         user=user,
         text_post=new_post,

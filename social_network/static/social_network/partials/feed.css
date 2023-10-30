@@ -6,6 +6,12 @@ a {
 .feed_search_user {
     width: 60%;
     margin: 0 auto;
+    position: relative;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
 }
 
 .search_all {
@@ -45,7 +51,6 @@ a {
     box-sizing: border-box;
     position: relative;
     padding-right: 10px;
-    justify-content: center;
 }
 
 .arrow-left,
@@ -86,6 +91,7 @@ a {
     overflow-y: hidden;
     overflow-x: hidden;
     white-space: nowrap;
+    width: 100%;
 }
 
 .story {
@@ -144,21 +150,235 @@ a {
 
 .create_post_content {
     width: 80%;
-    height: 130px;
+    min-height: 150px;
     margin-top: 70px;
     border-radius: 20px;
     border: 2px solid var(--font-color-blue);
+    overflow: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 } 
 
 .user_and_textarea {
     display: flex;
     flex-direction: row;
+    width: 90%;
+    overflow: hidden;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+}
+
+.user_create_post{
+    margin-right: 20px;
+    height: 60px;    
+    width: 60px;
+}
+
+.text {
     width: 100%;
+    border: 2px solid var(--font-color-blue);
+    border-radius: 10px;
     overflow: hidden;
 }
 
-.public {
-    display: block;
+textarea{
+    width: 93%;
+    min-height: 60px;
+    max-height: 200px;
+    resize: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
 }
 
+textarea:focus {
+    outline: none;
+}
+
+span {
+    pointer-events: none;
+}
+
+.public form {
+    display: flex;
+    padding-left: 85px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.public p {
+    margin: 2px;
+}
+
+#post_form_text {
+    display: none;
+}
+
+#post_form_checkbox {
+    display: none;
+}
+
+.public:hover {
+    cursor: pointer;
+}
+
+.span_send_post {
+    position: absolute;
+    top: 43%;
+    right: 20px;
+    pointer-events: all;
+}
+
+.span_send_post:hover {
+    cursor: pointer;
+}
+
+.text_for_new_post {
+    position: absolute;
+    top: 38%;
+    left: 100px;
+    color: var(--font-color-blue);
+}
+
+.text_for_new_post p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.span_send_post i {
+    font-size: 1.2rem;
+}
 /*  */
+
+
+/* friend search bar */
+
+.suggestions{
+    position: absolute;
+    top: 100%;
+    background-color: white;
+    position: absolute;
+    width: 98%;
+    z-index: 2;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 7px 5px 5px 0px #00000024;
+}
+
+.suggestions p {
+    text-decoration: none;
+}
+
+.image_profile_search{
+    background-color: var(--background-suggestions-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    width: 93%;
+    height: 50px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: all .4s;
+}
+
+.image_profile_search:hover{
+    cursor: pointer;
+    background-color: var(--background-suggestions-hover-color);
+}
+
+.search_img img{
+    width: 50px;
+    height: 50px;
+}
+
+.username {
+    margin-right: auto;
+    color: var(--font-color-blue);
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
+.add {
+    z-index: 3;
+    color: white;
+    background-color: var(--font-color-blue);
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    transition: all .5s;
+    border: 1px solid white;
+}
+
+.add:hover {
+    transform: scale(1.03);
+}
+
+.content_add{
+    width: 300px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 9%;
+    background-color: var(--color-success-light);
+    position: absolute;
+    z-index: 3;
+    border-radius: 13px;
+    font-size: 1.2em;
+    border: 1px solid var(--color-success-dark);
+    color: var(--color-success-dark);
+    display: none;
+}
+/*  */
+
+/* div for show all posts */
+.show_posts_of_users {
+    width: 90%;
+}
+
+.user_post_content {
+    margin: 30px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: var( --background-body-color);
+    border: 2px solid var(--font-color-blue);
+    display: flex;
+    overflow: hidden;
+}
+
+.user_and_username {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.text_post {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.text_content {
+    background-color: white;
+    height: 100px;   
+    width: 90%;
+    border: 2px solid var(--light-blue);
+    border-radius: 12px;
+    word-wrap: break-word;
+    padding: 5px;
+}
+/*  */
+
