@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // option for change the post for public or private
 
-    const publicOrPrivate = document.querySelector('.post_form')
+    const publicOrPrivate = document.querySelector('.public')
     const iconPrivateOrPublic = publicOrPrivate.querySelector('i')
     const textPrivateOrPublic = publicOrPrivate.querySelector('p')
-    const publicOrPrivateCheckbox = publicOrPrivate.querySelector('#post_form_checkbox')
+    const publicOrPrivateCheckbox = document.querySelector('#post_form_checkbox')
 
     publicOrPrivate.addEventListener('click', (e) => {
         e.preventDefault()
@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             dialog.style.display = 'flex'
                             function friendAdded() {
                                 dialog.style.display = 'none'
+                                location.reload()
                             }
         
                             setTimeout(() => {
@@ -137,11 +138,60 @@ document.addEventListener("DOMContentLoaded", function() {
     // sending form post
     const buttonSubmit = document.querySelector('.span_send_post')
     const formThinking = document.querySelector('.text')
-    const formPublicOrPrivate = document.querySelector('.post_form')
 
     buttonSubmit.addEventListener('click', (e)=>{
         e.preventDefault()
         formThinking.submit()
+    })
+
+    // option for delete a post
+
+    const ellipse = document.querySelector('.options_post')
+    const divDeletePost = document.querySelector('.delete_post')
+
+    ellipse.addEventListener('click', ()=>{
+        const hiddenOrVisible = getComputedStyle(divDeletePost)
+
+        if (hiddenOrVisible.getPropertyValue('opacity') === '0') {
+            divDeletePost.style.opacity = '1'
+        }
+        else{
+            divDeletePost.style.opacity = '0'
+
+        }
+    })
+
+    // getting  the data of status of view for show all status of a user
+
+    const carrouselDiv = document.querySelector('.carousel')
+    const imgCarrouselLink = carrouselDiv.querySelectorAll('a')
+    
+    imgCarrouselLink.forEach(link => {
+        link.addEventListener('click', (e)=>{
+            e.preventDefault()
+            var linkOfStatusUser =link.getAttribute('data-link').trim()
+
+            // remove leading slash from URL
+            if (linkOfStatusUser.startsWith('/')){
+                linkOfStatusUser = linkOfStatusUser.slice(1);
+            }
+
+            const endpointStatusShow = `${window.location.protocol}//${window.location.host}/status/${linkOfStatusUser}`
+            console.log(endpointStatusShow)
+
+            fetch(endpointStatusShow)
+            .then(response=>{
+                console.log(response)
+                response.json()
+            })
+            .then(data=>{
+                console.log(data)
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+
+        })
     })
 
 });

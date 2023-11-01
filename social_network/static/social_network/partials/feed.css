@@ -92,6 +92,7 @@ a {
     overflow-x: hidden;
     white-space: nowrap;
     width: 100%;
+
 }
 
 .story {
@@ -204,7 +205,7 @@ span {
     pointer-events: none;
 }
 
-.public form {
+.public{
     display: flex;
     padding-left: 85px;
     flex-direction: row;
@@ -344,13 +345,31 @@ span {
 }
 
 .user_post_content {
-    margin: 30px;
+    margin: 15px;
     height: 150px;
     border-radius: 15px;
     background-color: var( --background-body-color);
     border: 2px solid var(--font-color-blue);
     display: flex;
-    overflow: hidden;
+    position: relative;
+}
+
+/* span of options for post */
+.delete_content {
+    position: relative;
+    height: 100%;
+    width: 30px;
+    margin-left: 10px;
+}
+
+.options_post {
+    position: absolute;
+    top: 0;
+    pointer-events: all;
+}
+
+.delete_content:hover .fa-ellipsis-h{
+    cursor: pointer;
 }
 
 .user_and_username {
@@ -382,3 +401,41 @@ span {
 }
 /*  */
 
+
+/* div that open when clicked  in ellipses */
+.delete_post {
+    position: absolute;
+    width: 65px;
+    height: 19px;
+    top: -13px;
+    left: 36px;
+    background-color: var(--background-body-color);
+    z-index: 3;
+    border-radius: 8px; /* Borda arredondada para a div */
+    padding: 10px; /* Espaçamento interno para o texto */
+    position: relative;
+    border: 2px solid var(--font-color-blue);
+    font-weight: bolder;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease
+}
+
+.delete_post a {
+    text-decoration: none;
+    color: var(--font-color-blue);
+}
+
+.delete_post:hover {
+    cursor: pointer;
+}
+
+.delete_post::before {
+    content: "";
+    position: absolute;
+    top: 43%;
+    left: -26px; /* Posição da ponta */
+    margin-top: -10px;
+    border: 13px solid transparent;
+    border-right-color: var(--font-color-blue); 
+}

@@ -37,4 +37,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
-  });
+
+    // hiding the status div if it has no status
+
+    const statusDiv = document.querySelector('.status')
+    const carouselDiv = document.querySelector('.carousel')
+    const numChildDIv = carouselDiv.childElementCount;
+
+    if (numChildDIv === 0) {
+      statusDiv.style.height = 0
+
+    }
+    else {
+      statusDiv.style.height = 250
+      
+    }
+});

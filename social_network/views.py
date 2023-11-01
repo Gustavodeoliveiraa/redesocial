@@ -19,18 +19,23 @@ def feed(request):
         .prefetch_related('friend__status_set',)\
         .annotate(friend_name=F('friend__user__username'))
 
-    post = Post.objects.filter(public='public').select_related('user')\
-        .annotate(username=F('user__user__username'))\
+    post = Post.objects.filter(public='public').select_related(
+        'user', 'user__user'
+        ).annotate(username=F('user__user__username'))\
         .order_by('-id')
 
+    my_status = Status.objects.filter(usuario=profile)\
+        .select_related('usuario', 'usuario__user').last()
+
     return render(
-        request, 'social_network/partials/feed.html',
+        request, 'social_network/partials/show_status.html',
         context={
             'profile_data': profile,
             'fields': fields_of_model,
             'status_fields': status_fields,
             'friend_all': friend_all,
-            'posts': post
+            'posts': post,
+            'my_status': my_status,
         }
     )
 
@@ -69,7 +74,20 @@ def create_status(request):
 
 
 def show_status_of_a_user(request, user):
-    return redirect('feed')
+    status_of_user = Status.objects.filter(usuario__user__username=user)\
+        .select_related('usuario', 'usuario__user')
+
+    status_list = list()
+
+    for status in status_of_user:
+        user_status = {
+            'user': status.usuario.user.username,
+            'status_image': status.status_image.url,
+        }
+
+        status_list.append(user_status)
+    print(status_list)
+    return JsonResponse({'user_status': status_list})
 
 
 def search_users(request, user):
@@ -84,8 +102,9 @@ def search_users(request, user):
             'image': request.build_absolute_uri(people.profile_image.url)
             if people.profile_image else (
                 static("img/without_user.png")
-            )
+            ),
         }
+
         user_list.append(user_data)
     response_data = {'user': user_list}
 
@@ -97,10 +116,18 @@ def add_friends(request, user):
     reference_user = ProfilePersonal.objects.get(
         user__username=request.user.username
     )
-    Friends.objects.create(
-        friend=friend,
-        user_reference=reference_user
+
+    user_is_a_friend = Friends.objects.filter(
+        user_reference=reference_user, friend=friend
     )
+
+    if user_is_a_friend.exists():
+        pass
+    else:
+        Friends.objects.create(
+            friend=friend,
+            user_reference=reference_user
+        )
     return redirect('feed')
 
 
@@ -112,13 +139,21 @@ def add_post(request):
     new_post = request.POST.get('thinking')
     public_or_private = request.POST.get('post_form_text')
 
-    print(new_post)
-    print(public_or_private)
     Post.objects.create(
         user=user,
         text_post=new_post,
         public=public_or_private
     )
+
+    return redirect('feed')
+
+
+def delete_post(request, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+        post.delete()
+    except: # noqa
+        pass
     return redirect('feed')
 
 

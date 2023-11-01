@@ -1,0 +1,12 @@
+{% extends "social_network/partials/feed.html" %}
+
+{% load static %}
+
+
+{% block show_all_status_of_user %}
+    <div class="status_user_content">
+        <button class="arrow-left ">◀</button>
+        <button class="arrow-right ">▶</button>
+        <img src="{{ my_status.usuario.profile_image.url }}" alt="">
+    </div>
+{% endblock show_all_status_of_user %}

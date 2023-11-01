@@ -4,7 +4,7 @@
 
 
 {% block feed %}
-    <div class="content_add"> asdasd</div>
+    <div class="content_add">Add with succes</div>
 
     <div class="feed_search_user">
         <form action="" class="submit" onsubmit="return false;">
@@ -37,9 +37,24 @@
         <button class="arrow-left control">◀</button>
         <button class="arrow-right control">▶</button>
         <div class="carousel">
+          
+            <a href=" {% url 'all_status' my_status.usuario.user %}" data-link="{{my_status.usuario.user}}">
+                <div class="story item current-item">
+                    <div class="user_picture_story">
+                        {% if my_status.usuario.user.profile_image %}
+                            <img src="{{ my_status.usuario.profile_image.url }}" alt="">
+                        {% else %}
+                            <img src="{% static "img/without_user.png" %}" alt="">
+                        {% endif %}
+                    </div>
+                    <p>{{ my_status.usuario.user }}</p>
+                    <img src="{{my_status.status_image.url}}" alt="">
+                </div>
+            </a>
+            
             {% for friends in friend_all %}
                 {% if friends.friend.status_set.all %}
-                    <a href="{{friends.friend_name}} ">
+                    <a href=" {% url "all_status" friends.friend_name%} ">
                         <div class="story item current-item">
                             <div class="user_picture_story">
                                 {% if friends.friend.profile_image %}
@@ -71,9 +86,10 @@
                 {% endif %}
             </div>
 
-            <form action=" {% url "add_post" %} " method="POST" class="text">
+            <form action=" {% url "add_post" %} " method="post" class="text">
                 {% csrf_token %}
                 <textarea name="thinking" id="" cols="30" rows="1"></textarea>
+                <input name="post_form_text" type="checkbox" id="post_form_checkbox" value="public" checked>
             </form>
 
             <span class="span_send_post" ><i class="fa-solid fa-share"></i></span>
@@ -81,19 +97,17 @@
         </div>
 
         <div class="public">
-            <form action="{% url "add_post" %}" class="post_form"  method="POST">
-                {% csrf_token %}
-                <i class="fa-solid fa-lock-open"></i>
-                <p>This post will be public</p>
-                <input type="checkbox" id="post_form_checkbox" name="post_form_text" value="public" checked>
-            </form>
+            <i class="fa-solid fa-lock-open"></i>
+            <p>This post will be public</p>
         </div>
 
     </div>
 
-    {% for user_post in post %}
+    {% for user_post in posts %}
         <div class="show_posts_of_users">
             <div class="user_post_content">
+
+
                 <div class="user_and_username">
                     <div class="image_profile">
                         {% if user_post.profile_image %}
@@ -102,15 +116,25 @@
                             <img src="{% static "img/without_user.png" %}" alt="">
                         {% endif %}
                     </div>
-                    <p>{{user_post.user.username}}</p>
+                    <p>{{user_post.username}}</p>
                 </div>
                 <div class="text_post">
                     <div class="text_content">
                         <p>{{user_post.text_post}}</p>
                     </div>
+                    
+                    {% if user_post.user.user.id == profile_data.user.id %}
+                        <div class="delete_content" >
+                            <span class="options_post" ><i class="fas fa-ellipsis-h"></i></span>
+                            <div class="delete_post"><a href=" {% url "delete_post" user_post.pk %} "><span class="span_delete">Delete</span></a></div>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
     {% endfor %}
+
+
 
 {% endblock feed %}
