@@ -30,7 +30,7 @@ class RegisterUser(forms.ModelForm):
                 'placeholder': 'Password', 'class': 'input-label-input'}
         ),
         error_messages={'required': 'This field not must by empty'},
-        # validators=[strong_password] to do
+        validators=[strong_password]
     )
 
     password2 = forms.CharField(

@@ -9,6 +9,7 @@ from django.templatetags.static import static
 from django.db.models import F
 
 
+@login_required()
 def feed(request):
     profile = ProfilePersonal.objects.select_related('user')\
         .get(user__username=request.user.username)
@@ -43,6 +44,7 @@ def feed(request):
 
 
 #  change profile image
+@login_required()
 def process_image(request):
     if request.method == 'POST':
         form = ProfilePersonalModel(request.POST, request.FILES)
@@ -64,6 +66,7 @@ def process_image(request):
     return redirect('feed')
 
 
+@login_required()
 def create_status(request):
     if request.method == 'POST':
         form = ProfilePersonalModel(request.POST, request.FILES)
@@ -75,6 +78,7 @@ def create_status(request):
     return redirect('feed')
 
 
+@login_required()
 def show_status_of_a_user(request, user):
     status_of_user = Status.objects.filter(usuario__user__username=user)\
         .select_related('usuario', 'usuario__user')
@@ -97,6 +101,7 @@ def show_status_of_a_user(request, user):
     return JsonResponse(response_data)
 
 
+@login_required()
 def search_users(request, user):
     new_user = ProfilePersonal.objects.filter(user__username__icontains=user)\
         .exclude(user__username=request.user.username)
@@ -118,6 +123,7 @@ def search_users(request, user):
     return JsonResponse(response_data)
 
 
+@login_required()
 def add_friends(request, user):
     friend = ProfilePersonal.objects.get(user__username=user)
     reference_user = ProfilePersonal.objects.get(
@@ -138,6 +144,7 @@ def add_friends(request, user):
     return redirect('feed')
 
 
+@login_required()
 def delete_friend(request, pk):
     try:
         Friends.objects.get(
@@ -148,6 +155,7 @@ def delete_friend(request, pk):
     return redirect('feed')
 
 
+@login_required()
 def add_post(request):
     user = ProfilePersonal.objects.get(
         user__username=request.user.username
@@ -168,6 +176,7 @@ def add_post(request):
     return redirect('feed')
 
 
+@login_required()
 def delete_post(request, pk):
     try:
         post = Post.objects.get(pk=pk)
@@ -178,6 +187,7 @@ def delete_post(request, pk):
     return redirect('feed')
 
 
+@login_required()
 def logout_view(request):
     logout(request)
     return redirect('accounts:account')
