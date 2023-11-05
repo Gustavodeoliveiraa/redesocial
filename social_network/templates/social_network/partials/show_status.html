@@ -4,9 +4,12 @@
 
 
 {% block show_all_status_of_user %}
-    <div class="status_user_content">
-        <button class="arrow-left ">◀</button>
-        <button class="arrow-right ">▶</button>
-        <img src="{{ my_status.usuario.profile_image.url }}" alt="">
+    <div class="background">
+        <div class="status_user_content">
+            <button class="left_status">◀</button>
+            <button class="right_status">▶</button>
+            <i class="fa-solid fa-xmark"></i>
+            <div class="status_content"></div>
+        </div>
     </div>
 {% endblock show_all_status_of_user %}

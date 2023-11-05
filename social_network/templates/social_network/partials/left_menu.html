@@ -14,7 +14,10 @@
                     <img src="{% static "img/without_user.png" %}" alt="">
                 {% endif %}
             </div>
-            <p>{{profile_data.user.username|capfirst}}</p>
+            <div class="user_info">
+                <p>{{profile_data.user.username|capfirst}}</p>
+                <p>{{profile_data.user.email|capfirst}}</p>
+            </div>
 
            
         </div>

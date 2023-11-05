@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static "social_network/partials/feed.css" %} ">
     <link rel="stylesheet" href="{% static 'accounts/fontawesome-free-6.4.0-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static "social_network/partials/show_all_status.css" %}">
+    <link rel="stylesheet" href="{% static "social_network/partials/friends.css" %}">
 
     <script src=" {% static 'social_network_js/js/carrosel.js' %} "></script>
 
@@ -39,7 +40,9 @@
             {% block show_all_status_of_user %}{% endblock show_all_status_of_user %}
         </div>
             
-        <div class="friends"></div>
+        <div class="friends">
+            {% block friends %}{% endblock friends %}
+        </div>
     </div>
 </body>
 </html>

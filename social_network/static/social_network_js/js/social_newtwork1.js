@@ -69,6 +69,38 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
+    // sending form post
+    const buttonSubmit = document.querySelector('.span_send_post')
+    const formThinking = document.querySelector('.text')
+
+    buttonSubmit.addEventListener('click', (e)=>{
+        e.preventDefault()
+        if(textarea.value.length == 0){
+
+        }else{
+            formThinking.submit()
+        }
+    })
+
+    // option for delete a post
+
+    const ellipse = document.querySelector('.options_post')
+    const divDeletePost = document.querySelector('.delete_post')
+
+    try {
+        ellipse.addEventListener('click', () => {
+            const hiddenOrVisible = getComputedStyle(divDeletePost);
+    
+            if (hiddenOrVisible.getPropertyValue('opacity') === '0') {
+                divDeletePost.style.opacity = '1';
+            } else {
+                divDeletePost.style.opacity = '0';
+            }
+        });
+    } catch (error) {
+        console.error("Erro ao adicionar evento: " + error.message);
+    }
+
 
     // friend search bar
     const searchBar = document.getElementById('all_users');
@@ -86,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     return response.json();
                 })
                 .then(data => {
-                    suggestions.innerHTML = '';
+                        suggestions.innerHTML = '';
                     data.user.forEach(user => {
                         const htmlInsert = 
                         `
@@ -135,40 +167,93 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-    // sending form post
-    const buttonSubmit = document.querySelector('.span_send_post')
-    const formThinking = document.querySelector('.text')
+    function setupCarousel() {
+        // carousel for status
 
-    buttonSubmit.addEventListener('click', (e)=>{
-        e.preventDefault()
-        formThinking.submit()
-    })
+        let currentStatus = 0
 
-    // option for delete a post
+        let start = 0
+        console.log(currentStatus)
+        
+        // reset the div whenever it is clicked
+        const divContentStatus = document.querySelector('.status_content')
+        divContentStatus.style.transform = `translateX(-${currentStatus * 100}%)`
 
-    const ellipse = document.querySelector('.options_post')
-    const divDeletePost = document.querySelector('.delete_post')
+        const divAllStatus = document.querySelectorAll('.container')
+        const maxItem = divAllStatus.length
+        const leftButton = document.querySelector('.left_status')
+        const rightButton = document.querySelector('.right_status')
 
-    ellipse.addEventListener('click', ()=>{
-        const hiddenOrVisible = getComputedStyle(divDeletePost)
+        leftButton.addEventListener('click', ()=>{
+            if (currentStatus == 0) {
+            currentStatus = maxItem - 1 
+            }else{
+            currentStatus--
+            }
+            divContentStatus.style.transform = `translateX(-${currentStatus * 100}%)`
+            clearInterval(moveStatus)
+        })
 
-        if (hiddenOrVisible.getPropertyValue('opacity') === '0') {
-            divDeletePost.style.opacity = '1'
+        rightButton.addEventListener('click', ()=>{
+            if (currentStatus == maxItem - 1) {
+            currentStatus = 0
+            }else{
+            currentStatus++
+            }
+            divContentStatus.style.transform = `translateX(-${currentStatus * 100}%)`
+            clearInterval(moveStatus)
+        })
+    
+
+        // auto move for status
+        const newMaxItem = maxItem -1
+        function autoMoveStatus() {
+            if (start < newMaxItem) {
+                currentStatus ++
+                start++
+                divContentStatus.style.transform = `translateX(-${currentStatus * 100}%)`
+            }else{
+                clearInterval(moveStatus)
+            }
         }
-        else{
-            divDeletePost.style.opacity = '0'
 
-        }
-    })
+        moveStatus = setInterval(autoMoveStatus, 3000)
+
+        const backgroundStatus = document.querySelector('.background')
+        backgroundStatus.style.display = 'block'
+    }
+
+    function hiddenOrVisibleDiv(param) {
+        const statusDiv = document.querySelector('.status_user_content i')
+        const left_status = document.querySelector('.left_status')
+        const right_status = document.querySelector('.right_status')
+
+        statusDiv.style.visibility = param
+        status_user_content.style.visibility = param
+        left_status.style.visibility = param
+        right_status.style.visibility = param
+    }
 
     // getting  the data of status of view for show all status of a user
 
     const carrouselDiv = document.querySelector('.carousel')
     const imgCarrouselLink = carrouselDiv.querySelectorAll('a')
-    
+    const carouselContent = document.querySelector('.status_content')
+    const status_user_content = document.querySelector('.status_user_content')
+
+
     imgCarrouselLink.forEach(link => {
         link.addEventListener('click', (e)=>{
             e.preventDefault()
+            const statusDiv = document.querySelector('.status_user_content i')
+
+            // hidden the div of status detail  
+            statusDiv.addEventListener('click', ()=> {
+                hiddenOrVisibleDiv('hidden')
+                const backgroundStatus = document.querySelector('.background')
+                backgroundStatus.style.display = 'none'
+                clearInterval(moveStatus)
+            })
             var linkOfStatusUser =link.getAttribute('data-link').trim()
 
             // remove leading slash from URL
@@ -177,15 +262,36 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             const endpointStatusShow = `${window.location.protocol}//${window.location.host}/status/${linkOfStatusUser}`
-            console.log(endpointStatusShow)
 
             fetch(endpointStatusShow)
             .then(response=>{
-                console.log(response)
-                response.json()
+                return response.json()
             })
             .then(data=>{
-                console.log(data)
+                carouselContent.innerHTML = ''
+                
+                data.user_status.forEach(user => {
+                    const statusContainerDiv = `
+                        <div class="container">
+                            <div class="user_data">
+                                <div class="image_profile">
+                                    <img src="${user.profile_image}" alt="">
+                                </div>
+                                ${user.user}
+                            </div>
+                            <img src="${user.status_image}" alt="">
+                        </div>
+                    `
+
+                    carouselContent.insertAdjacentHTML ('beforeend', statusContainerDiv)
+                })
+
+                
+                // showing  of itens inside of status detail div 
+                setupCarousel()
+                setInterval(hiddenOrVisibleDiv('visible'),1000)             
+                
+
             })
             .catch(error=>{
                 console.log(error)

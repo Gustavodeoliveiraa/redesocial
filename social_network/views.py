@@ -15,7 +15,7 @@ def feed(request):
     fields_of_model = ProfilePersonalModel()
     status_fields = StatusModel()
     friend_all = Friends.objects.filter(user_reference=profile)\
-        .select_related('friend',)\
+        .select_related('friend', 'friend__user')\
         .prefetch_related('friend__status_set',)\
         .annotate(friend_name=F('friend__user__username'))
 
@@ -28,7 +28,7 @@ def feed(request):
         .select_related('usuario', 'usuario__user').last()
 
     return render(
-        request, 'social_network/partials/show_status.html',
+        request, 'social_network/partials/friends.html',
         context={
             'profile_data': profile,
             'fields': fields_of_model,
@@ -82,12 +82,17 @@ def show_status_of_a_user(request, user):
     for status in status_of_user:
         user_status = {
             'user': status.usuario.user.username,
+            'profile_image': status.usuario.profile_image.url
+            if status.usuario.profile_image else (
+                static("img/without_user.png")
+            ),
             'status_image': status.status_image.url,
         }
 
         status_list.append(user_status)
-    print(status_list)
-    return JsonResponse({'user_status': status_list})
+    response_data = {'user_status': status_list}
+
+    return JsonResponse(response_data)
 
 
 def search_users(request, user):

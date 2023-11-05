@@ -92,7 +92,6 @@ a {
     overflow-x: hidden;
     white-space: nowrap;
     width: 100%;
-
 }
 
 .story {
@@ -116,7 +115,8 @@ a {
 .story p {
     margin: 10px;
     z-index: 1;
-    color: white;
+    color: var(--font-color-blue);
+    font-weight: bolder;
 }
 
 .story img {

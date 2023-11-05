@@ -1,0 +1,18 @@
+{% extends "social_network/partials/show_status.html" %}
+{% load static %}
+
+{% block friends %}
+    {% for friend in friend_all %}
+        <div class="friend_container">
+            <div class="profile_container">
+                {% if friend.friend.profile_image %}
+                    <img src=" {{friend.friend.profile_image.url}} " alt="">
+                {% else %}
+                    <img src="{% static "img/without_user.png" %}" alt="">
+                {% endif %}
+            </div>
+            <p> {{friend.friend_name}} </p>
+        </div>
+    {% endfor %}
+{% endblock friends %}
+

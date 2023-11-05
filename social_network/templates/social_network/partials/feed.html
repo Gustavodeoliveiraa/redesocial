@@ -37,24 +37,27 @@
         <button class="arrow-left control">◀</button>
         <button class="arrow-right control">▶</button>
         <div class="carousel">
-          
-            <a href=" {% url 'all_status' my_status.usuario.user %}" data-link="{{my_status.usuario.user}}">
-                <div class="story item current-item">
-                    <div class="user_picture_story">
-                        {% if my_status.usuario.user.profile_image %}
-                            <img src="{{ my_status.usuario.profile_image.url }}" alt="">
-                        {% else %}
-                            <img src="{% static "img/without_user.png" %}" alt="">
-                        {% endif %}
+            
+            {% if my_status %}
+                <a href=" {% url 'all_status' my_status.usuario.user %}" data-link="{{my_status.usuario.user}}">
+                    <div class="story item current-item">
+                        <div class="user_picture_story">
+                            {% if my_status.usuario.profile_image %}
+                                <img src="{{ my_status.usuario.profile_image.url}}" alt="">
+                            {% else %}
+                                <img src="{% static "img/without_user.png" %}" alt="">
+                            {% endif %}
+                        </div>
+                        <p>{{ my_status.usuario.user }}</p>
+                        <img src="{{my_status.status_image.url}}" alt="">
                     </div>
-                    <p>{{ my_status.usuario.user }}</p>
-                    <img src="{{my_status.status_image.url}}" alt="">
-                </div>
-            </a>
+                </a>
+            {% endif %}
             
             {% for friends in friend_all %}
+            
                 {% if friends.friend.status_set.all %}
-                    <a href=" {% url "all_status" friends.friend_name%} ">
+                    <a href=" {% url "all_status" friends.friend_name%}" data-link="{{friends.friend_name}}">
                         <div class="story item current-item">
                             <div class="user_picture_story">
                                 {% if friends.friend.profile_image %}

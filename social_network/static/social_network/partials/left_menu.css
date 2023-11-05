@@ -39,6 +39,16 @@ i {
     align-items: center;
 }
 
+.left_menu_content p {
+    margin: 0;
+}
+
+.left_menu_content p:last-child {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--email-text-color);
+}
+
 .image_profile {
     display: flex;
     align-items: center;

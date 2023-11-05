@@ -1,17 +1,84 @@
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.822);
+    display: none;
+    z-index: 1;
+}
+
 .status_user_content {
     position: absolute;
     height: 65%;
     width: 350px;
-    background-color: rgb(231, 164, 164);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
     overflow: hidden;
     z-index: 3;
+    visibility: hidden;
 }
 
-.status_user_content img {
+
+.status_content {
     width: 100%;
     height: 100%;
+    display: flex;
+    transition: all .4s ease-in-out;
+    position: relative;
+}
+
+.container {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+}
+
+
+.container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.status_user_content i {
+    position: absolute;
+    top: 10px;
+    left: 90%;
+    z-index: 3;
+    font-size: 1.3rem;
+    padding: 5px;
+    visibility: hidden;
+}
+
+.user_data {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+}
+
+.status_user_content:hover i {
+    cursor: pointer;
+}
+
+.left_status,
+.right_status {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);    
+    height: 70px;
+    width: 22px;
+    z-index: 3;
+    margin: auto 0;
+    background-color: transparent;
+}
+
+.right_status {
+    right: 0;
 }
