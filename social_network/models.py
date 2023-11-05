@@ -48,6 +48,10 @@ class Post(models.Model):
     )
     text_post = models.TextField(max_length=300)
     public = models.CharField(max_length=10, null=True)
+    likes = models.IntegerField(default=0)
+    post_image = models.ImageField(
+        upload_to='social_network/covers/post/', blank=True, null=True
+    )
 
     def __str__(self) -> str:
         return f"Post of {str(self.user)}"
@@ -57,6 +61,15 @@ class ProfilePersonalModel(forms.ModelForm):
     class Meta:
         model = ProfilePersonal
         fields = ['profile_image']
+
+
+class PostModel(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['post_image']
+        labels = {
+            'post_image': ''
+        }
 
 
 class StatusModel(forms.ModelForm):

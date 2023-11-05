@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import ProfilePersonal, ProfilePersonalModel 
-from .models import Status, StatusModel, Post
+from .models import Status, StatusModel, Post, PostModel
 from .models import Friends
 from django.http import JsonResponse
 from django.templatetags.static import static
@@ -13,6 +13,7 @@ def feed(request):
     profile = ProfilePersonal.objects.select_related('user')\
         .get(user__username=request.user.username)
     fields_of_model = ProfilePersonalModel()
+    send_img_post = PostModel()
     status_fields = StatusModel()
     friend_all = Friends.objects.filter(user_reference=profile)\
         .select_related('friend', 'friend__user')\
@@ -33,6 +34,7 @@ def feed(request):
             'profile_data': profile,
             'fields': fields_of_model,
             'status_fields': status_fields,
+            'post_field': send_img_post,
             'friend_all': friend_all,
             'posts': post,
             'my_status': my_status,
@@ -136,19 +138,32 @@ def add_friends(request, user):
     return redirect('feed')
 
 
+def delete_friend(request, pk):
+    try:
+        Friends.objects.get(
+            pk=pk
+        ).delete()
+    except Exception as e:
+        print('error', e)
+    return redirect('feed')
+
+
 def add_post(request):
     user = ProfilePersonal.objects.get(
         user__username=request.user.username
     )
 
-    new_post = request.POST.get('thinking')
-    public_or_private = request.POST.get('post_form_text')
+    form = PostModel(request.POST, request.FILES)
+    if form.is_valid():
+        new_post = request.POST.get('thinking')
+        public_or_private = request.POST.get('post_form_text')
 
-    Post.objects.create(
-        user=user,
-        text_post=new_post,
-        public=public_or_private
-    )
+        Post.objects.create(
+            user=user,
+            text_post=new_post,
+            public=public_or_private,
+            post_image=request.FILES.get('post_image')
+        )
 
     return redirect('feed')
 
@@ -156,6 +171,7 @@ def add_post(request):
 def delete_post(request, pk):
     try:
         post = Post.objects.get(pk=pk)
+        post.post_image.delete()
         post.delete()
     except: # noqa
         pass

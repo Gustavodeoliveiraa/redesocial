@@ -89,20 +89,32 @@
                 {% endif %}
             </div>
 
-            <form action=" {% url "add_post" %} " method="post" class="text">
+            <form action=" {% url "add_post" %} " method="post" class="text" enctype="multipart/form-data">
                 {% csrf_token %}
                 <textarea name="thinking" id="" cols="30" rows="1"></textarea>
                 <input name="post_form_text" type="checkbox" id="post_form_checkbox" value="public" checked>
+                {{post_field.post_image}}
+
             </form>
 
             <span class="span_send_post" ><i class="fa-solid fa-share"></i></span>
             <span class="text_for_new_post"><P>What is on your mind, {{profile_data.user.username|capfirst}}</P></span>
         </div>
 
-        <div class="public">
-            <i class="fa-solid fa-lock-open"></i>
-            <p>This post will be public</p>
+        <div class="public_and_img">
+            <class class="public">
+                <i class="fa-solid fa-lock-open"></i>
+                <p>This post will be public</p>
+            </class>
+
+            <div class="send_img_poss">
+                <label for="id_post_image" class="id_post_image">
+                     <i class="fa-solid fa-image"></i>/
+                     <p>picture</p>
+                </label>
+            </div>
         </div>
+        
 
     </div>
 
@@ -111,8 +123,8 @@
             <div class="user_post_content">
 
 
-                <div class="user_and_username">
-                    <div class="image_profile">
+                <div class="user_and_username post_user_and_picture">
+                    <div class="image_profile image_profile_feed">
                         {% if user_post.profile_image %}
                             <img src=" {{user_post.profile_image.url}} " alt="">
                         {% else %}
@@ -120,12 +132,8 @@
                         {% endif %}
                     </div>
                     <p>{{user_post.username}}</p>
-                </div>
-                <div class="text_post">
-                    <div class="text_content">
-                        <p>{{user_post.text_post}}</p>
-                    </div>
-                    
+
+
                     {% if user_post.user.user.id == profile_data.user.id %}
                         <div class="delete_content" >
                             <span class="options_post" ><i class="fas fa-ellipsis-h"></i></span>
@@ -133,6 +141,33 @@
                         </div>
                     {% endif %}
 
+                </div>
+                
+                <div class="text_post">
+                    <div class="text_content">
+                        <p>{{user_post.text_post}}</p>
+                    </div>
+                </div>
+
+                {% if user_post.post_image %}
+                    <div class="img_post">
+                        <img src="{{user_post.post_image.url}}" alt="">
+                    </div>
+                {% endif %}
+
+                <div class="social_icons">
+                    <div class="like">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <p>like</p>
+                    </div>
+                    <div class="comments">
+                        <i class="fa-regular fa-comments"></i>
+                        <p>commentes</p>
+                    </div>
+
+                    <div class="num_likes">
+                        {{user_post.likes}}: likes
+                    </div>
                 </div>
             </div>
         </div>

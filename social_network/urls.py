@@ -16,4 +16,9 @@ urlpatterns = [
     path(
         "feed/add/delete/post/<str:pk>", views.delete_post, name='delete_post'
     ),
+    path(
+        "feed/delete/friend/<str:pk>",
+        views.delete_friend,
+        name='delete_friend'
+    )
 ]

@@ -84,19 +84,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // option for delete a post
 
-    const ellipse = document.querySelector('.options_post')
-    const divDeletePost = document.querySelector('.delete_post')
+    const ellipse = document.querySelectorAll('.delete_content')
+    
 
     try {
-        ellipse.addEventListener('click', () => {
-            const hiddenOrVisible = getComputedStyle(divDeletePost);
-    
-            if (hiddenOrVisible.getPropertyValue('opacity') === '0') {
-                divDeletePost.style.opacity = '1';
-            } else {
-                divDeletePost.style.opacity = '0';
-            }
-        });
+        ellipse.forEach(click=>{
+            click.addEventListener('click', (event) => {
+                const divDeletePost = event.target.closest('.delete_content').querySelector('.delete_post');
+                console.log(divDeletePost)
+                const hiddenOrVisible = getComputedStyle(divDeletePost);
+                console.log(hiddenOrVisible)
+                
+                if (hiddenOrVisible.getPropertyValue('opacity') === '0') {
+                    divDeletePost.style.display = 'block';
+                    divDeletePost.style.opacity = '1';
+                } else {
+                    divDeletePost.style.display = 'none';
+                    divDeletePost.style.opacity = '0';
+                }
+            });
+        })
     } catch (error) {
         console.error("Erro ao adicionar evento: " + error.message);
     }
@@ -152,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 suggestions.innerHTML = '';
                             }, 10)
         
-                            setTimeout(friendAdded, 1500)
+                            setTimeout(friendAdded, 1000)
                             fetch(friend_endpoint)
                         })
                     })
@@ -296,6 +303,52 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error=>{
                 console.log(error)
             })
+
+        })
+    })
+    // option for dele an friend 
+
+    const buttonDelete = document.querySelectorAll('.all_user_delete')
+    const buttonFriendsOpen = document.querySelector('.friends_open')
+    const buttonFriendsClose = document.querySelector('.close')
+    const allFriends = document.querySelector('.all_friends')
+
+    buttonFriendsOpen.addEventListener('click', ()=>{
+        console.log('salve')
+        const computedStyle = getComputedStyle(allFriends);
+        if (computedStyle.display === 'none') {
+            allFriends.style.display = 'flex';
+        } else {
+            allFriends.style.display = 'none';
+        }
+    })
+
+    buttonFriendsClose.addEventListener('click', ()=>{
+        console.log('salve')
+        const computedStyle = getComputedStyle(allFriends);
+        if (computedStyle.display === 'none') {
+            allFriends.style.display = 'flex';
+        } else {
+            allFriends.style.display = 'none';
+        }
+
+        setInterval(location.reload(), 1000)
+    })
+
+    buttonDelete.forEach(button=>{
+        button.addEventListener('click', (e)=>{
+            e.preventDefault()
+            const friendId = e.target.closest('.friend_user')
+            const idDiv = friendId.getAttribute('id')
+            const deleteEndpoint = `http://${window.location.host}/feed/delete/friend/${idDiv}`;
+
+            fetch(deleteEndpoint)
+            
+            const divToDelete = document.getElementById(idDiv)
+
+            if (divToDelete){
+                divToDelete.remove()
+            }
 
         })
     })
