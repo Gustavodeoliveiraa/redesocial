@@ -15,6 +15,9 @@ from django.views.decorators.http import require_GET, require_POST
 import os
 import threading
 from social_network.models import ProfilePersonal
+import dotenv
+
+dotenv.load_dotenv()
 
 
 @require_GET
