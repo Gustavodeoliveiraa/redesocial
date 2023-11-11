@@ -1,0 +1,753 @@
+[2023-11-06 03:32:45 +0000] [14344] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f1422e99430>
+  on_reload: <function OnReload.on_reload at 0x7f1422e99550>
+  when_ready: <function WhenReady.when_ready at 0x7f1422e99670>
+  pre_fork: <function Prefork.pre_fork at 0x7f1422e99790>
+  post_fork: <function Postfork.post_fork at 0x7f1422e998b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f1422e999d0>
+  worker_int: <function WorkerInt.worker_int at 0x7f1422e99af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f1422e99c10>
+  pre_exec: <function PreExec.pre_exec at 0x7f1422e99d30>
+  pre_request: <function PreRequest.pre_request at 0x7f1422e99e50>
+  post_request: <function PostRequest.post_request at 0x7f1422e99ee0>
+  child_exit: <function ChildExit.child_exit at 0x7f1422e32040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f1422e32160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f1422e32280>
+  on_exit: <function OnExit.on_exit at 0x7f1422e323a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f1422e324c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-06 03:32:45 +0000] [14344] [INFO] Starting gunicorn 21.2.0
+[2023-11-06 03:32:45 +0000] [14344] [DEBUG] Arbiter booted
+[2023-11-06 03:32:45 +0000] [14344] [INFO] Listening at: unix:/run/redesocial.socket (14344)
+[2023-11-06 03:32:45 +0000] [14344] [INFO] Using worker: sync
+[2023-11-06 03:32:45 +0000] [14345] [INFO] Booting worker with pid: 14345
+[2023-11-06 03:32:45 +0000] [14346] [INFO] Booting worker with pid: 14346
+[2023-11-06 03:32:45 +0000] [14347] [INFO] Booting worker with pid: 14347
+[2023-11-06 03:32:45 +0000] [14348] [INFO] Booting worker with pid: 14348
+[2023-11-06 03:32:45 +0000] [14349] [INFO] Booting worker with pid: 14349
+[2023-11-06 03:32:45 +0000] [14345] [DEBUG] GET /
+[2023-11-06 03:32:45 +0000] [14350] [INFO] Booting worker with pid: 14350
+ - - [06/Nov/2023:03:32:45 +0000] "GET / HTTP/1.1" 200 6330 "-" "curl/7.68.0"
+[2023-11-06 03:32:45 +0000] [14344] [DEBUG] 6 workers
+[2023-11-06 03:33:17 +0000] [14345] [INFO] Worker exiting (pid: 14345)
+[2023-11-06 03:33:17 +0000] [14346] [INFO] Worker exiting (pid: 14346)
+[2023-11-06 03:33:17 +0000] [14348] [INFO] Worker exiting (pid: 14348)
+[2023-11-06 03:33:17 +0000] [14347] [INFO] Worker exiting (pid: 14347)
+[2023-11-06 03:33:17 +0000] [14344] [INFO] Handling signal: term
+[2023-11-06 03:33:17 +0000] [14350] [INFO] Worker exiting (pid: 14350)
+[2023-11-06 03:33:17 +0000] [14349] [INFO] Worker exiting (pid: 14349)
+[2023-11-06 03:33:17 +0000] [14344] [INFO] Shutting down: Master
+[2023-11-06 03:33:17 +0000] [14366] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fcbff733430>
+  on_reload: <function OnReload.on_reload at 0x7fcbff733550>
+  when_ready: <function WhenReady.when_ready at 0x7fcbff733670>
+  pre_fork: <function Prefork.pre_fork at 0x7fcbff733790>
+  post_fork: <function Postfork.post_fork at 0x7fcbff7338b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fcbff7339d0>
+  worker_int: <function WorkerInt.worker_int at 0x7fcbff733af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fcbff733c10>
+  pre_exec: <function PreExec.pre_exec at 0x7fcbff733d30>
+  pre_request: <function PreRequest.pre_request at 0x7fcbff733e50>
+  post_request: <function PostRequest.post_request at 0x7fcbff733ee0>
+  child_exit: <function ChildExit.child_exit at 0x7fcbff6cc040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fcbff6cc160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fcbff6cc280>
+  on_exit: <function OnExit.on_exit at 0x7fcbff6cc3a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fcbff6cc4c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-06 03:33:17 +0000] [14366] [INFO] Starting gunicorn 21.2.0
+[2023-11-06 03:33:17 +0000] [14366] [DEBUG] Arbiter booted
+[2023-11-06 03:33:17 +0000] [14366] [INFO] Listening at: unix:/run/redesocial.socket (14366)
+[2023-11-06 03:33:17 +0000] [14366] [INFO] Using worker: sync
+[2023-11-06 03:33:17 +0000] [14367] [INFO] Booting worker with pid: 14367
+[2023-11-06 03:33:17 +0000] [14368] [INFO] Booting worker with pid: 14368
+[2023-11-06 03:33:17 +0000] [14369] [INFO] Booting worker with pid: 14369
+[2023-11-06 03:33:17 +0000] [14370] [INFO] Booting worker with pid: 14370
+[2023-11-06 03:33:17 +0000] [14371] [INFO] Booting worker with pid: 14371
+[2023-11-06 03:33:17 +0000] [14372] [INFO] Booting worker with pid: 14372
+[2023-11-06 03:33:17 +0000] [14366] [DEBUG] 6 workers
+[2023-11-06 03:33:20 +0000] [14366] [INFO] Handling signal: term
+[2023-11-06 03:33:20 +0000] [14369] [INFO] Worker exiting (pid: 14369)
+[2023-11-06 03:33:20 +0000] [14367] [INFO] Worker exiting (pid: 14367)
+[2023-11-06 03:33:20 +0000] [14370] [INFO] Worker exiting (pid: 14370)
+[2023-11-06 03:33:20 +0000] [14368] [INFO] Worker exiting (pid: 14368)
+[2023-11-06 03:33:20 +0000] [14372] [INFO] Worker exiting (pid: 14372)
+[2023-11-06 03:33:20 +0000] [14371] [INFO] Worker exiting (pid: 14371)
+[2023-11-06 03:33:20 +0000] [14366] [INFO] Shutting down: Master
+[2023-11-06 03:33:20 +0000] [14378] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f5c24708430>
+  on_reload: <function OnReload.on_reload at 0x7f5c24708550>
+  when_ready: <function WhenReady.when_ready at 0x7f5c24708670>
+  pre_fork: <function Prefork.pre_fork at 0x7f5c24708790>
+  post_fork: <function Postfork.post_fork at 0x7f5c247088b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f5c247089d0>
+  worker_int: <function WorkerInt.worker_int at 0x7f5c24708af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f5c24708c10>
+  pre_exec: <function PreExec.pre_exec at 0x7f5c24708d30>
+  pre_request: <function PreRequest.pre_request at 0x7f5c24708e50>
+  post_request: <function PostRequest.post_request at 0x7f5c24708ee0>
+  child_exit: <function ChildExit.child_exit at 0x7f5c246a1040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f5c246a1160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f5c246a1280>
+  on_exit: <function OnExit.on_exit at 0x7f5c246a13a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f5c246a14c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-06 03:33:20 +0000] [14378] [INFO] Starting gunicorn 21.2.0
+[2023-11-06 03:33:20 +0000] [14378] [DEBUG] Arbiter booted
+[2023-11-06 03:33:20 +0000] [14378] [INFO] Listening at: unix:/run/redesocial.socket (14378)
+[2023-11-06 03:33:20 +0000] [14378] [INFO] Using worker: sync
+[2023-11-06 03:33:20 +0000] [14380] [INFO] Booting worker with pid: 14380
+[2023-11-06 03:33:20 +0000] [14381] [INFO] Booting worker with pid: 14381
+[2023-11-06 03:33:20 +0000] [14382] [INFO] Booting worker with pid: 14382
+[2023-11-06 03:33:20 +0000] [14383] [INFO] Booting worker with pid: 14383
+[2023-11-06 03:33:20 +0000] [14384] [INFO] Booting worker with pid: 14384
+[2023-11-06 03:33:20 +0000] [14385] [INFO] Booting worker with pid: 14385
+[2023-11-06 03:33:20 +0000] [14378] [DEBUG] 6 workers
+[2023-11-06 03:33:22 +0000] [14382] [INFO] Worker exiting (pid: 14382)
+[2023-11-06 03:33:22 +0000] [14381] [INFO] Worker exiting (pid: 14381)
+[2023-11-06 03:33:22 +0000] [14380] [INFO] Worker exiting (pid: 14380)
+[2023-11-06 03:33:22 +0000] [14384] [INFO] Worker exiting (pid: 14384)
+[2023-11-06 03:33:22 +0000] [14385] [INFO] Worker exiting (pid: 14385)
+[2023-11-06 03:33:22 +0000] [14378] [INFO] Handling signal: term
+[2023-11-06 03:33:22 +0000] [14383] [INFO] Worker exiting (pid: 14383)
+[2023-11-06 03:33:22 +0000] [14378] [ERROR] Worker (pid:14385) was sent SIGTERM!
+[2023-11-06 03:33:22 +0000] [14378] [ERROR] Worker (pid:14380) was sent SIGTERM!
+[2023-11-06 03:33:22 +0000] [14378] [ERROR] Worker (pid:14382) was sent SIGTERM!
+[2023-11-06 03:33:22 +0000] [14378] [ERROR] Worker (pid:14381) was sent SIGTERM!
+[2023-11-06 03:33:22 +0000] [14378] [INFO] Shutting down: Master
+[2023-11-06 03:33:22 +0000] [14389] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7efcc1a63430>
+  on_reload: <function OnReload.on_reload at 0x7efcc1a63550>
+  when_ready: <function WhenReady.when_ready at 0x7efcc1a63670>
+  pre_fork: <function Prefork.pre_fork at 0x7efcc1a63790>
+  post_fork: <function Postfork.post_fork at 0x7efcc1a638b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7efcc1a639d0>
+  worker_int: <function WorkerInt.worker_int at 0x7efcc1a63af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7efcc1a63c10>
+  pre_exec: <function PreExec.pre_exec at 0x7efcc1a63d30>
+  pre_request: <function PreRequest.pre_request at 0x7efcc1a63e50>
+  post_request: <function PostRequest.post_request at 0x7efcc1a63ee0>
+  child_exit: <function ChildExit.child_exit at 0x7efcc19fc040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7efcc19fc160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7efcc19fc280>
+  on_exit: <function OnExit.on_exit at 0x7efcc19fc3a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7efcc19fc4c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-06 03:33:22 +0000] [14389] [INFO] Starting gunicorn 21.2.0
+[2023-11-06 03:33:22 +0000] [14389] [DEBUG] Arbiter booted
+[2023-11-06 03:33:22 +0000] [14389] [INFO] Listening at: unix:/run/redesocial.socket (14389)
+[2023-11-06 03:33:22 +0000] [14389] [INFO] Using worker: sync
+[2023-11-06 03:33:22 +0000] [14390] [INFO] Booting worker with pid: 14390
+[2023-11-06 03:33:22 +0000] [14391] [INFO] Booting worker with pid: 14391
+[2023-11-06 03:33:22 +0000] [14392] [INFO] Booting worker with pid: 14392
+[2023-11-06 03:33:22 +0000] [14393] [INFO] Booting worker with pid: 14393
+[2023-11-06 03:33:22 +0000] [14394] [INFO] Booting worker with pid: 14394
+[2023-11-06 03:33:22 +0000] [14395] [INFO] Booting worker with pid: 14395
+[2023-11-06 03:33:22 +0000] [14389] [DEBUG] 6 workers
+[2023-11-06 03:35:26 +0000] [14390] [INFO] Worker exiting (pid: 14390)
+[2023-11-06 03:35:26 +0000] [14393] [INFO] Worker exiting (pid: 14393)
+[2023-11-06 03:35:26 +0000] [14389] [INFO] Handling signal: term
+[2023-11-06 03:35:26 +0000] [14391] [INFO] Worker exiting (pid: 14391)
+[2023-11-06 03:35:26 +0000] [14392] [INFO] Worker exiting (pid: 14392)
+[2023-11-06 03:35:26 +0000] [14389] [ERROR] Worker (pid:14393) was sent SIGTERM!
+[2023-11-06 03:35:26 +0000] [14395] [INFO] Worker exiting (pid: 14395)
+[2023-11-06 03:35:26 +0000] [14389] [ERROR] Worker (pid:14390) was sent SIGTERM!
+[2023-11-06 03:35:26 +0000] [14394] [INFO] Worker exiting (pid: 14394)
+[2023-11-06 03:35:26 +0000] [14389] [INFO] Shutting down: Master
+[2023-11-11 21:40:16 +0000] [1200] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fb191b03430>
+  on_reload: <function OnReload.on_reload at 0x7fb191b03550>
+  when_ready: <function WhenReady.when_ready at 0x7fb191b03670>
+  pre_fork: <function Prefork.pre_fork at 0x7fb191b03790>
+  post_fork: <function Postfork.post_fork at 0x7fb191b038b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fb191b039d0>
+  worker_int: <function WorkerInt.worker_int at 0x7fb191b03af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fb191b03c10>
+  pre_exec: <function PreExec.pre_exec at 0x7fb191b03d30>
+  pre_request: <function PreRequest.pre_request at 0x7fb191b03e50>
+  post_request: <function PostRequest.post_request at 0x7fb191b03ee0>
+  child_exit: <function ChildExit.child_exit at 0x7fb191a9b040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fb191a9b160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fb191a9b280>
+  on_exit: <function OnExit.on_exit at 0x7fb191a9b3a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fb191a9b4c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-11 21:40:16 +0000] [1200] [INFO] Starting gunicorn 21.2.0
+[2023-11-11 21:40:16 +0000] [1200] [DEBUG] Arbiter booted
+[2023-11-11 21:40:16 +0000] [1200] [INFO] Listening at: unix:/run/redesocial.socket (1200)
+[2023-11-11 21:40:16 +0000] [1200] [INFO] Using worker: sync
+[2023-11-11 21:40:16 +0000] [1201] [INFO] Booting worker with pid: 1201
+[2023-11-11 21:40:16 +0000] [1202] [INFO] Booting worker with pid: 1202
+[2023-11-11 21:40:17 +0000] [1203] [INFO] Booting worker with pid: 1203
+[2023-11-11 21:40:17 +0000] [1204] [INFO] Booting worker with pid: 1204
+[2023-11-11 21:40:17 +0000] [1205] [INFO] Booting worker with pid: 1205
+[2023-11-11 21:40:17 +0000] [1206] [INFO] Booting worker with pid: 1206
+[2023-11-11 21:40:17 +0000] [1200] [DEBUG] 6 workers
+[2023-11-11 21:40:17 +0000] [1205] [DEBUG] GET /
+ - - [11/Nov/2023:21:40:17 +0000] "GET / HTTP/1.1" 200 6330 "-" "curl/7.68.0"
+[2023-11-11 21:47:25 +0000] [1200] [INFO] Handling signal: term
+[2023-11-11 21:47:25 +0000] [1201] [INFO] Worker exiting (pid: 1201)
+[2023-11-11 21:47:25 +0000] [1204] [INFO] Worker exiting (pid: 1204)
+[2023-11-11 21:47:25 +0000] [1202] [INFO] Worker exiting (pid: 1202)
+[2023-11-11 21:47:25 +0000] [1205] [INFO] Worker exiting (pid: 1205)
+[2023-11-11 21:47:25 +0000] [1206] [INFO] Worker exiting (pid: 1206)
+[2023-11-11 21:47:25 +0000] [1203] [INFO] Worker exiting (pid: 1203)
+[2023-11-11 21:47:25 +0000] [1200] [INFO] Shutting down: Master
+[2023-11-11 21:47:25 +0000] [1283] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7ff0f0daa430>
+  on_reload: <function OnReload.on_reload at 0x7ff0f0daa550>
+  when_ready: <function WhenReady.when_ready at 0x7ff0f0daa670>
+  pre_fork: <function Prefork.pre_fork at 0x7ff0f0daa790>
+  post_fork: <function Postfork.post_fork at 0x7ff0f0daa8b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7ff0f0daa9d0>
+  worker_int: <function WorkerInt.worker_int at 0x7ff0f0daaaf0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7ff0f0daac10>
+  pre_exec: <function PreExec.pre_exec at 0x7ff0f0daad30>
+  pre_request: <function PreRequest.pre_request at 0x7ff0f0daae50>
+  post_request: <function PostRequest.post_request at 0x7ff0f0daaee0>
+  child_exit: <function ChildExit.child_exit at 0x7ff0f0d43040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7ff0f0d43160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7ff0f0d43280>
+  on_exit: <function OnExit.on_exit at 0x7ff0f0d433a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7ff0f0d434c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-11 21:47:25 +0000] [1283] [INFO] Starting gunicorn 21.2.0
+[2023-11-11 21:47:25 +0000] [1283] [DEBUG] Arbiter booted
+[2023-11-11 21:47:25 +0000] [1283] [INFO] Listening at: unix:/run/redesocial.socket (1283)
+[2023-11-11 21:47:25 +0000] [1283] [INFO] Using worker: sync
+[2023-11-11 21:47:25 +0000] [1284] [INFO] Booting worker with pid: 1284
+[2023-11-11 21:47:25 +0000] [1285] [INFO] Booting worker with pid: 1285
+[2023-11-11 21:47:25 +0000] [1286] [INFO] Booting worker with pid: 1286
+[2023-11-11 21:47:25 +0000] [1287] [INFO] Booting worker with pid: 1287
+[2023-11-11 21:47:25 +0000] [1288] [INFO] Booting worker with pid: 1288
+[2023-11-11 21:47:25 +0000] [1289] [INFO] Booting worker with pid: 1289
+[2023-11-11 21:47:26 +0000] [1283] [DEBUG] 6 workers
+[2023-11-11 21:51:39 +0000] [1283] [INFO] Handling signal: term
+[2023-11-11 21:51:39 +0000] [1285] [INFO] Worker exiting (pid: 1285)
+[2023-11-11 21:51:39 +0000] [1287] [INFO] Worker exiting (pid: 1287)
+[2023-11-11 21:51:39 +0000] [1289] [INFO] Worker exiting (pid: 1289)
+[2023-11-11 21:51:39 +0000] [1284] [INFO] Worker exiting (pid: 1284)
+[2023-11-11 21:51:39 +0000] [1288] [INFO] Worker exiting (pid: 1288)
+[2023-11-11 21:51:39 +0000] [1286] [INFO] Worker exiting (pid: 1286)
+[2023-11-11 21:51:39 +0000] [1283] [INFO] Shutting down: Master
+[2023-11-11 19:02:58 -0300] [1292] [DEBUG] Current configuration:
+  config: ./gunicorn.conf.py
+  wsgi_app: None
+  bind: ['unix:/run/redesocial.socket']
+  backlog: 2048
+  workers: 6
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 30
+  graceful_timeout: 30
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/ggu31/app_repo
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1001
+  group: 33
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: -
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/ggu31/app_repo/gunicorn-error-log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: True
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: project.wsgi:application
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fd398056430>
+  on_reload: <function OnReload.on_reload at 0x7fd398056550>
+  when_ready: <function WhenReady.when_ready at 0x7fd398056670>
+  pre_fork: <function Prefork.pre_fork at 0x7fd398056790>
+  post_fork: <function Postfork.post_fork at 0x7fd3980568b0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fd3980569d0>
+  worker_int: <function WorkerInt.worker_int at 0x7fd398056af0>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fd398056c10>
+  pre_exec: <function PreExec.pre_exec at 0x7fd398056d30>
+  pre_request: <function PreRequest.pre_request at 0x7fd398056e50>
+  post_request: <function PostRequest.post_request at 0x7fd398056ee0>
+  child_exit: <function ChildExit.child_exit at 0x7fd397fef040>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fd397fef160>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fd397fef280>
+  on_exit: <function OnExit.on_exit at 0x7fd397fef3a0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fd397fef4c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+[2023-11-11 19:02:58 -0300] [1292] [INFO] Starting gunicorn 21.2.0
+[2023-11-11 19:02:58 -0300] [1292] [DEBUG] Arbiter booted
+[2023-11-11 19:02:58 -0300] [1292] [INFO] Listening at: unix:/run/redesocial.socket (1292)
+[2023-11-11 19:02:58 -0300] [1292] [INFO] Using worker: sync
+[2023-11-11 19:02:58 -0300] [1293] [INFO] Booting worker with pid: 1293
+[2023-11-11 19:02:58 -0300] [1294] [INFO] Booting worker with pid: 1294
+[2023-11-11 19:02:58 -0300] [1295] [INFO] Booting worker with pid: 1295
+[2023-11-11 19:02:58 -0300] [1296] [INFO] Booting worker with pid: 1296
+[2023-11-11 19:02:59 -0300] [1297] [INFO] Booting worker with pid: 1297
+[2023-11-11 19:02:59 -0300] [1298] [INFO] Booting worker with pid: 1298
+[2023-11-11 19:02:59 -0300] [1292] [DEBUG] 6 workers
+[2023-11-11 22:02:59 +0000] [1298] [DEBUG] GET /
+ - - [11/Nov/2023:22:02:59 +0000] "GET / HTTP/1.1" 200 6330 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
