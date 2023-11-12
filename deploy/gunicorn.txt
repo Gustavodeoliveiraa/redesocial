@@ -1,0 +1,75 @@
+###############################################################################
+# Replace
+# redesocial to the name of the gunicorn file you want
+# ggu31 to your user name
+# /home/ggu31/app_repo to the folder name of your project
+# project to the folder name where you find a file called wsgi.py
+#
+###############################################################################
+# Criando o arquivo redesocial.socket
+sudo nano /etc/systemd/system/redesocial.socket
+
+###############################################################################
+# Conteúdo do arquivo
+[Unit]
+Description=gunicorn blog socket
+
+[Socket]
+ListenStream=/run/redesocial.socket
+
+[Install]
+WantedBy=sockets.target
+
+###############################################################################
+# Criando o arquivo redesocial.service
+sudo nano /etc/systemd/system/redesocial.service
+
+###############################################################################
+# Conteúdo do arquivo
+[Unit]
+Description=Gunicorn daemon (You can change if you want)
+Requires=redesocial.socket
+After=network.target
+
+[Service]
+User=ggu31
+Group=www-data
+Restart=on-failure
+EnvironmentFile=/home/ggu31//home/ggu31/app_repo/.env
+WorkingDirectory=/home/ggu31//home/ggu31/app_repo
+# --error-logfile --enable-stdio-inheritance --log-level and --capture-output
+# are all for debugging purposes.
+ExecStart=/home/ggu31//home/ggu31/app_repo/venv/bin/gunicorn \
+          --error-logfile /home/ggu31//home/ggu31/app_repo/gunicorn-error-log \
+          --enable-stdio-inheritance \
+          --log-level "debug" \
+          --capture-output \
+          --access-logfile - \
+          --workers 6 \
+          --bind unix:/run/redesocial.socket \
+          project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+###############################################################################
+# Ativando
+sudo systemctl start redesocial.socket
+sudo systemctl enable redesocial.socket
+
+# Checando
+sudo systemctl status redesocial.socket
+curl --unix-socket /run/redesocial.socket localhost
+sudo systemctl status redesocial
+
+# Restarting
+sudo systemctl restart redesocial.service
+sudo systemctl restart redesocial.socket
+sudo systemctl restart redesocial
+
+# After changing something
+sudo systemctl daemon-reload
+
+# Debugging
+sudo journalctl -u redesocial.service
+sudo journalctl -u redesocial.socket
