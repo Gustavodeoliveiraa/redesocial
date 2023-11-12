@@ -2,7 +2,7 @@
 # Replace
 # redesocial to the name of the gunicorn file you want
 # ggu31 to your user name
-# /home/ggu31/app_repo to the folder name of your project
+# app_repo to the folder name of your project
 # project to the folder name where you find a file called wsgi.py
 #
 ###############################################################################
@@ -35,12 +35,12 @@ After=network.target
 User=ggu31
 Group=www-data
 Restart=on-failure
-EnvironmentFile=/home/ggu31//home/ggu31/app_repo/.env
-WorkingDirectory=/home/ggu31//home/ggu31/app_repo
+EnvironmentFile=/home/ggu31/app_repo/.env
+WorkingDirectory=/home/ggu31/app_repo
 # --error-logfile --enable-stdio-inheritance --log-level and --capture-output
 # are all for debugging purposes.
-ExecStart=/home/ggu31//home/ggu31/app_repo/venv/bin/gunicorn \
-          --error-logfile /home/ggu31//home/ggu31/app_repo/gunicorn-error-log \
+ExecStart=/home/ggu31/app_repo/venv/bin/gunicorn \
+          --error-logfile /home/ggu31/app_repo/gunicorn-error-log \
           --enable-stdio-inheritance \
           --log-level "debug" \
           --capture-output \
