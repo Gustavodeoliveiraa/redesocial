@@ -16,3 +16,30 @@
     {% endfor %}
 {% endblock friends %}
 
+
+{% block show_all_friends %}    
+    <div class="all_friends">
+        <div class="friends_container">
+            <div class="close_show_friends">
+                <p>Friends</p>
+                <i class="fa-solid fa-xmark close"></i>
+            </div>
+            {% for friend in friend_all %}
+                <div class="friend_user" id="{{ friend.id }}">
+                    <div class="profile_container profile_container_all_friends">
+                        {% if friend.friend.profile_image %}
+                            <img src=" {{friend.friend.profile_image.url}} " alt="">
+                        {% else %}
+                            <img src="{% static "img/without_user.png" %}" alt="">
+                        {% endif %}
+                        <p>{{friend.friend_name}}</p>
+                        <button class="all_user_delete">
+                            <a href=" {% url "delete_friend" friend.id%} ">Delete</a>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock show_all_friends %}
+

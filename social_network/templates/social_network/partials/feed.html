@@ -4,8 +4,29 @@
 
 
 {% block feed %}
-    <div class="content_add">Add with succes</div>
+    {% block show_all_friends %} {% endblock show_all_friends %}
 
+
+    <div class="content_add">Add with succes</div>
+    <div class="gerenal_icons_mobile">
+        <div class="image_profile">
+            {% if profile_data.profile_image %}
+                <img src=" {{profile_data.profile_image.url}} " alt="">
+            {% else %}
+                <img src="{% static "img/without_user.png" %}" alt="">
+            {% endif %}
+        </div>
+        <div class="user_info">
+            <p>{{profile_data.user.username|capfirst}}</p>
+        </div>
+        <div class="icons_mobile">
+            <i class="fa-solid fa-user-group friends_open_mobile"></i>
+
+            <i class="fa-solid fa-bell"></i>
+            <i class="fa-solid fa-message"></i>
+            <a href="/logout/ "><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
     <div class="feed_search_user">
         <form action="" class="submit" onsubmit="return false;">
             <label for="all_users" class="search_all">
