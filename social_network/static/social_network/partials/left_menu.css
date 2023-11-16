@@ -1,0 +1,207 @@
+button {
+    border: none;
+    text-align: left;
+    padding: 5px;
+    border-radius: 10px;
+    height: 30px;
+    width: 130px;
+    margin: 5px;
+    color: var(--font-color-blue);
+    background-color: white;
+    transition: all .3s;
+}
+
+button a {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: var(--background-color-icons);
+}
+
+i {
+    padding-right: 10px;
+    font-size: 1rem;
+}
+
+.left_menu_fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}
+
+.left_menu_content {
+    border: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.left_menu_content p {
+    margin: 0;
+}
+
+.left_menu_content p:last-child {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--email-text-color);
+}
+
+.image_profile {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.image_profile img{
+    width: 100%;
+    height: 100%;
+}
+
+.left_menu_icons {
+    margin-top: 100px;
+    box-sizing: border-box;
+}
+
+.left_menu_icons p {
+    opacity: .6;
+}
+
+.general_icons, .private_icons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    padding-left: 10px;
+}
+
+/* modal for sending picture or status */
+.modal_change_picture {
+    z-index: 10;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: 600px;
+    background-color: white;
+}
+
+
+/* div that show all friends */
+
+.all_friends {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.863);
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.friends_container {
+    width: 300px;
+    height: 490px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close_show_friends {
+    display: flex;
+    flex-direction: row;
+    width: 97%;
+    margin: 0  auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.close_show_friends:hover i{
+    cursor: pointer;
+}
+
+.close {
+    margin-left: auto;
+}
+
+
+.friend_user {
+    background-color: var(--background-color-icons);
+    width: 100%;
+    height: 50px;
+    margin-bottom: 3px;
+}
+
+.profile_container_all_friends {
+    align-items: center;
+    height: 100%;
+}
+
+.profile_container_all_friends p {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.all_user_delete {
+    width: 50px;
+    height: 25px;
+    margin-left: auto;
+}
+
+.all_user_delete a {
+    text-decoration: none;
+    color: var(--font-color-blue);
+}
+
+@media (max-width: 1050px) {
+    .left_menu_icons {
+        padding: 0;
+    }
+    
+
+    .left_menu_icons p {
+        width: 110px;
+    }
+
+    .image_profile {
+        width: 50px;
+        height: 50px;
+    }
+
+    button {
+        width: 110px;
+        font-size: .7em;
+    }
+
+    button i {
+        font-size: 1em;
+    }
+
+    .left_menu_fixed {
+        left: 5px;
+    }
+
+    .friends_container {
+        width: 350px;
+    }
+    
+    .all_user_delete {
+        text-align: center;
+    }
+}

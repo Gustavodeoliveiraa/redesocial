@@ -1,0 +1,94 @@
+:root {
+    --font-color-blue: #21415F;
+    --light-blue: #21415f6c;
+    --menu-color: #fafafa;
+    --background-body-color: #F0F2F5;
+    --font-family-roboto: 'Roboto', sans-serif;
+    --background-color-icons: #d3d3d39d;
+    --background-suggestions-color: #33333328;
+    --background-suggestions-hover-color: #33333359;
+    --color-success-dark: #4a9c5d;
+    --color-success-light: #d4edda;
+    --email-text-color: 21415fa1;
+}
+
+body, html {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: var(--background-body-color);
+    font-family: var(--font-family-roboto);
+    color: var(--font-color-blue);
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_menu, .feed, .friends {
+    background-color: white;
+}
+
+.left_menu {
+    top: 0;
+    left: 0;
+    width: 215px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.feed{
+    width: 45%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+.friends {
+    width: 15%;
+}
+
+@media (max-width: 1200px) {
+    .left_menu {
+        width: 180px;
+    }
+}
+
+
+@media (max-width: 1050px) {
+    .feed {
+        width: 55%;
+    }
+
+    .left_menu {
+        width: 150px;
+    }
+
+}
+
+@media (max-width: 750px) {
+    .left_menu,
+    .friends {
+        display: none;
+    }
+
+    .feed {
+        margin: 0 auto;
+        width: 75%;
+        padding-top: 15px;
+    }
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+    .feed {
+        width: 100%;
+    }
+}
