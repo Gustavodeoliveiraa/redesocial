@@ -728,10 +728,14 @@ span {
         font-size: .9rem;
     }
 
-    .create_post_content,
     .show_posts_of_users {
         width: 100%;
     }
+
+    .create_post_content {
+        width: 97%;
+    }
+    
 
 }
 
@@ -740,6 +744,5 @@ span {
         font-size: 3.6vw;
     }
 }
-
 
 /* end */
