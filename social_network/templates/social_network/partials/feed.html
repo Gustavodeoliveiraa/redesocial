@@ -8,14 +8,21 @@
 
 
     <div class="content_add">Add with succes</div>
-    <div class="gerenal_icons_mobile">
-        <div class="image_profile">
-            {% if profile_data.profile_image %}
-                <img src=" {{profile_data.profile_image.url}} " alt="">
-            {% else %}
-                <img src="{% static "img/without_user.png" %}" alt="">
-            {% endif %}
-        </div>
+    <div class="gerenal_icons_mobile" title="change profile image">
+        <label for="id_profile_image">
+            <div class="image_profile">
+                {% if profile_data.profile_image %}
+                    <img src=" {{profile_data.profile_image.url}} " alt="">
+                {% else %}
+                    <img src="{% static "img/without_user.png" %}" alt="">
+                {% endif %}
+
+            </div>
+        </label>
+        <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data" id='send_profile_image'>
+            {% csrf_token %}
+            {{fields.profile_image}}
+        </form>
         <div class="user_info">
             <p>{{profile_data.user.username|capfirst}}</p>
         </div>
