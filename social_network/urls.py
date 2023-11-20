@@ -20,5 +20,11 @@ urlpatterns = [
         "feed/delete/friend/<str:pk>",
         views.delete_friend,
         name='delete_friend'
+    ),
+
+    path(
+        "feed/counter/likes/<int:post_id>/<int:likes>",
+        views.num_likes_of_post,
+        name='counter_Likes'
     )
 ]

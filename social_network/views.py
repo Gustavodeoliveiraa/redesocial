@@ -177,6 +177,19 @@ def add_post(request):
 
 
 @login_required()
+def num_likes_of_post(reques, post_id, likes):
+    try:
+        post = Post.objects.get(id=post_id)
+        post.likes = likes
+        post.save()
+    except Post.DoesNotExist:
+        pass
+
+    return redirect('feed')
+
+
+
+@login_required()
 def delete_post(request, pk):
     try:
         post = Post.objects.get(pk=pk)

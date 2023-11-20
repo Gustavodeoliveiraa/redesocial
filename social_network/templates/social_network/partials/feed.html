@@ -58,7 +58,13 @@
         <div class="carousel">
             <label for="id_status_image">
                 <div class="create_status_container">
-                    <div class="create_status_image"><img src="{{profile_data.profile_image.url}}" alt=""></div>
+                    <div class="create_status_image">
+                        {% if profile_data.profile_image %}
+                            <img src=" {{profile_data.profile_image.url}} " alt="">
+                        {% else %}
+                            <img src="{% static "img/without_user.png" %}" alt="">
+                        {% endif %}
+                    </div>
                     <div class="icon_create_status">
                         <div class="icon_plus"> <i class="fa-solid fa-plus"></i> </div>
                         <p>Create status</p>
@@ -183,7 +189,7 @@
                     </div>
                 {% endif %}
 
-                <div class="social_icons">
+                <div class="social_icons" id="{{user_post.pk}}">
                     <div class="like">
                         <i class="fa-regular fa-thumbs-up"></i>
                         <p>like</p>

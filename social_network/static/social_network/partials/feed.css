@@ -483,7 +483,6 @@ span {
     box-sizing: border-box;
     position: relative;
     word-wrap: break-word;
-
 }
 
 .text_content {
@@ -521,6 +520,7 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background .5s ease-in;
 }
 
 .social_icons p,
@@ -537,7 +537,12 @@ span {
     padding: 8px;
     border-radius: 10px;
     font-size: 1.2rem;
-    font-weight: bold;
+}
+
+.like:hover,
+.comments:hover {
+    cursor: pointer;
+    background-color: var(--background-suggestions-color);
 }
 
 .social_icons {

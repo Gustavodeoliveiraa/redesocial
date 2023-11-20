@@ -365,5 +365,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     })
+    
+    // adding like counter
 
+    const socialIcon = document.querySelectorAll('.social_icons')
+    
+    socialIcon.forEach((iconDiv)=>{
+        const buttonLike = iconDiv.querySelector('.like')
+        const likeCounter = iconDiv.querySelector('.num_likes')
+        var numOfLikes = parseInt(likeCounter.textContent)
+        var clicked = false
+
+
+        buttonLike.addEventListener('click', ()=>{
+
+            if (!clicked){
+                numOfLikes += 1
+                clicked = true
+                likeCounter.textContent = `${numOfLikes}: likes`
+                console.log('1', numOfLikes)
+                const endpointCounterLikes = `http://${window.location.host}/feed/counter/likes/${iconDiv.id}/${numOfLikes}`;
+                fetch (endpointCounterLikes)
+
+            }else{
+                if (numOfLikes < 0){
+                    numOfLikes = 0
+                }
+                else {
+                    numOfLikes -= 1
+                }
+                clicked = false
+                likeCounter.textContent = `${numOfLikes}: likes`
+                console.log('0', numOfLikes)
+                const endpointCounterLikes = `http://${window.location.host}/feed/counter/likes/${iconDiv.id}/${numOfLikes}`;
+                fetch (endpointCounterLikes)
+
+            }
+
+        })
+    })
 });
