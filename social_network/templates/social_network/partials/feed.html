@@ -39,19 +39,10 @@
     </div>
 
     <div class="status">
-        <div class="modal_change_picture">
-            <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data">
-                {% csrf_token %}
-                Change profile image
-                {{fields.profile_image}}
-                <input type="submit" value="Submit">
-            </form>
-    
             <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data" id="send_status">
                 {% csrf_token %}
                 {{status_fields.status_image}}
             </form>
-        </div>
 
         <button class="arrow-left control">◀</button>
         <button class="arrow-right control">▶</button>

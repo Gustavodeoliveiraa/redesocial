@@ -75,6 +75,10 @@ i {
     height: 100%;
 }
 
+.image_profile:hover {
+    cursor: pointer;
+}
+
 .left_menu_icons {
     margin-top: 100px;
     box-sizing: border-box;
@@ -108,7 +112,7 @@ i {
 /* div that show all friends */
 
 .all_friends {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -122,6 +126,7 @@ i {
 }
 
 .friends_container {
+    position: fixed;
     width: 300px;
     height: 490px;
     background-color: white;
@@ -177,6 +182,12 @@ i {
 .all_user_delete a {
     text-decoration: none;
     color: var(--font-color-blue);
+}
+
+/* files */
+
+#id_profile_image {
+    display: none;
 }
 
 @media (max-width: 1050px) {

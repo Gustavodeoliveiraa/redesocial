@@ -1,21 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // option for change profile image
-    const profileImageDiv = document.querySelector(".image_profile")
-    const changeProfileImage = document.querySelector(".modal_change_picture")
-
-    profileImageDiv.addEventListener("click", ()=> {
-        const profileImageDiv = getComputedStyle(changeProfileImage);
-
-        if (profileImageDiv.getPropertyValue("display") == "none") {
-            changeProfileImage.style.display = "block"
-        }
-        else {
-            changeProfileImage.style.display = "none"
-        }
-    })
-    //
-    
     // option for change the post for public or private
 
     const publicOrPrivate = document.querySelector('.public')
@@ -308,12 +292,19 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     // sending a status image
-
     const submitFormStatus = document.getElementById('send_status')
 
     const formImageStatus = document.getElementById('id_status_image')
     formImageStatus.onchange = function (){
         submitFormStatus.submit()
+    }
+
+    // sending a profile photo
+    const submitFormProfileImage = document.getElementById('send_profile_image')
+
+    const formImageProfile = document.getElementById('id_profile_image')
+    formImageProfile.onchange = function (){
+        submitFormProfileImage.submit()
     }
 
     // option for delete an friend 

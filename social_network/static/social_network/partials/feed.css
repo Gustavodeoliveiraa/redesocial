@@ -613,7 +613,8 @@ span {
 
 /* files */
 
-#id_post_image {
+#id_post_image,
+#send_status {
     display: none;
 }
 

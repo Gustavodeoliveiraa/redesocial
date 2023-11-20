@@ -7,18 +7,24 @@
 {% block left_menu %}
     <div class="left_menu_fixed">
         <div class="left_menu_content">
-            <div class="image_profile">
-                {% if profile_data.profile_image %}
-                    <img src=" {{profile_data.profile_image.url}} " alt="">
-                {% else %}
-                    <img src="{% static "img/without_user.png" %}" alt="">
-                {% endif %}
-            </div>
+            <label for="id_profile_image">
+                <div class="image_profile" title="change profile image">
+                    {% if profile_data.profile_image %}
+                        <img src=" {{profile_data.profile_image.url}} " alt="">
+                    {% else %}
+                        <img src="{% static "img/without_user.png" %}" alt="">
+                    {% endif %}
+                </div>
+            </label>
             <div class="user_info">
                 <p>{{profile_data.user.username|capfirst}}</p>
                 <p>{{profile_data.user.email|capfirst}}</p>
             </div>
 
+            <form action=" {% url "process_image" %} " method='POST' enctype="multipart/form-data" id='send_profile_image'>
+                {% csrf_token %}
+                {{fields.profile_image}}
+            </form>
            
         </div>
         <div class="left_menu_icons">
