@@ -41,6 +41,10 @@ i {
     text-align: center;
 }
 
+.left_menu_content:hover {
+    cursor: pointer;
+}
+
 .left_menu_content p {
     margin: 0;
 }

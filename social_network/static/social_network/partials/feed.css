@@ -93,19 +93,94 @@ a {
     position: absolute;
     top: 0;
     right: 0;
-  background: linear-gradient(to right, transparent 0%, black 200%);
-  left: auto;
+    background: linear-gradient(to right, transparent 0%, black 200%);
+    left: auto;
 }
 
 .arrow-left:hover,
 .arrow-right:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .carousel {
     display: flex;
     white-space: nowrap;
     transition: all .5s ease-in-out;
+    opacity: 1;
+}
+
+.create_status_container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 150px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px  solid rgba(99, 99, 99, 0.397);
+    margin-left: 5px;
+    
+}
+
+.create_status_container:hover {
+    cursor: pointer;
+}
+
+.create_status_container:hover .icon_create_status{
+    background-color: rgba(168, 168, 168, 0.247)
+}
+
+
+.icon_create_status {
+    position: relative;
+    display: flex;
+    height: 30%;
+    justify-content: center;
+    align-items: self-end;
+    transition: background-color .5s ease;
+}
+
+.icon_create_status p {
+    margin: 5px;
+    font-weight: bold;
+}
+
+.icon_plus {
+    position: absolute;
+    top: -21px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--font-color-blue);
+    overflow: hidden;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 4px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon_plus i {
+    color: white;
+    padding: 0;
+    font-size: 1.7rem;
+}
+
+.create_status_image {
+    height: 70%;
+    width: 100%;
+    transition: transform .5s ease;
+}
+
+.create_status_image img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.create_status_container:hover .create_status_image {
+    transform: scale(1.05);
 }
 
 .story {

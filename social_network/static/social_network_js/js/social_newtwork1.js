@@ -306,6 +306,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     })
+
+    // sending a status image
+
+    const submitFormStatus = document.getElementById('send_status')
+
+    const formImageStatus = document.getElementById('id_status_image')
+    formImageStatus.onchange = function (){
+        submitFormStatus.submit()
+    }
+
     // option for delete an friend 
 
     const buttonDelete = document.querySelectorAll('.all_user_delete')

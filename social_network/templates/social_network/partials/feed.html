@@ -47,18 +47,25 @@
                 <input type="submit" value="Submit">
             </form>
     
-            <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data">
+            <form action=" {% url "create_status" %} " method='POST' enctype="multipart/form-data" id="send_status">
                 {% csrf_token %}
-                add status (temporario)
                 {{status_fields.status_image}}
-                <input type="submit" value="Submit">
             </form>
         </div>
 
         <button class="arrow-left control">◀</button>
         <button class="arrow-right control">▶</button>
         <div class="carousel">
-            
+            <label for="id_status_image">
+                <div class="create_status_container">
+                    <div class="create_status_image"><img src="{{profile_data.profile_image.url}}" alt=""></div>
+                    <div class="icon_create_status">
+                        <div class="icon_plus"> <i class="fa-solid fa-plus"></i> </div>
+                        <p>Create status</p>
+                    </div>
+                </div>
+            </label>
+
             {% if my_status %}
                 <a href=" {% url 'all_status' my_status.usuario.user %}" data-link="{{my_status.usuario.user}}">
                     <div class="story item current-item">
