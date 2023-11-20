@@ -66,6 +66,7 @@ a {
     box-sizing: border-box;
     position: relative;
     padding-right: 10px;
+    overflow: hidden;
 }
 
 .arrow-left,
@@ -103,10 +104,8 @@ a {
 
 .carousel {
     display: flex;
-    overflow-y: hidden;
-    overflow-x: hidden;
     white-space: nowrap;
-    width: 100%;
+    transition: all .5s ease-in-out;
 }
 
 .story {
@@ -123,8 +122,12 @@ a {
     opacity: 1;
 }
 
+.item {
+    opacity: .5;
+}
+
 .current-item {
-    opacity: .8;
+    opacity: 1;
 }
 
 .story p {
