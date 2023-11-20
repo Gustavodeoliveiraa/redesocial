@@ -79,7 +79,7 @@
             
                 {% if friends.friend.status_set.all %}
                     <a href=" {% url "all_status" friends.friend_name%}" data-link="{{friends.friend_name}}">
-                        <div class="story item">
+                        <div class="story item current-item">
                             <div class="user_picture_story">
                                 {% if friends.friend.profile_image %}
                                     <img src="{{ friends.friend.profile_image.url }}" alt="">
