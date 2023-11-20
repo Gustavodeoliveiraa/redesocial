@@ -10,6 +10,7 @@
     --color-success-dark: #4a9c5d;
     --color-success-light: #d4edda;
     --email-text-color: 21415fa1;
+    --color--border-social-icons: #21415f33;
 }
 
 body, html {
@@ -55,17 +56,12 @@ body, html {
 }
 
 @media (max-width: 1200px) {
-    .left_menu {
-        width: 180px;
-    }
-}
-
-
-@media (max-width: 1050px) {
     .feed {
         width: 55%;
     }
+}
 
+@media (max-width: 1050px) {
     .left_menu {
         width: 150px;
     }
@@ -87,7 +83,7 @@ body, html {
 
 /* mobile */
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
     .feed {
         width: 100%;
     }

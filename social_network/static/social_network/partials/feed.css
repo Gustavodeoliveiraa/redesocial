@@ -254,7 +254,7 @@ span {
 
 .span_send_post {
     position: absolute;
-    top: 43%;
+    top: 40%;
     right: 20px;
     pointer-events: all;
 }
@@ -375,8 +375,9 @@ span {
     max-height: 570px;
     border-radius: 15px;
     background-color: var( --background-body-color);
-    border: 2px solid var(--font-color-blue);
+    border: 1.5px solid var(--font-color-blue);
     position: relative;
+    overflow: hidden;
 }
 
 .user_and_username {
@@ -408,7 +409,7 @@ span {
 }
 
 .text_content {
-    max-height: 100px;   
+    max-height: 200px;   
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
@@ -462,11 +463,13 @@ span {
 }
 
 .social_icons {
+    background-color: white;
     width: 100%;   
     justify-content: space-around;
     margin: auto 0;
     padding: 5px;
-    
+    box-sizing: border-box;
+    border-top: 1px solid var(--color--border-social-icons);
 }
 /*  */
 
@@ -565,6 +568,22 @@ span {
 
 }
 
+@media (max-width: 900px) {
+    .text_for_new_post p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .text_for_new_post p {
+        font-size: 0.85rem;
+    }
+
+    .text_for_new_post {
+        top: 41%;
+    }
+}
+
 @media (max-width: 750px) {
     .friends_open_mobile:hover {
         cursor: pointer;
@@ -576,10 +595,6 @@ span {
 
     .text_for_new_post p{
         font-size: 1em;
-    }
-
-    .span_send_post  {
-        top: 39%;
     }
 
     .gerenal_icons_mobile {
@@ -609,6 +624,13 @@ span {
 
 }
 
+@media (max-width: 600px) {
+    .text_for_new_post p {
+        font-size: .9rem;
+    }
+}
+
+
 @media (max-width: 570px) {
     .search_all .input { 
         font-size: 1.1rem;
@@ -628,5 +650,12 @@ span {
     }
 
 }
+
+@media (max-width: 380px) {
+    .text_for_new_post p {
+        font-size: 3.6vw;
+    }
+}
+
 
 /* end */

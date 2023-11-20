@@ -37,6 +37,8 @@ i {
     border: 10px;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 .left_menu_content p {
@@ -47,6 +49,10 @@ i {
     margin-top: 3px;
     font-size: 12px;
     color: var(--email-text-color);
+}
+
+.user_info {
+    margin-top: 6px;
 }
 
 .image_profile {
