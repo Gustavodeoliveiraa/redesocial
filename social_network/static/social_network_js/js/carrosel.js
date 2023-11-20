@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
     }else{
+      // If all statuses fit on the screen, the carousel controls do not appear
       item.forEach((items)=>items.classList.add('current-item'))
       controls.forEach((element)=>element.style.display = 'none')
     }
