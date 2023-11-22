@@ -5,7 +5,9 @@
   fazer novos amigos, buscar pessoas, compartilhar suas ideias através de posts e interagir com os posts de outros usuários. A plataforma foi projetada com o objetivo
   de tornar a experiência de socialização online mais envolvente e personalizada.
   
-[Clique aqui para ir ao site](http://34.16.133.13/)
+O FriendSync já está disponível para acesso através do [link](http://34.16.133.13/), corre lá e comece a interagir com outras pessoas agora mesmo!  🚀
+
+
 
 ## Funcionalidades
   - Alterar foto de perfil
