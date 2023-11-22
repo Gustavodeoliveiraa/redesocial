@@ -52,7 +52,7 @@ O FriendSync já está disponível para acesso através do [link](http://34.16.1
 ## Desenvolvido por
 - Gustavo de Oliveira
 - Contato: ggu3131@gmail.com
-- GitHub: [Meu perfil](https://github.com/Gustavodeoliveiraa)
+- GitHub: [Gustavo](https://github.com/Gustavodeoliveiraa)
 
 ## Licença
 Este projeto está licenciado sob a Licença Creative Commons Attribution-NonCommercial-NoDerivs 4.0 Internacional - consulte o arquivo [LICENSE.md](LICENSE.md) para obter detalhes.
