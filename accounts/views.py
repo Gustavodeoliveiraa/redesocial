@@ -1,4 +1,5 @@
 from typing import Any
+from django.forms.models import BaseModelForm
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordResetConfirmView
@@ -20,6 +21,7 @@ from social_network.models import ProfilePersonal
 import dotenv
 
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
 
 dotenv.load_dotenv()
 
@@ -32,6 +34,9 @@ class Home(TemplateView):
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
+
+        # save the data of session for populate form of login and register
+
         context = super().get_context_data(**kwargs)
         context['form'] = create_and_update_form(
             self.request, RegisterUser, 'register_form_data'
@@ -65,31 +70,56 @@ class Home(TemplateView):
 #         'success_message': success_message,
 #     })
 
+class CreateUser(CreateView):
+    model = User
+    template_name = 'account/partials/content-forms_overlay.html'
+    fields = ['username', 'email', 'password']
+    success_url = 'accounts:account'
 
-@require_POST
-def create_user(request):
-    POST = request.session['register_form_data'] = request.POST
+    def get_form(self, form_class=None):
+        return super().get_form(form_class)
 
-    form = create_and_update_form(request, RegisterUser, 'register_form_data')
-
-    if form.is_valid():
-        user = form.save(commit=False)
-        user.set_password(POST['password'])
-        user.save()
-        #
-        user_model_relation = User.objects.get(username=POST['username'])
-        profile = ProfilePersonal(user=user_model_relation)
-        profile.save()
-
-        del (request.session['register_form_data'])
+    def form_valid(self, form):
+        
         messages.success(
-            request, 'account created with success', extra_tags='register_form'
+            self.request,
+            'account created with success',
+            extra_tags='register_form'
         )
-        return redirect('accounts:account')
-    messages.error(
-            request, 'something is wrong', extra_tags='register_form'
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        response = super().form_invalid(form)
+        messages.error(
+            self.request, 'something is wrong', extra_tags='register_form'
         )
-    return redirect('accounts:account')
+        return response
+
+
+# @require_POST
+# def create_user(request):
+#     POST = request.session['register_form_data'] = request.POST
+
+#     form = create_and_update_form(request, RegisterUser, 'register_form_data')
+
+#     if form.is_valid():
+#         user = form.save(commit=False)
+#         user.set_password(POST['password'])
+#         user.save()
+
+#         user_model_relation = User.objects.get(username=POST['username'])
+#         profile = ProfilePersonal(user=user_model_relation)
+#         profile.save()
+
+#         del (request.session['register_form_data'])
+#         messages.success(
+#             request, 'account created with success', extra_tags='register_form'
+#         )
+#         return redirect('accounts:account')
+#     messages.error(
+#             request, 'something is wrong', extra_tags='register_form'
+#         )
+#     return redirect('accounts:account')
 
 
 @require_POST

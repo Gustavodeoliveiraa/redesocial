@@ -16,8 +16,9 @@ class AccountsViewsTest(TestCase):
         self.assertIs(resolved_class.func.view_class, views.Home)
 
     def test_validade_function_view_is_correct(self):
-        view_validate = resolve(reverse('accounts:create'))
-        self.assertIs(views.create_user, view_validate.func)
+        url = reverse('accounts:create')
+        resolved_class = resolve(url)
+        self.assertIs(resolved_class.func.view_class, views.CreateUser)
 
     def test_login_function_view_is_correct(self):
         view_login = resolve(reverse('accounts:login'))

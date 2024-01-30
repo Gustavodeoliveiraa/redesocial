@@ -42,8 +42,6 @@ class RegisterUser(forms.ModelForm):
             }
         ),
         error_messages={'invalid': 'passwords must be the same'},
-
-
     )
 
     class Meta:
