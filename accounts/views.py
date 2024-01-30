@@ -1,9 +1,11 @@
+from typing import Any
+from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.urls import reverse, reverse_lazy
 from .models import RegisterUser, LoginUser
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import login, authenticate
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -17,30 +19,51 @@ import threading
 from social_network.models import ProfilePersonal
 import dotenv
 
+from django.views.generic import TemplateView
+
 dotenv.load_dotenv()
 
 
-@require_GET
-def home(request):
-    request.session.set_expiry(1)
+class Home(TemplateView):
+    template_name = 'account/partials/content-forms_overlay.html'
 
-    # separando os dados da session de cada formulário
-    form = create_and_update_form(
-        request, RegisterUser, 'register_form_data'
-    )
+    def get(self, request, *args, **kwargs):
+        request.session.set_expiry(1)
+        return super().get(request, *args, **kwargs)
 
-    login = create_and_update_form(
-        request, RegisterUser, 'login_form_data'
-    )
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = create_and_update_form(
+            self.request, RegisterUser, 'register_form_data'
+        )
+        context['login'] = create_and_update_form(
+            self.request, RegisterUser, 'login_form_data'
+        )
+        context['success_message'] = messages.get_messages(self.request)
+        return context
 
-    # Recupera a mensagem de sucesso da sessão
-    success_message = messages.get_messages(request)
 
-    return render(request, 'account/partials/content-forms_overlay.html', {
-        'form': form,
-        'login': login,
-        'success_message': success_message,
-    })
+# @require_GET
+# def home(request):
+#     request.session.set_expiry(1)
+
+#     # separando os dados da session de cada formulário
+#     form = create_and_update_form(
+#         request, RegisterUser, 'register_form_data'
+#     )
+
+#     login = create_and_update_form(
+#         request, RegisterUser, 'login_form_data'
+#     )
+
+#     # Recupera a mensagem de sucesso da sessão
+#     success_message = messages.get_messages(request)
+
+#     return render(request, 'account/partials/content-forms_overlay.html', {
+#         'form': form,
+#         'login': login,
+#         'success_message': success_message,
+#     })
 
 
 @require_POST
