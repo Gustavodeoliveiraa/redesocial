@@ -3,27 +3,19 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from utils.django_forms import strong_password
 
+from django.contrib.auth.forms import UserCreationForm
 
-class RegisterUser(forms.ModelForm):
 
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Username', 'class': 'input-label-input'}
-        ),
-        error_messages={
-            'required': 'This field not be empty'
-        }
-    )
+class RegisterUser(UserCreationForm):
 
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={'placeholder': 'Email', 'class': 'input-label-input'}
         ),
         error_messages={'unique': 'This email is already in use'}
-
     )
 
-    password = forms.CharField(
+    password1 = forms.CharField(
         required=True,
         widget=forms.PasswordInput(
             attrs={
@@ -40,16 +32,13 @@ class RegisterUser(forms.ModelForm):
                 'placeholder': 'Confirm Password',
                 'class': 'input-label-input'
             }
-        ),
-        error_messages={'invalid': 'passwords must be the same'},
+        )
     )
 
     class Meta:
         model = User
         fields = [
             'username',
-            'email',
-            'password',
         ]
 
     def clean_email(self):
@@ -64,28 +53,26 @@ class RegisterUser(forms.ModelForm):
         return data
 
     def clean(self):
-        password1 = self.cleaned_data.get('password')
+        cleaned_data = super().clean()
+        password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
         if password2 is not None:
             if password1 != password2:
-                raise ValidationError(
-                    {'password2': 'passwords must be the same'},
-                    code='invalid'
-                )
+                self.add_error('password2', 'passwords must be the same')
             return self.cleaned_data
-        return self.cleaned_data
+        return cleaned_data
 
 
 class LoginUser(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
-            attrs={'placeholder': 'username'}
+            attrs={'placeholder': 'Username', 'class': 'input-label-input'}
         )
     )
 
     password = forms.CharField(
         widget=forms.PasswordInput(
-            attrs={'placeholder': 'password'}
+            attrs={'placeholder': 'password', 'class': 'input-label-input'}
         )
     )

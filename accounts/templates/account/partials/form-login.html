@@ -29,7 +29,7 @@
 
 <form  action=" {% url 'accounts:login' %}" method="POST" class="form form-login"
 name="form_type" value="sing_in">
-    {% csrf_token %}
+     {% csrf_token %}
 
     <div class="logo-form">
         <img src=" {% static 'img/logo-blue.png' %}" alt="">

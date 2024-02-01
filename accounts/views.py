@@ -1,12 +1,11 @@
 from typing import Any
 from django.forms.models import BaseModelForm
-from django.http.response import HttpResponse as HttpResponse
-from django.shortcuts import render, redirect
+from django.http.response import HttpResponse as HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.urls import reverse, reverse_lazy
 from .models import RegisterUser, LoginUser
 from django.contrib import messages
-from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth import login, authenticate
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -14,12 +13,11 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from utils.create_and_update_form import create_and_update_form
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_POST
+from django.utils.decorators import method_decorator
 import os
 import threading
-from social_network.models import ProfilePersonal
 import dotenv
-
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
@@ -42,10 +40,39 @@ class Home(TemplateView):
             self.request, RegisterUser, 'register_form_data'
         )
         context['login'] = create_and_update_form(
-            self.request, RegisterUser, 'login_form_data'
+            self.request, LoginUser, 'login_form_data'
         )
         context['success_message'] = messages.get_messages(self.request)
         return context
+
+
+@method_decorator(require_POST, name='dispatch')
+class CreateUser(CreateView):
+    model = User
+    form_class = RegisterUser
+    template_name = 'account/partials/content-forms_overlay.html'
+    success_url = reverse_lazy('accounts:account')
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["login"] = LoginUser
+        return context
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            'account created with success',
+            extra_tags='register_form'
+        )
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        messages.error(
+            self.request, 'something is wrong', extra_tags='register_form'
+        )
+        return super().form_invalid(form)
+
 
 
 # @require_GET
@@ -69,31 +96,6 @@ class Home(TemplateView):
 #         'login': login,
 #         'success_message': success_message,
 #     })
-
-class CreateUser(CreateView):
-    model = User
-    template_name = 'account/partials/content-forms_overlay.html'
-    fields = ['username', 'email', 'password']
-    success_url = 'accounts:account'
-
-    def get_form(self, form_class=None):
-        return super().get_form(form_class)
-
-    def form_valid(self, form):
-        
-        messages.success(
-            self.request,
-            'account created with success',
-            extra_tags='register_form'
-        )
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        messages.error(
-            self.request, 'something is wrong', extra_tags='register_form'
-        )
-        return response
 
 
 # @require_POST
@@ -122,7 +124,6 @@ class CreateUser(CreateView):
 #     return redirect('accounts:account')
 
 
-@require_POST
 def login_user(request):
     POST = request.POST
     request.session['login_form_data'] = POST
@@ -137,7 +138,7 @@ def login_user(request):
             del (request.session['login_form_data'])
             return redirect('feed')
 
-    messages.error(request, 'Credentials invalid', extra_tags='login_form')
+    messages.error(request, 'Credentials invalid a aa', extra_tags='login_form')
     return redirect('accounts:account')
 
 

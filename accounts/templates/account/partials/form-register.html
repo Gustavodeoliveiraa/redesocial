@@ -45,12 +45,12 @@ name="form_type"  value="sign_up" >
 
     <label  class="input-label" >
         <i class="fa-solid fa-lock"></i>
-        {{form.password}}
+        {{form.password1}}
     </label>
 
-    {% if form.password.errors %}
+    {% if form.password1.errors %}
         <div class="error-message">
-            {{ form.password.errors.as_text }}
+            {{ form.password1.errors.as_text }}
         </div>
     {% endif %}
 
