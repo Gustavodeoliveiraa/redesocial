@@ -11,18 +11,16 @@ class AccountsViewsTest(TestCase):
 
     def test_home_class_view_is_correct(self):
         # test if class Home is loading correctly
-        url = reverse('accounts:account')
-        resolved_class = resolve(url)
+        resolved_class = resolve(reverse('accounts:account'))
         self.assertIs(resolved_class.func.view_class, views.Home)
 
     def test_validade_function_view_is_correct(self):
-        url = reverse('accounts:create')
-        resolved_class = resolve(url)
+        resolved_class = resolve(reverse('accounts:create'))
         self.assertIs(resolved_class.func.view_class, views.CreateUser)
 
     def test_login_function_view_is_correct(self):
         view_login = resolve(reverse('accounts:login'))
-        self.assertIs(views.login_user, view_login.func)
+        self.assertIs(view_login.func.view_class, views.UserLogin)
 
     def test_process_form_function_view_is_correct(self):
         view_process = resolve(reverse('accounts:form'))

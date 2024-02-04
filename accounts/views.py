@@ -1,27 +1,25 @@
-from typing import Any
-from django.forms.models import BaseModelForm
-from django.http.response import HttpResponse as HttpResponse, JsonResponse
-from django.shortcuts import redirect
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.urls import reverse, reverse_lazy
-from .models import RegisterUser, LoginUser
-from django.contrib import messages
-from django.contrib.auth import login, authenticate
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
-from django.contrib.auth.models import User
-from utils.create_and_update_form import create_and_update_form
-from django.views.decorators.http import require_POST
-from django.utils.decorators import method_decorator
 import os
 import threading
-import dotenv
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
+from django.core.mail import send_mail
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth import login, authenticate
+from django.utils.decorators import method_decorator
+from django.utils.encoding import force_bytes
 from django.views.generic import TemplateView
+from django.forms.models import BaseModelForm
+from django.http.response import JsonResponse
+from django.contrib.auth.models import User
+from django.views.generic.edit import FormView
 from django.views.generic.edit import CreateView
-
-dotenv.load_dotenv()
+from django.views.decorators.http import require_POST
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.views import PasswordResetConfirmView
+from .models import RegisterUser, LoginUser
+from utils.create_and_update_form import create_and_update_form
 
 
 class Home(TemplateView):
@@ -32,7 +30,6 @@ class Home(TemplateView):
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-
         # save the data of session for populate form of login and register
 
         context = super().get_context_data(**kwargs)
@@ -53,7 +50,7 @@ class CreateUser(CreateView):
     template_name = 'account/partials/content-forms_overlay.html'
     success_url = reverse_lazy('accounts:account')
 
-    def get_context_data(self, **kwargs) -> dict[str, Any]:
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["login"] = LoginUser
         return context
@@ -64,82 +61,36 @@ class CreateUser(CreateView):
             'account created with success',
             extra_tags='register_form'
         )
-
         return super().form_valid(form)
 
-    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+    def form_invalid(self, form: BaseModelForm):
         messages.error(
             self.request, 'something is wrong', extra_tags='register_form'
         )
         return super().form_invalid(form)
 
 
+@method_decorator(require_POST, name='dispatch')
+class UserLogin(FormView):
+    template_name = 'account/partials/content-forms_overlay.html'
+    form_class = LoginUser
+    success_url = reverse_lazy('accounts:account')
 
-# @require_GET
-# def home(request):
-#     request.session.set_expiry(1)
-
-#     # separando os dados da session de cada formulário
-#     form = create_and_update_form(
-#         request, RegisterUser, 'register_form_data'
-#     )
-
-#     login = create_and_update_form(
-#         request, RegisterUser, 'login_form_data'
-#     )
-
-#     # Recupera a mensagem de sucesso da sessão
-#     success_message = messages.get_messages(request)
-
-#     return render(request, 'account/partials/content-forms_overlay.html', {
-#         'form': form,
-#         'login': login,
-#         'success_message': success_message,
-#     })
-
-
-# @require_POST
-# def create_user(request):
-#     POST = request.session['register_form_data'] = request.POST
-
-#     form = create_and_update_form(request, RegisterUser, 'register_form_data')
-
-#     if form.is_valid():
-#         user = form.save(commit=False)
-#         user.set_password(POST['password'])
-#         user.save()
-
-#         user_model_relation = User.objects.get(username=POST['username'])
-#         profile = ProfilePersonal(user=user_model_relation)
-#         profile.save()
-
-#         del (request.session['register_form_data'])
-#         messages.success(
-#             request, 'account created with success', extra_tags='register_form'
-#         )
-#         return redirect('accounts:account')
-#     messages.error(
-#             request, 'something is wrong', extra_tags='register_form'
-#         )
-#     return redirect('accounts:account')
-
-
-def login_user(request):
-    POST = request.POST
-    request.session['login_form_data'] = POST
-    form = LoginUser(POST)
-    if form.is_valid():
-        username = request.POST.get('username')
-        password = request.POST.get("password")
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
         user = authenticate(username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            del (request.session['login_form_data'])
+            login(self.request, user)
             return redirect('feed')
 
-    messages.error(request, 'Credentials invalid a aa', extra_tags='login_form')
-    return redirect('accounts:account')
+        self.request.session['login_form_data'] = self.request.POST
+        messages.error(
+            self.request, 'Credentials invalid', extra_tags='login_form'
+        )
+
+        return super().form_valid(form)
 
 
 def send_email_async(request, username, email):

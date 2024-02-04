@@ -5,7 +5,7 @@ from accounts.views import send_email_async
 import os
 from unittest.mock import patch
 from django.core import mail
-from social_network.models import ProfilePersonal
+from django.contrib.messages import get_messages
 
 
 class TestViewCreateUser(TestCase):
@@ -91,12 +91,12 @@ class TestViewLoginUser(TestCase):
             'password': 'SenhaTeste123',
         }
         response = self.client.post(
-            reverse('accounts:login'), follow=True, data=data
+            reverse('accounts:login'), data=data
         )
 
         user = User.objects.get(username='User')
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.assertTrue(user.is_authenticated)
 
     def test_login_user_not_authenticated(self):
@@ -111,12 +111,16 @@ class TestViewLoginUser(TestCase):
         }
 
         response = self.client.post(
-            reverse('accounts:login'), follow=True, data=data
+            reverse('accounts:login'), data=data
         )
 
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(response.context['user'].is_authenticated)
-        self.assertIn('Credentials invalid', response.content.decode('utf-8'))
+        messages = list(get_messages(response.wsgi_request))
+
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(response.wsgi_request.user.is_authenticated)
+        self.assertIn(
+            'Credentials invalid', [message.message for message in messages]
+        )
 
 
 class TestProcessModalForm(TestCase):
@@ -129,7 +133,7 @@ class TestProcessModalForm(TestCase):
         request = RequestFactory().post(reverse('accounts:form'))
 
         with patch(
-            'project.settings.EMAIL_BACKEND', 
+            'project.settings.EMAIL_BACKEND',
                 new='django.core.mail.backends.console.EmailBackend'):
             root_path = send_email_async(
                 request, 'User', os.environ.get('EMAIL')
