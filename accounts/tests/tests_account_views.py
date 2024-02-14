@@ -142,12 +142,12 @@ class TestProcessModalForm(TestCase):
 
     def test_logic_of_the_view_modal_form(self):
         User.objects.create_user(  # type: ignore
-            username='User',
+            username='User0101',
             email=os.environ.get('EMAIL')
         )
 
         data = {
-            'username': 'User',
+            'username': 'User0101',
             'email': os.environ.get('EMAIL')
         }
 
