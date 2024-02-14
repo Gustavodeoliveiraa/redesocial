@@ -1,7 +1,6 @@
 import os
 import threading
 from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.core.mail import send_mail
@@ -113,23 +112,23 @@ def send_email_async(request, username, email):
     return [root_path, str(uidb64), str(token)]
 
 
-@require_POST
-def process_modal_form(request):
-    POST = request.POST
-    request.session['login_form_data'] = POST
-    username, email = [
-        request.POST.get('username'), request.POST.get('email')
-    ]
+@method_decorator(require_POST, name='dispatch')
+class ProcessModelForm(FormView):
+    def post(self, request, *args, **kwargs):
+        self.request.session['login_form_data'] = self.request.POST
 
-    if User.objects.filter(username=username, email=email).exists():
+        username, email = [
+            self.request.POST.get('username'), self.request.POST.get('email')
+        ]
+        if User.objects.filter(username=username, email=email).exists():
+            email_thread = threading.Thread(
+                target=send_email_async, args=(request, username, email)
+            )
+            email_thread.start()
+            del (request.session['login_form_data'])
+            return JsonResponse({'email': 'Email send'})
 
-        email_thread = threading.Thread(
-            target=send_email_async, args=(request, username, email)
-        )
-        email_thread.start()
-        del (request.session['login_form_data'])
-        return JsonResponse({'email': 'Email send'})
-    return JsonResponse({'email': 'Something is wrong'})
+        return JsonResponse({'email': 'Something is wrong'})
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):

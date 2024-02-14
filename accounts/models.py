@@ -8,6 +8,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegisterUser(UserCreationForm):
 
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Username', 'class': 'input-label-input'}
+        )
+    )
+
     email = forms.CharField(
         widget=forms.EmailInput(
             attrs={'placeholder': 'Email', 'class': 'input-label-input'}

@@ -100,11 +100,6 @@ class TestViewLoginUser(TestCase):
         self.assertTrue(user.is_authenticated)
 
     def test_login_user_not_authenticated(self):
-        User.objects.create_user(  # type: ignore
-            username='User',
-            password='1234'
-        )
-
         data = {
             'username': 'User',
             'password': '123',

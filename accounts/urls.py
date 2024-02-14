@@ -8,6 +8,6 @@ urlpatterns = [
     path('', views.Home.as_view(), name='account'),
     path('validate/', views.CreateUser.as_view(), name='create'),
     path('login/', views.UserLogin.as_view(), name='login'),
-    path('process/form/', views.process_modal_form, name='form'),
-   
+    path('process/form/', views.ProcessModelForm.as_view(), name='form'),
+
 ]

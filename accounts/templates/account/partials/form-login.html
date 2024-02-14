@@ -1,29 +1,7 @@
 {% load static %}
 
 
-<dialog id="modal" class="modal_form">
-    <form id="reset" method="post" class="form_modal" action="{% url 'accounts:form' %}">
-        {% csrf_token %}
-        <img class="img_modal" src=" {% static 'img/logo-blue.png' %}" alt="">
 
-        <div id="message" class="message">
-           {{email}}
-        </div>
-
-        <label class="input-label modal-label"  for="email">
-            <i class="fa-regular fa-envelope"></i>
-            {{login.username}}
-        </label>
-
-        <label class="input-label modal-label">
-            <i class="fa-regular fa-envelope"></i>
-            {{login.email}}
-        </label>
-
-        <button class="button_modal submit">send password reset email</button>
-        <button type="button" class="submit" id="closeModel">Close</button>
-    </form>
-</dialog>
 
 
 
