@@ -455,7 +455,6 @@ span {
     background-color: var( --background-body-color);
     border: 1.5px solid var(--font-color-blue);
     position: relative;
-    overflow: hidden;
 }
 
 .user_and_username {
@@ -553,6 +552,7 @@ span {
     padding: 5px;
     box-sizing: border-box;
     border-top: 1px solid var(--color--border-social-icons);
+    border-radius:  0 0 15px 15px;
 }
 /*  */
 
