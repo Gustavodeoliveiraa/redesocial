@@ -360,7 +360,6 @@ span {
 
 
 /* friend search bar */
-
 .suggestions{
     position: absolute;
     top: 100%;
@@ -439,7 +438,6 @@ span {
     color: var(--color-success-dark);
     display: none;
 }
-/*  */
 
 /* div for show all posts */
 .show_posts_of_users {
