@@ -9,4 +9,3 @@ def save_profile_personal_post_save_user(sender, instance, created, **kwargs):
     # After creating a user, register this user in the ProfilePersonal.
     if created:
         ProfilePersonal.objects.create(user=instance)
-        print('apos validar o RegisterUser o User foi criado')

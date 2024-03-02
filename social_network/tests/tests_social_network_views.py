@@ -28,7 +28,7 @@ class TestViewFeed(TestCase):
 
     def test_if_user_is_loaded_correctly(self):
         request = self.request_for_view_feed
-        self.assertEqual(request.user.username, 'Teste02')
+        self.assertEqual(request.user.get_username(), 'Teste02')
 
     def test_if_profile_image_default_is_loaded_correctly(self):
         request = self.request_for_view_feed
