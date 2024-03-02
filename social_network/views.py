@@ -9,11 +9,11 @@ from django.templatetags.static import static
 from django.db.models import F
 
 
-@login_required()
+@login_required
 def feed(request):
     profile = ProfilePersonal.objects.select_related('user')\
         .get(user__username=request.user.username)
-    fields_of_model = ProfilePersonalModel()
+    fields_of_model_profile_image = ProfilePersonalModel()
     send_img_post = PostModel()
     status_fields = StatusModel()
     friend_all = Friends.objects.filter(user_reference=profile)\
@@ -33,7 +33,7 @@ def feed(request):
         request, 'social_network/partials/friends.html',
         context={
             'profile_data': profile,
-            'fields': fields_of_model,
+            'fields': fields_of_model_profile_image,
             'status_fields': status_fields,
             'post_field': send_img_post,
             'friend_all': friend_all,
@@ -186,7 +186,6 @@ def num_likes_of_post(reques, post_id, likes):
         pass
 
     return redirect('feed')
-
 
 
 @login_required()

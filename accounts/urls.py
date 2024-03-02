@@ -9,5 +9,4 @@ urlpatterns = [
     path('validate/', views.CreateUser.as_view(), name='create'),
     path('login/', views.UserLogin.as_view(), name='login'),
     path('process/form/', views.ProcessModelForm.as_view(), name='form'),
-
 ]

@@ -11,20 +11,23 @@ urlpatterns = [
         "feed/search_user/<str:user>", views.search_users, name='search_users'
     ),
     path("feed/add/<str:user>", views.add_friends, name='add_friends'),
-    path("feed/add/new/post", views.add_post, name='add_post'),
-    path("feed/add/new/post", views.add_post, name='add_post'),
+
     path(
         "feed/add/delete/post/<str:pk>", views.delete_post, name='delete_post'
     ),
+
+    path("feed/add/new/post", views.add_post, name='add_post'),
+
+    path(
+        "feed/counter/likes/<int:post_id>/<int:likes>",
+        views.num_likes_of_post,
+        name='counter_Likes'
+    ),
+
     path(
         "feed/delete/friend/<str:pk>",
         views.delete_friend,
         name='delete_friend'
     ),
 
-    path(
-        "feed/counter/likes/<int:post_id>/<int:likes>",
-        views.num_likes_of_post,
-        name='counter_Likes'
-    )
 ]
