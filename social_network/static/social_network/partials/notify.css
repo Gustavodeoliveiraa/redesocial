@@ -1,0 +1,157 @@
+/* test */
+.background_notify {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.822);
+    z-index: 2;
+    display: none;
+}
+
+background_notify {
+    border: 0px solid black;
+}
+
+.container_all_notfy {
+    position: relative;
+    overflow: hidden;
+    width: calc(25% + 16px);
+    padding-right: 16px;
+    height: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid var(--light-blue);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    box-sizing: border-box;
+}
+
+.container_notify {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.container_notify p {
+    width: 100%;
+    text-align: center;
+}
+
+.close_notify {
+    display: flex;
+    justify-content: right;
+}
+
+.close_notify i {
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.close_notify i:hover { 
+    cursor: pointer;
+}
+
+.container_user_notfy {
+    width: 100%;
+    position: relative;
+}
+
+.notification_container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.notification_container img{
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+.container_notfication {
+    width: 100%;
+    border: 1px solid var(--font-color-blue);
+    border-radius: 20px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: rgb(245, 245, 245);
+}
+
+.name_sender_notification {
+    padding-left: 25px;
+}
+
+.buttons_add_delete {
+    display: flex;
+    margin: 5%;
+    justify-content: space-between;
+}
+
+
+
+.add_button, .delete_button {
+    display: inline-flex;
+    width: 40%;
+    height: 35px;
+    background-color: var(--font-color-blue);
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: all .3s ease-in-out;
+}
+
+.delete_button {
+    background-color: white;
+    border: 2px solid var(--font-color-blue);
+    color: var(--font-color-blue);
+}
+
+.add_button:hover, .delete_button:hover {
+    scale: 1.03;
+}
+
+.container_all_notfy::-webkit-scrollbar {
+    width: 8px;
+    background: #f1f1f100;
+    
+}
+
+.container_all_notfy::-webkit-scrollbar-thumb {
+    background: #f1f1f100;
+    border-radius: 4px;
+}
+
+.container_all_notfy:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+}
+
+@media (max-width: 1250px) {
+
+    .container_all_notfy {
+        width: 40%;
+    }
+}
+
+@media (max-width: 880px) {
+
+    .container_all_notfy {
+        width: 50%;
+    }
+}
