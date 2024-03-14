@@ -78,11 +78,6 @@ class StatusModel(forms.ModelForm):
         fields = ['status_image']
 
 
-# class NotificationManager(models.Manager):
-#     def unread(self):
-#         return self.filter(read=False)
-
-
 class Notifications(models.Model):
     sender = models.ForeignKey(
         ProfilePersonal, on_delete=models.PROTECT, blank=True, null=True,
