@@ -19,6 +19,8 @@
                         <div class="notification_container">
                             {% if notfy.sender.profile_image %}
                                 <img src="{{notfy.sender.profile_image.url}}" alt="">
+                            {% else %}
+                                <img src="{% static "img/without_user.png" %}" alt="">
                             {% endif %}
                             <p class="name_sender_notification">{{notfy.sender}}</p>
                         </div>
