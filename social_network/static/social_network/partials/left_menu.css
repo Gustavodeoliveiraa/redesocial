@@ -95,6 +95,28 @@ i {
     padding-left: 10px;
 }
 
+.notify_open {
+    position: relative;
+}
+
+.notification_counter {
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px; 
+    font-weight: bold; 
+    font-family: Arial, sans-serif;
+    margin-left: 5%;
+}
+
+
 /* modal for sending picture or status */
 .modal_change_picture {
     z-index: 10;
@@ -224,5 +246,13 @@ i {
     
     .all_user_delete {
         text-align: center;
+    }
+
+    .notification_counter {
+        margin-top: -1%;
+        width: 13px;
+        height: 13px;
+        font-size: 11px;
+        
     }
 }

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import ProfilePersonal, ProfilePersonalModel 
+from .models import ProfilePersonal, ProfilePersonalModel, Notifications
 from .models import Status, StatusModel, Post, PostModel
 from .models import Friends
 from django.http import JsonResponse
@@ -29,8 +30,15 @@ def feed(request):
     my_status = Status.objects.filter(usuario=profile)\
         .select_related('usuario', 'usuario__user').last()
 
+    my_notifications = Notifications.objects.filter(
+        recipient_user=profile, read=False
+    )
+    notification_count = my_notifications.count()
+
+    print(my_notifications)
+
     return render(
-        request, 'social_network/partials/friends.html',
+        request, 'social_network/partials/notify.html',
         context={
             'profile_data': profile,
             'fields': fields_of_model_profile_image,
@@ -39,6 +47,8 @@ def feed(request):
             'friend_all': friend_all,
             'posts': post,
             'my_status': my_status,
+            'notification': my_notifications,
+            'notify_count': notification_count
         }
     )
 
@@ -123,8 +133,21 @@ def search_users(request, user):
     return JsonResponse(response_data)
 
 
+def send_notify_add_friend(request, user):
+    sender = ProfilePersonal.objects.get(user__username=request.user.username)
+    recipient = ProfilePersonal.objects.get(user__username=user)
+
+    Notifications.objects.create(
+        sender=sender,
+        recipient_user=recipient,
+        verb=f"{request.user.username} enviou uma solicitação",
+    )
+    return redirect('feed')
+
+
 @login_required()
-def add_friends(request, user):
+def add_friends(request, user, notify_id):
+    Notifications.objects.get(id=notify_id).mark_as_read()
     friend = ProfilePersonal.objects.get(user__username=user)
     reference_user = ProfilePersonal.objects.get(
         user__username=request.user.username
@@ -141,6 +164,12 @@ def add_friends(request, user):
             friend=friend,
             user_reference=reference_user
         )
+        Friends.objects.create(
+            friend=reference_user,
+            user_reference=friend, 
+        )
+#   TODO: VALIDAR PARA N ENVIAR MAIS DE UMA NOTIFICAÇAO
+#   TODO: CRIAR TEMPLATE Q MOSTRA AS NOTIFICAÇOES
     return redirect('feed')
 
 

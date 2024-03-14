@@ -88,6 +88,7 @@
             
             {% for friends in friend_all %}
             
+            
                 {% if friends.friend.status_set.all %}
                     <a href=" {% url "all_status" friends.friend_name%}" data-link="{{friends.friend_name}}">
                         <div class="story item current-item">
@@ -152,7 +153,6 @@
     
     {% for user_post in posts %}
         <div class="show_posts_of_users">
-
             <div class="user_post_content">
 
                 <div class="user_and_username post_user_and_picture">
@@ -203,8 +203,16 @@
                 </div>
             </div>
         </div>
+
+        
     {% endfor %}
 
-
-
 {% endblock feed %}
+
+
+
+{% comment %} {% if notification %}
+{% for n in notification %}
+    {{n.verb|safe}}
+{% endfor %}
+{% endif %} {% endcomment %}

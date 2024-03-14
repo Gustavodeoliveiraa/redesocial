@@ -1,0 +1,41 @@
+{% extends "social_network/partials/friends.html" %}
+{% load static %}
+
+{% block notication %}
+    <div class="background_notify">
+        <div class="container_all_notfy">
+            <div class="container_notify">
+                <p>Notifications</p>
+
+                <div class="close_notify">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>  
+               
+            {% if notification %}
+                {% for notfy in notification %}
+                    <div class="container_notfication">
+                        <div class="container_user_notfy">
+                        <div class="notification_container">
+                            {% if notfy.sender.profile_image %}
+                                <img src="{{notfy.sender.profile_image.url}}" alt="">
+                            {% endif %}
+                            <p class="name_sender_notification">{{notfy.sender}}</p>
+                        </div>
+                        
+                            <div class="buttons_add_delete">
+                                <a class="add_button" href="{% url "add_friends" notfy.sender notfy.id %}">Confirm</a>
+                                <a class="delete_button" href="">Delete</a>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock notication %}
+
+
+<p>{{notfy.sender}}</p>
+<div class="profile_container"></div>

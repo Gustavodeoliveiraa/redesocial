@@ -10,7 +10,8 @@ urlpatterns = [
     path(
         "feed/search_user/<str:user>", views.search_users, name='search_users'
     ),
-    path("feed/add/<str:user>", views.add_friends, name='add_friends'),
+    path("feed/add/notify/<str:user>", views.send_notify_add_friend, name='notify'),
+    path("feed/add/<str:user>/<int:notify_id>/", views.add_friends, name='add_friends'),
 
     path(
         "feed/add/delete/post/<str:pk>", views.delete_post, name='delete_post'

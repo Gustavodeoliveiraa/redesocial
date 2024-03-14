@@ -130,7 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
                        button.addEventListener('click', (e)=>{
                             e.preventDefault()
                             const attr = button.getAttribute('data-user-id')
-                            const friend_endpoint = `${window.location.href}add/${attr}`
+                            // const friend_endpoint = `${window.location.href}add/${attr}`
+                            const friend_endpoint = `${window.location.href}add/notify/${attr}`
         
                             const dialog = document.querySelector('.content_add')
                             dialog.style.display = 'flex'
@@ -290,6 +291,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
     })
+
+    // button of open and close for show all notifications
+    var containerAllNotfy = document.querySelector('.background_notify');
+
+    var openNotfy = document.querySelector('.notify_open');
+    openNotfy.addEventListener('click', () => {
+        console.log('salve')
+        containerAllNotfy.style.display = 'block'
+    })
+
+    var closeNotify = document.querySelector('.close_notify');
+    closeNotify.addEventListener('click', () => {
+        if (containerAllNotfy.style.display === 'block') {
+            containerAllNotfy.style.display = 'none'
+        }
+    })
+
+
 
     // sending a status image
     const submitFormStatus = document.getElementById('send_status')

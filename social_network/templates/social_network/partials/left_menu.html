@@ -31,7 +31,20 @@
             <p>General</p>
             <div class="general_icons">
                 <button class="friends_open" ><i class="fa-solid fa-user-group"></i>Friends</button>
-                <button><i class="fa-solid fa-bell"></i>Notifications</button>
+                <button class="notify_open">
+                    <i class="fa-solid fa-bell"></i>Notifications
+                    {% if notification %}
+                        <span class="notification_counter">
+                            {% if notify_count < 99 %}
+                                {{notify_count}}
+                            {% else %}
+                                99+
+                            {% endif %}
+                        </span>
+                    {% endif %}
+
+                </button>
+
                 <button><i class="fa-solid fa-message"></i>Messages</button>
             </div>
             <p>Private</p>
