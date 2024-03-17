@@ -155,3 +155,21 @@ background_notify {
         width: 50%;
     }
 }
+
+@media (max-width: 750px) {
+    
+    .background_notify {
+        left: -7px;
+    }
+
+    .container_all_notfy {
+        width: 73%;
+    }
+}
+
+@media (max-width: 560PX) {
+    .container_all_notfy {
+        width: 85%;
+    }
+}
+

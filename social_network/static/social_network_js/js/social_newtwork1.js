@@ -297,7 +297,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var openNotfy = document.querySelector('.notify_open');
     openNotfy.addEventListener('click', () => {
-        console.log('salve')
         containerAllNotfy.style.display = 'block'
     })
 
@@ -308,7 +307,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 
-
+    //  button of open and close for show all notifications in mobile screen
+    var containerAllNotfyMobile = document.getElementById('mobile_notificationb');
+    containerAllNotfyMobile.addEventListener('click', ()=>{
+        containerAllNotfy.style.display = 'flex'
+        console.log('salve')
+    })
 
     // sending a status image
     const submitFormStatus = document.getElementById('send_status')

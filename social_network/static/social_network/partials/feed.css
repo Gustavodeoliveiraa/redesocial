@@ -704,6 +704,10 @@ span {
         padding-left: 10px;
     }
 
+    #mobile_notificationb:hover {
+        cursor: pointer;
+    }
+
 }
 
 @media (max-width: 600px) {
