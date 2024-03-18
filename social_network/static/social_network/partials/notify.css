@@ -157,6 +157,15 @@ background_notify {
 }
 
 @media (max-width: 750px) {
+    #mobile_notificationb {
+        position: relative;;
+    }
+
+    .notification_counter {
+        position: absolute;
+        top: -7px;
+        left: 5px;
+    }
     
     .background_notify {
         left: -7px;

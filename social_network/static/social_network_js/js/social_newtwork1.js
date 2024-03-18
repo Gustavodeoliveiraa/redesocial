@@ -302,8 +302,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var closeNotify = document.querySelector('.close_notify');
     closeNotify.addEventListener('click', () => {
-        if (containerAllNotfy.style.display === 'block') {
-            containerAllNotfy.style.display = 'none'
+        if (containerAllNotfy.style.display === 'block' || 'flex') {
+        containerAllNotfy.style.display = 'none'
         }
     })
 
@@ -311,7 +311,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var containerAllNotfyMobile = document.getElementById('mobile_notificationb');
     containerAllNotfyMobile.addEventListener('click', ()=>{
         containerAllNotfy.style.display = 'flex'
-        console.log('salve')
     })
 
     // sending a status image
