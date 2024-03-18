@@ -3,6 +3,10 @@ a {
     color: unset;
 }
 
+pre {
+    white-space: pre-wrap;
+}
+
 .all_friends {
     display: none;
 }
