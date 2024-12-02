@@ -35,8 +35,6 @@ def feed(request):
     )
     notification_count = my_notifications.count()
 
-    print(my_notifications)
-
     return render(
         request, 'social_network/partials/notify.html',
         context={
@@ -166,7 +164,7 @@ def add_friends(request, user, notify_id):
         )
         Friends.objects.create(
             friend=reference_user,
-            user_reference=friend, 
+            user_reference=friend,
         )
 #   TODO: VALIDAR PARA N ENVIAR MAIS DE UMA NOTIFICAÇAO
 #   TODO: CRIAR TEMPLATE Q MOSTRA AS NOTIFICAÇOES
